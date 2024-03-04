@@ -599,9 +599,6 @@
                     </div>
                 </article>
 
-                
-                
-                
             </div>
         </section>
         <div class="clearfix"></div>
@@ -736,8 +733,6 @@
                             </span>
                         </div>
                     </div>
-                    
-                    
                     </div>
                 </div>
             </section>

@@ -38,3 +38,5 @@
 <style>
 #header .site-title {background: url(https://www.pngkey.com/png/detail/360-3601772_your-logo-here-your-company-logo-here-png.png) no-repeat top left;background-size: contain;text-indent: -9999px;}
 </style>
+
+@yield('css')
