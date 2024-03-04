@@ -2,7 +2,13 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\EpisodeController;
+use App\Http\Controllers\Admin\GenreController;
+use App\Http\Controllers\Admin\MovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +22,9 @@ use App\Http\Controllers\IndexController;
 */
 
 Auth::routes();
-Route::get('/', function (){
-    return redirect()->route('home');
-});
+// Route::get('/', function (){
+//     return redirect()->route('home');
+// });
 
 Route::get('/home', [IndexController::class, 'index'])->name('home');
 Route::get('/danh-muc', [IndexController::class, 'category'])->name('category');
@@ -28,4 +34,9 @@ Route::get('/xem-phim', [IndexController::class, 'movie'])->name('movie');
 Route::get('/episode', [IndexController::class, 'episode'])->name('episode');
 
 
-// Route::get();
+Route::resource('category', CategoryController::class);
+Route::resource('movie', MovieController::class);
+Route::resource('genre', GenreController::class);
+Route::resource('episode', EpisodeController::class);
+Route::resource('country', CountryController::class);
+
