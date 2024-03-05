@@ -13,24 +13,75 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    @if (!isset($category))
                         {!! Form::open(['route' => 'category.store','method' => 'post']) !!}
+                        
+                    @else
+                        {!! Form::open(['route' => ['category.update',$category->id],'method' => 'put']) !!}
+                        
+                    @endif
+                        
                         <div class="form-group">
                             {!! Form::label('Title', 'Title', []) !!}
-                            {!! Form::text('title', null, ['class'=>'form-control','placeholder' => 'Nhập dữ liệu...']) !!}
+                            {!! Form::text('title', isset($category) ? $category->title : '' , ['class'=>'form-control','placeholder' => 'Nhập dữ liệu...']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('desciption', 'Desciption', []) !!}
-                            {!! Form::textarea('description', null, ['style'=>'resize:none','class'=>'form-control','placeholder' => 'Nhập dữ liệu...']) !!}
+                            {!! Form::textarea('description', isset($category) ? $category->description : '', ['style'=>'resize:none','class'=>'form-control','placeholder' => 'Nhập dữ liệu...']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('Active', 'Active', []) !!}
-                            {!! Form::select('status', ['1'=>'Hiển thị','0'=>'Không hiển thị'], null,['class'=>'form-control']) !!}
+                            {!! Form::select('status', ['1'=>'Hiển thị','0'=>'Không hiển thị'], $category->status ,['class'=>'form-control']) !!}
                         </div>
-                        {!! Form::submit('Thêm dữ liệu', ['class'=> 'btn btn-success']) !!}
+                        @if (!isset($category))
+                            {!! Form::submit('Thêm dữ liệu', ['class'=> 'btn btn-success']) !!}
+                            
+                        @else
+                            {!! Form::submit('Cập nhật dữ liệu', ['class'=> 'btn btn-success']) !!}
+                            
+                        @endif
                         {!! Form::close() !!}
                     {{-- {{ __('You are logged in!') }} --}}
                 </div>
             </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Status</th>
+
+                        <th scope="col">Manager</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($lists as $key => $list )
+                        
+                    <tr>
+                        <th scope="row">{{ $key }}</th>
+                        <td>{{ $list->title }}</td>
+                        <td>{{ $list->description }}</td>
+                        <td>{!! $list->status == 0 ? '<span class="btn btn-danger btn-xs">Chưa kích hoạt</span>' : '<span class="btn btn-success btn-xs">Kích hoạt</span>' !!}</td>
+
+                        {{-- <td>{{ $list-> }}</td> --}}
+                        <td>
+                            {!! Form::open([
+                                'method'=>'delete',
+                                'route'=>['category.destroy',$list->id],
+                                'onsubmit'=>'return confirm("Xóa?")'
+                            ]) !!}
+                                {!! Form::submit('Xóa', ['class'=>'btn btn-danger']) !!}
+                            {!! Form::close() !!}
+                            <a href="{{ route('category.edit',['category'=> $list->id]) }}" class="btn btn-warning">Sửa</a>
+
+                        </td>
+                    </tr>
+                @endforeach
+                
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

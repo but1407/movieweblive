@@ -22,9 +22,9 @@ use App\Http\Controllers\Admin\MovieController;
 */
 
 Auth::routes();
-// Route::get('/', function (){
-//     return redirect()->route('home');
-// });
+Route::get('/', function (){
+    return redirect('/login');
+});
 
 Route::get('/home', [IndexController::class, 'index'])->name('home');
 Route::get('/danh-muc', [IndexController::class, 'category'])->name('category');
