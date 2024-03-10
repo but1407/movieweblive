@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Genre;
 
 class GenreController extends Controller
 {
@@ -24,7 +25,10 @@ class GenreController extends Controller
      */
     public function create()
     {
-        //
+        $lists = Genre::all();
+        return view('admin.genre.form',['lists' => $lists,
+        'title' => 'Quản lý thể loại'
+    ]);
     }
 
     /**
@@ -35,7 +39,12 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store = Genre::create([
+            'title'=>$request->title,
+            'description'=>$request->description,
+            'status' => $request->status
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -57,7 +66,10 @@ class GenreController extends Controller
      */
     public function edit($id)
     {
-        //
+        $genre = Genre::find($id);
+        $lists = Genre::all();
+
+        return view('admin.genre.form',compact('genre','lists'));
     }
 
     /**
@@ -69,7 +81,12 @@ class GenreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $store = Genre::find($id)->update([
+            'title'=>$request->title,
+            'description'=>$request->description,
+            'status' => $request->status
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +97,7 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Genre::find($id)->delete();
+        return redirect()->back();
     }
 }

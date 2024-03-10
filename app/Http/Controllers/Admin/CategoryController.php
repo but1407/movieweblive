@@ -26,7 +26,7 @@ class CategoryController extends Controller
     public function create()
     {
         $lists = Category::all();
-        return view('admin.category.form',compact('lists'));
+        return view('admin.category.form',['lists'=>$lists, 'title'=> 'Quản lý danh mục']);
     }
 
     /**
