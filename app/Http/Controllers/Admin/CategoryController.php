@@ -40,7 +40,9 @@ class CategoryController extends Controller
         $store = Category::create([
             'title'=>$request->title,
             'description'=>$request->description,
-            'status' => $request->status
+            'status' => $request->status,
+            'slug' => $request->slug,
+
         ]);
         return redirect()->back();
     }
@@ -82,7 +84,9 @@ class CategoryController extends Controller
         $store = Category::find($id)->update([
             'title'=>$request->title,
             'description'=>$request->description,
-            'status' => $request->status
+            'status' => $request->status,
+            'slug' => $request->slug,
+
         ]);
         return redirect()->back();
     }

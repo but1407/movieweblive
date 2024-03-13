@@ -27,9 +27,9 @@ Route::get('/', function (){
 });
 
 Route::get('/home', [IndexController::class, 'index'])->name('home');
-Route::get('/danh-muc', [IndexController::class, 'category'])->name('category');
-Route::get('/the-loai', [IndexController::class, 'genre'])->name('genre');
-Route::get('/quoc-gia', [IndexController::class, 'country'])->name('country');
+Route::get('/danh-muc/{slug}', [IndexController::class, 'category'])->name('category');
+Route::get('/the-loai/{slug}', [IndexController::class, 'genre'])->name('genre');
+Route::get('/quoc-gia/{slug}', [IndexController::class, 'country'])->name('country');
 Route::get('/xem-phim', [IndexController::class, 'movie'])->name('movie');
 Route::get('/episode', [IndexController::class, 'episode'])->name('episode');
 

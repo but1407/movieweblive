@@ -42,7 +42,9 @@ class CountryController extends Controller
         $store = Country::create([
             'title'=>$request->title,
             'description'=>$request->description,
-            'status' => $request->status
+            'status' => $request->status,
+            'slug' => $request->slug,
+
         ]);
         return redirect()->back();
     }
@@ -84,7 +86,9 @@ class CountryController extends Controller
         $store = Country::find($id)->update([
             'title'=>$request->title,
             'description'=>$request->description,
-            'status' => $request->status
+            'status' => $request->status,
+            'slug' => $request->slug,
+
         ]);
         return redirect()->back();
     }

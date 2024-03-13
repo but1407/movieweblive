@@ -2,7 +2,10 @@
 @section('title')
     <title>{{ $title }}</title>
 @endsection
+@section('js')
 
+    <script src="{{ asset('layout/category/category.js') }}"></script>
+@endsection
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -26,7 +29,11 @@
                             
                             <div class="form-group">
                                 {!! Form::label('Title', 'Title', []) !!}
-                                {!! Form::text('title', isset($category) ? $category->title : '' , ['class'=>'form-control','placeholder' => 'Nhập dữ liệu...']) !!}
+                                {!! Form::text('title', isset($category) ? $category->title : '' , ['class'=>'form-control','placeholder' => 'Nhập dữ liệu...','id'=>'slug','onkeyup'=>'ChangeToSlug()']) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('slug', 'slug', []) !!}
+                                {!! Form::text('slug', isset($category) ? $category->slug : '' , ['class'=>'form-control','placeholder' => 'Nhập dữ liệu...','id'=>'convert_slug']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('desciption', 'Desciption', []) !!}
@@ -86,4 +93,5 @@
             </div>
         </div>
     </div>
+   
 @endsection
