@@ -70,8 +70,9 @@ class CountryController extends Controller
     {
         $country = Country::find($id);
         $lists = Country::all();
+        $title = 'Sua quoc gia';
 
-        return view('admin.country.form',compact('country','lists'));
+        return view('admin.country.form',compact('title','country','lists'));
     }
 
     /**

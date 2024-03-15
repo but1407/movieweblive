@@ -8,6 +8,8 @@
         <div class="container">
             @yield('content')
         </div>
+        <div class="clearfix"></div>
+
         @include('pages.partials.footer')
         @include('pages.partials.foot')
     </body>

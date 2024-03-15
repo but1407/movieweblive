@@ -54,9 +54,28 @@
             <div class="menu-menu_1-container">
                 <ul id="menu-menu_1" class="nav navbar-nav navbar-left">
                     <li class="current-menu-item active"><a title="Trang Chủ" href="{{ route('home') }}">Trang Chủ</a></li>
+                    <li class="mega dropdown">
+                        <a title="Thể Loại" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Thể Loại <span class="caret"></span></a>
+                            <ul role="menu" class=" dropdown-menu">
+                                @foreach ($genre as $key => $gen)
+                                    
+                                    <li><a title="{{ $gen->title }}" href="{{ route('genre',['slug'=>$gen->slug]) }}">{{ $gen->title }}</a></li>
+                                @endforeach
+
+                            </ul>
+                        </li>
+                        <li class="mega dropdown">
+                        <a title="Quốc Gia" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Quốc Gia <span class="caret"></span></a>
+                        <ul role="menu" class=" dropdown-menu">
+                            @foreach ($country as $key => $cou)
+                                <li><a title="{{ $cou->title }}" href="{{ route('country',['slug'=>$cou->slug]) }}">{{ $cou->title }}</a></li>
+                            @endforeach
+                            
+                        </ul>
+                    </li>
                     @foreach ( $category as $key => $cate)
                         
-                        <li class="mega"><a title="{{ $cate->title }}" href="{{ route('category') }}">{{ $cate->title }}</a></li>
+                        <li class="mega"><a title="{{ $cate->title }}" href="{{ route('category',['slug'=>$cate->slug]) }}">{{ $cate->title }}</a></li>
                     @endforeach
                     <li class="mega dropdown">
                     <a title="Năm" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Năm <span class="caret"></span></a>
@@ -66,26 +85,7 @@
                         <li><a title="Năm 2018" href="danhmuc.php">Năm 2018</a></li>
                     </ul>
                     </li>
-                    <li class="mega dropdown">
-                    <a title="Thể Loại" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Thể Loại <span class="caret"></span></a>
-                    <ul role="menu" class=" dropdown-menu">
-                        @foreach ($genre as $key => $gen)
-                            
-                            <li><a title="{{ $gen->title }}" href="{{ route('genre') }}">{{ $gen->title }}</a></li>
-                        @endforeach
-                        
-                    </ul>
-                    </li>
-                    <li class="mega dropdown">
-                    <a title="Quốc Gia" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Quốc Gia <span class="caret"></span></a>
-                    <ul role="menu" class=" dropdown-menu">
-                        @foreach ($country as $key => $cou)
-                        
-                            <li><a title="{{ $cou->title }}" href="{{ route('country') }}">{{ $cou->title }}</a></li>
-                        @endforeach
-                        
-                    </ul>
-                    </li>
+                    
                     <li><a title="Phim Lẻ" href="danhmuc.php">Phim Lẻ</a></li>
                     <li><a title="Phim Bộ" href="danhmuc.php">Phim Bộ</a></li>
                     <li><a title="Phim Chiếu Rạp" href="danhmuc.php">Phim Chiếu Rạp</a></li>

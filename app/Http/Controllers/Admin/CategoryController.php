@@ -68,8 +68,8 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $lists = Category::all();
-
-        return view('admin.category.form',compact('category','lists'));
+        $title = 'Sua danh muc';
+        return view('admin.category.form',compact('title','category','lists'));
     }
 
     /**

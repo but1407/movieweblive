@@ -70,8 +70,9 @@ class GenreController extends Controller
     {
         $genre = Genre::find($id);
         $lists = Genre::all();
-
-        return view('admin.genre.form',compact('genre','lists'));
+        $title = 'Sua the loai';
+    
+        return view('admin.genre.form',compact('title','genre','lists'));
     }
 
     /**
