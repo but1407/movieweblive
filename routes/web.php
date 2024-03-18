@@ -40,3 +40,4 @@ Route::resource('genre', GenreController::class);
 Route::resource('episode', EpisodeController::class);
 Route::resource('country', CountryController::class);
 
+Route::post('resorting_category', [CategoryController::class,'resorting'])->name('resorting_category');

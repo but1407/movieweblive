@@ -4,4 +4,6 @@
 <script type='text/javascript' src='{{ asset('layout/js/halimtheme-core.min.js?ver=1626273138') }}' id='halim-init-js'></script>
 
 <script  src="{{ asset('layout/home/home.css') }}"></script>
+
+
 @yield('js')

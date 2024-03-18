@@ -33,4 +33,26 @@ function ChangeToSlug()
         document.getElementById('convert_slug').value = slug;
     }
 
+$( function() {
+    $(".order_position").sortable({
+        placeholder: 'ui-state-highlight',
+        update: (event, ui) => {
+            var array_id = [];
+            $('.order_position tr').each(() => {
+                array_id.push($(this).attr('id'));
+            })
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{route('resorting_category')}}",
+                method: 'POST',
+                data: { array_id: array_id },
+                success: (data) => {
+                    alert('successfully')
+                }
+            })
+        }
+    });
+    });
     

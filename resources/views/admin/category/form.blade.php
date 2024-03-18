@@ -2,9 +2,14 @@
 @section('title')
     <title>{{ $title }}</title>
 @endsection
+@section('css')
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+@endsection
 @section('js')
-
     <script src="{{ asset('layout/category/category.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 @endsection
 @section('content')
     <div class="container">
@@ -64,10 +69,10 @@
                             <th scope="col">Manager</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="order_position">
                         @foreach ($lists as $key => $list )
                             
-                        <tr>
+                        <tr id="{{ $list->id }}">
                             <th scope="row">{{ $key }}</th>
                             <td>{{ $list->title }}</td>
                             <td>{{ $list->description }}</td>

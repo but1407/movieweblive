@@ -13,11 +13,14 @@ class IndexController extends Controller
         $category = Category::orderBy('id', 'DESC')->where('status',1)->get();
         $country = Country::orderBy('id', 'DESC')->get();
         $genre = Genre::orderBy('id', 'DESC')->get();
+        $category_home = Category::with('movies')->orderBy('id', 'DESC')->where('status',1)->get();
 
         return view('pages.home',[
             'title' => 'Home',
             'country' => $country,
+            'category_home' => $category_home,
             'category' => $category,
+
             'genre' => $genre
         ]);
     }
@@ -34,7 +37,8 @@ class IndexController extends Controller
             'category_slug'=>$category_slug,
             'title' => 'category',
         ]);
-    }public function genre($slug){
+    }
+    public function genre($slug){
         $category = Category::orderBy('id', 'DESC')->where('status',1)->get();
         $country = Country::orderBy('id', 'DESC')->get();
         $genre = Genre::orderBy('id', 'DESC')->get();

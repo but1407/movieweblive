@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Movie extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    public function categories(){
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+    public function countries(){
+        return $this->belongsTo(Country::class,'country_id');
+    }
+    public function genres(){
+        return $this->belongsTo(Genre::class,'genre_id');
+    }
 }

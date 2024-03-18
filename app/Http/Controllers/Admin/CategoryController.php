@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $lists = Category::all();
+        $lists = Category::orderBy('position','asc')->get();
         return view('admin.category.form',['lists'=>$lists, 'title'=> 'Quản lý danh mục']);
     }
 
@@ -67,7 +67,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-        $lists = Category::all();
+        $lists = Category::orderBy('position','asc')->get();
+
         $title = 'Sua danh muc';
         return view('admin.category.form',compact('title','category','lists'));
     }
@@ -101,5 +102,13 @@ class CategoryController extends Controller
     {
         Category::find($id)->delete();
         return redirect()->back();
+    }
+    public function resorting(Request $request){
+        $data = $request->all();
+        foreach($data['array_id'] as $key => $value){
+            $category = Category::find($value);
+            $category->positions = $key;
+            $category->save();
+        }
     }
 }

@@ -20,6 +20,7 @@
 <meta property="og:image" content="" />
 <meta property="og:image:width" content="300" />
 <meta property="og:image:height" content="55" />
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 <link rel='dns-prefetch' href='//s.w.org' />
