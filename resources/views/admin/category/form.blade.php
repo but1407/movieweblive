@@ -59,7 +59,7 @@
                         {{-- {{ __('You are logged in!') }} --}}
                     </div>
                 </div>
-                <table class="table">
+                <table class="table" id="tablephim">
                     <thead>
                         <tr>
                             <th scope="col">#</th>

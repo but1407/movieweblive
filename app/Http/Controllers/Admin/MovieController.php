@@ -24,7 +24,12 @@ class MovieController extends Controller
     }
     public function index()
     {
-        //
+        $lists = Movie::orderBy('id','desc')->get();
+        return view('admin.movie.index',[
+            'lists'=>$lists,
+            'title'=> 'Quản lý Phim',
+            
+            ]);
     }
 
     /**
@@ -37,9 +42,7 @@ class MovieController extends Controller
         $category = Category::pluck('title','id');
         $country = Country::pluck('title','id');
         $genre = Genre::pluck('title','id');
-        $lists = Movie::orderBy('id','desc')->get();
         return view('admin.movie.form',[
-            'lists'=>$lists,
             'title'=> 'Quản lý Phim',
             'category'=>$category,
             'country'=>$country,
@@ -84,7 +87,8 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        
     }
 
     /**
