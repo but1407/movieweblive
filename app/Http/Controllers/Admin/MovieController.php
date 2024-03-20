@@ -70,6 +70,8 @@ class MovieController extends Controller
                 'image'=> $image['image'],
                 'country_id' => $request->country_id,
                 'genre_id' => $request->genre_id,
+                'hot_movie' => $request->hot_movie,
+
                 'category_id' => $request->category_id
 
             ]);
@@ -139,7 +141,8 @@ class MovieController extends Controller
                 'image'=> $image['image'],
                 'country_id' => $request->country_id,
                 'genre_id' => $request->genre_id,
-                'category_id' => $request->category_id
+                'category_id' => $request->category_id,
+                'hot_movie' => $request->hot_movie,
 
             ]);
             return redirect()->back();

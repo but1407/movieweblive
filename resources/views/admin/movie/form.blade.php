@@ -58,6 +58,10 @@
                             {!! Form::select('genre_id', $genre , isset($movie) ?  $movie->genre : '' ,['class'=>'form-control']) !!}
                         </div>
                         <div class="form-group">
+                            {!! Form::label('Hot', 'Phim Hot', []) !!}
+                            {!! Form::select('hot_movie', ['1'=>'Hot','0'=>'Không '], isset($movie) ?  $movie->hot_movie : ''  ,['class'=>'form-control']) !!}
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('Image', 'Image', []) !!}
                             {!! Form::file('image',  ['class'=>'form-control-file']) !!}
                             @if (isset($movie))

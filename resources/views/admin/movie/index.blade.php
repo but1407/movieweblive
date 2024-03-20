@@ -25,6 +25,8 @@
                         <th scope="col">Description</th>
                         <th scope="col">Image</th>
                         <th scope="col">Category</th>
+                        <th scope="col">Hot</th>
+
                         <th scope="col">Country</th>
                         <th scope="col">Genre</th>
                         
@@ -41,6 +43,8 @@
                         <td>{{ $list->description }}</td>
                         <td><img src="{{ asset('uploads/movie/'. $list->image) }}" width="110%" alt=""></td>
                         <td>{{ $list->categories->title }}</td>
+                        <td>{!! $list->movie_hot == 0 ? '<span class="btn btn-danger btn-xs">Không</span>' : '<span class="btn btn-success btn-xs">Có</span>' !!}</td>
+
                         <td>{{ $list->countries->title }}</td>
                         <td>{{ $list->genres->title }}</td>
 

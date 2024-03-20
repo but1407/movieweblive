@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Genre;
+use App\Models\Movie;
 use App\Models\Country;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -10,6 +11,9 @@ use Illuminate\Http\Request;
 class IndexController extends Controller
 {
     public function index(){
+        $phimhot = Movie::where(function ($query) {
+            $query->where('hot_movie', 1)->orWhere('status', 1);
+        })->get();
         $category = Category::orderBy('id', 'DESC')->where('status',1)->get();
         $country = Country::orderBy('id', 'DESC')->get();
         $genre = Genre::orderBy('id', 'DESC')->get();
@@ -20,7 +24,7 @@ class IndexController extends Controller
             'country' => $country,
             'category_home' => $category_home,
             'category' => $category,
-
+            'phimhot' =>$phimhot,
             'genre' => $genre
         ]);
     }

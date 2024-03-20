@@ -3,6 +3,13 @@
     <title>{{ $title }}</title>
 @endsection
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('layout/home/home.css') }}">
+@endsection
+
+@section('js')
+<script  type="" src="{{ asset('layout/home/home.js') }}"></script>
+@endsection
 @section('content')
     <div class="row container" id="wrapper">
         <div class="halim-panel-filter">
@@ -10,7 +17,7 @@
                 <div class="ajax"></div>
             </div>
         </div>
-        <div class="col-xs-12 carausel-sliderWidget">
+        {{-- <div class="col-xs-12 carausel-sliderWidget">
             <section id="halim-advanced-widget-4">
                 <div class="section-heading">
                     <a href="danhmuc.php" title="Phim Chiếu Rạp">
@@ -42,6 +49,33 @@
                 </div>
             </section>
             <div class="clearfix"></div>
+        </div> --}}
+        <div id="halim_related_movies-2xx" class="wrap-slider">
+            <div class="section-bar clearfix">
+                <h3    h3 class="section-title"><span>PHIM HOT</span></h3>
+            </div>
+            <div id="halim_related_movies-2" class="owl-carousel owl-theme related-film">
+                @foreach ($phimhot as $hot )
+                    
+                    <article class="thumb grid-item post-38498">
+                        <div class="halim-item">
+                            <a class="halim-thumb" href="{{ route('movie') }}" title="{{ $hot->title }}">
+                                <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/'.$hot->image) }}" alt="{{ $hot->title }}" title="{{ $hot->title }}"></figure>
+                                <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
+                                <div class="icon_overlay"></div>
+                                <div class="halim-post-title-box">
+                                <div class="halim-post-title ">
+                                    <p class="entry-title">{{ $hot->title }}</p>
+                                    <p class="original_title">{{ $hot->description }}</p>
+                                </div>
+                                </div>
+                            </a>
+                        </div>
+                    </article>
+                @endforeach
+                
+            </div>
+            
         </div>
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
             @foreach ($category_home as $cate_home) 
