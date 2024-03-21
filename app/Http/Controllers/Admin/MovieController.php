@@ -66,11 +66,11 @@ class MovieController extends Controller
                 'title'=>$request->title,
                 'description'=>$request->description,
                 'status' => $request->status,
-                // 'slug' => $request->slug,
+                'slug' => $request->slug,
                 'image'=> $image['image'],
                 'country_id' => $request->country_id,
                 'name_eng' => $request->name_eng,
-
+                
                 'genre_id' => $request->genre_id,
                 'hot_movie' => $request->hot_movie,
 
@@ -131,7 +131,7 @@ class MovieController extends Controller
         $image = $this->movieService->uploadImage($request);
         $movie = Movie::find($id);
         $get_image = $request->file('image');
-        if(!empty($movie->image)){
+        if(!empty($movie->image) && isset($request->image)){
             unlink('uploads/movie/'.$movie->image);
         }
         if($image != false){
@@ -141,8 +141,7 @@ class MovieController extends Controller
                 'status' => $request->status,
                 'slug' => $request->slug,
                 'name_eng' => $request->name_eng,
-
-                'image'=> $image['image'],
+                'image'=> $image['image'] ?? null,
                 'country_id' => $request->country_id,
                 'genre_id' => $request->genre_id,
                 'category_id' => $request->category_id,
@@ -151,7 +150,7 @@ class MovieController extends Controller
             ]);
             return redirect()->back();
         }
-        return false;
+        // return false;
     }
 
     /**

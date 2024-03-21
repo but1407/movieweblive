@@ -11,6 +11,6 @@ class Category extends Model
     protected $guarded = [];
 
     public function movies(){
-        return $this->hasMany(Movie::class)->orderBy('id', 'asc');
+        return $this->hasMany(Movie::class,'category_id')->orderBy('id', 'asc');
     }
 }
