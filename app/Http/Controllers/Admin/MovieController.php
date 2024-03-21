@@ -69,6 +69,8 @@ class MovieController extends Controller
                 // 'slug' => $request->slug,
                 'image'=> $image['image'],
                 'country_id' => $request->country_id,
+                'name_eng' => $request->name_eng,
+
                 'genre_id' => $request->genre_id,
                 'hot_movie' => $request->hot_movie,
 
@@ -137,7 +139,9 @@ class MovieController extends Controller
                 'title'=>$request->title,
                 'description'=>$request->description,
                 'status' => $request->status,
-                // 'slug' => $request->slug,
+                'slug' => $request->slug,
+                'name_eng' => $request->name_eng,
+
                 'image'=> $image['image'],
                 'country_id' => $request->country_id,
                 'genre_id' => $request->genre_id,

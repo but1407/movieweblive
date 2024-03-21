@@ -9,5 +9,8 @@ class Country extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function movies(){
+        return $this->hasMany(Movie::class)->orderBy('id', 'asc');
+    }
 
 }
