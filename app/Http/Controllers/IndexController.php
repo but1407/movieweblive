@@ -7,6 +7,7 @@ use App\Models\Movie;
 use App\Models\Country;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -85,16 +86,24 @@ class IndexController extends Controller
         ]);
     }
     public function movie($slug){
-        $category = Category::orderBy('id', 'DESC')->where('status',1)->get();
+        $category = Category::orderBy('id', 'DESC')
+        ->where('status',1)
+        ->get();
         $country = Country::orderBy('id', 'DESC')->get();
         $genre = Genre::orderBy('id', 'DESC')->get();
-        $movie = Movie::where('slug',$slug)->where('status',1)->first();
+        $movie = Movie::where('slug',$slug)
+        ->where('status',1)
+        ->first();
+        $related = Movie::where('category_id',$movie->categories->id)
+        ->orderBy(DB::raw('RAND()'))
+        ->whereNotIn('slug',[$slug])->get(); 
         return view('pages.movie',[
             'title' => 'movie',
             'country' => $country,
             'category' => $category,
             'genre' => $genre,
             'movie'=>$movie,
+            'related'=>$related,
         ]);
     }public function episode(){
         return view('pages.episode',[

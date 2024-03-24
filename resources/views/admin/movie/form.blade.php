@@ -50,6 +50,10 @@
                             {!! Form::select('status', ['1'=>'Hiển thị','0'=>'Không hiển thị'], isset($movie) ?  $movie->status : '' ,['class'=>'form-control']) !!}
                         </div>
                         <div class="form-group">
+                            {!! Form::label('Resolution', 'Resolution', []) !!}
+                            {!! Form::select('resolution', ['0'=>'HD','1'=>'SD','2'=>'CAM','3'=>'RAW','4'=>'FullHD'], isset($movie) ?  $movie->status : '' ,['class'=>'form-control']) !!}
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('Category', 'Category', []) !!}
                             {!! Form::select('category_id',$category, isset($movie) ?  $movie->category : '' ,['class'=>'form-control']) !!}
                         </div>

@@ -70,6 +70,7 @@ class MovieController extends Controller
                 'image'=> $image['image'],
                 'country_id' => $request->country_id,
                 'name_eng' => $request->name_eng,
+                'resolution'=>$request->resolution,
                 
                 'genre_id' => $request->genre_id,
                 'hot_movie' => $request->hot_movie,
@@ -144,6 +145,8 @@ class MovieController extends Controller
                 'image'=> $image['image'] ?? null,
                 'country_id' => $request->country_id,
                 'genre_id' => $request->genre_id,
+                'resolution'=>$request->resolution,
+
                 'category_id' => $request->category_id,
                 'hot_movie' => $request->hot_movie,
 

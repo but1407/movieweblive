@@ -42,13 +42,43 @@
                         <td>{{ $list->title }}</td>
                         <td>{{ $list->description }}</td>
                         <td><img src="{{ asset('uploads/movie/'. $list->image) }}" width="110%" alt=""></td>
+                        <td>
+                            
+                            @switch($list->resolution)
+                                @case(0)
+                                    <span class="btn btn-danger btn-xs">HD</span> 
+                                    @break
+                                @case(1)
+                                    <span class="btn btn-success btn-xs">SD</span>
+
+                                    @break
+                                @case(2)
+                                    <span class="btn btn-warning btn-xs">CAM</span>
+
+                                    @break
+                                @case(3)
+                                    <span class="btn btn-primary btn-xs">RAW</span>
+
+                                    @break
+                                @case(4)
+                                    <span class="btn btn-success btn-xs">FullHD</span>
+
+                                    @break
+                                @default
+                                    
+                            @endswitch ()
+                                
+                                        
+                                
+                            
+                        </td>
+                        
                         <td>{{ $list->categories->title }}</td>
                         <td>{!! $list->movie_hot == 0 ? '<span class="btn btn-danger btn-xs">Không</span>' : '<span class="btn btn-success btn-xs">Có</span>' !!}</td>
 
                         <td>{{ $list->countries->title }}</td>
                         <td>{{ $list->genres->title }}</td>
 
-                    
 
                         <td>{!! $list->status == 0 ? '<span class="btn btn-danger btn-xs">Chưa kích hoạt</span>' : '<span class="btn btn-success btn-xs">Kích hoạt</span>' !!}</td>
 

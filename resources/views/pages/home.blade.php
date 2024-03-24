@@ -61,7 +61,28 @@
                         <div class="halim-item">
                             <a class="halim-thumb" href="{{ route('movie',$hot->slug) }}" title="{{ $hot->title }}">
                                 <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/'.$hot->image) }}" alt="{{ $hot->title }}" title="{{ $hot->title }}"></figure>
-                                <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
+                                <span class="status">
+                                    @switch($hot->resolution)
+                                        @case(0)
+                                            HD
+                                                @break
+                                        @case(1)
+                                            SD
+                                            @break
+                                        @case(2)
+                                            CAM
+                                            @break
+                                        @case(3)
+                                            RAW
+                                            @break
+                                        @case(4)
+                                            FullHD
+                                            @break
+                                    
+                                        @default
+                                            
+                                    @endswitch   
+                                </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
                                 <div class="icon_overlay"></div>
                                 <div class="halim-post-title-box">
                                 <div class="halim-post-title ">
@@ -92,7 +113,28 @@
                                     <div class="halim-item">
                                     <a class="halim-thumb" href="{{ route('movie',$movie->slug) }}">
                                         <figure><img class="lazy img-responsive" src="{{  asset('uploads/movie/'.$movie->image) }}" alt="{{ $movie->title }}" title="{{ $movie->title }}"></figure>
-                                        <span class="status">TẬP 15</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
+                                        <span class="status">
+                                            @switch($hot->resolution)
+                                        @case(0)
+                                            HD
+                                                @break
+                                        @case(1)
+                                            SD
+                                            @break
+                                        @case(2)
+                                            CAM
+                                            @break
+                                        @case(3)
+                                            RAW
+                                            @break
+                                        @case(4)
+                                            FullHD
+                                            @break
+                                    
+                                        @default
+                                            
+                                    @endswitch   
+                                        </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
                                         <div class="icon_overlay"></div>
                                         <div class="halim-post-title-box">
                                             <div class="halim-post-title ">
