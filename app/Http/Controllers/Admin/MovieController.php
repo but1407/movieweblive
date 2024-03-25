@@ -62,25 +62,19 @@ class MovieController extends Controller
         $image = $this->movieService->uploadImage($request);
 
         if($image != false){
-            $store = Movie::create([
-                'title'=>$request->title,
-                'description'=>$request->description,
-                'status' => $request->status,
-                'slug' => $request->slug,
-                'image'=> $image['image'],
-                'country_id' => $request->country_id,
-                'name_eng' => $request->name_eng,
-                'resolution'=>$request->resolution,
-                
-                'genre_id' => $request->genre_id,
-                'hot_movie' => $request->hot_movie,
+            $create = $this->movieService->create($request,$image);
+            if($create){
 
-                'category_id' => $request->category_id
-
+                return redirect()->back();
+            } 
+            return response()->json([
+                'error'=>'Lỗi không tạo được'
             ]);
-            return redirect()->back();
+            
         }
-        return false;
+        return response()->json([
+            'error'=>'Lỗi không xác định'
+        ]);
 
     }
 
@@ -132,28 +126,25 @@ class MovieController extends Controller
         $image = $this->movieService->uploadImage($request);
         $movie = Movie::find($id);
         $get_image = $request->file('image');
-        if(!empty($movie->image) && isset($request->image)){
-            unlink('uploads/movie/'.$movie->image);
+        $file_exist = $this->movieService->file_exist($movie);
+        if(!$file_exist){
+            return response()->json([
+                'msg' => 'Loi khong xoa duoc file'
+            ]);
         }
         if($image != false){
-            $movie->update([
-                'title'=>$request->title,
-                'description'=>$request->description,
-                'status' => $request->status,
-                'slug' => $request->slug,
-                'name_eng' => $request->name_eng,
-                'image'=> $image['image'] ?? null,
-                'country_id' => $request->country_id,
-                'genre_id' => $request->genre_id,
-                'resolution'=>$request->resolution,
+            $update = $this->movieService->update($request, $movie,$image);
+            if($update){
 
-                'category_id' => $request->category_id,
-                'hot_movie' => $request->hot_movie,
-
+                return redirect()->back();
+            }
+            return response()->json([
+                'error'=>'Lỗi không cat nhat duoc'
             ]);
-            return redirect()->back();
         }
-        // return false;
+        return response()->json([
+            'error'=>'Lỗi không xác định'
+        ]);
     }
 
     /**
@@ -165,8 +156,11 @@ class MovieController extends Controller
     public function destroy($id)
     {
         $movie =Movie::find($id);
-        if(!empty($movie->image)){
-            unlink('uploads/movie/'.$movie->image);
+        $file_exist = $this->movieService->file_exist($movie);
+        if(!$file_exist){
+            return response()->json([
+                'msg' => 'Loi khong xoa duoc file'
+            ]);
         }
         $movie->delete();
         return redirect()->back();

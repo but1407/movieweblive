@@ -80,7 +80,13 @@
                                         @default
                                             
                                     @endswitch       
-                            </span><span class="episode">Vietsub</span></li>
+                            </span><span class="episode">
+                                @if($movie->vietsub == 1)
+                                Thuyet minh
+                                
+                                @else
+                                    Vietsub
+                                @endif</span></li>
                             <li class="list-info-group-item"><span>Điểm IMDb</span> : <span class="imdb">7.2</span></li>
                             <li class="list-info-group-item"><span>Thời lượng</span> : 133 Phút</li>
                             <li class="list-info-group-item"><span>Thể loại</span> : <a href="{{ route('country',$movie->categories->slug) }}" rel="category tag">{{ $movie->categories->title }}</a>, <a href="" rel="category tag">Hành động</a>, <a href="" rel="category tag">Phiêu Lưu</a>, <a href="" rel="category tag">Viễn Tưởng</a></li>
@@ -154,7 +160,12 @@
                                         @default
                                             
                                     @endswitch       
-                                    </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
+                                    </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i> @if($movie->vietsub == 1)
+                                        Thuyet minh
+                                        
+                                    @else
+                                        Vietsub
+                                    @endif</span> 
                                     <div class="icon_overlay"></div>
                                     <div class="halim-post-title-box">
                                         <div class="halim-post-title ">

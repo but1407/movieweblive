@@ -54,6 +54,10 @@
                             {!! Form::select('resolution', ['0'=>'HD','1'=>'SD','2'=>'CAM','3'=>'RAW','4'=>'FullHD'], isset($movie) ?  $movie->status : '' ,['class'=>'form-control']) !!}
                         </div>
                         <div class="form-group">
+                            {!! Form::label('Phụ đề', 'Phụ đề', []) !!}
+                            {!! Form::select('vietsub', ['0'=>'Vietsub','1'=>'Thuyet Minh'], isset($movie) ?  $movie->vietsub : '' ,['class'=>'form-control']) !!}
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('Category', 'Category', []) !!}
                             {!! Form::select('category_id',$category, isset($movie) ?  $movie->category : '' ,['class'=>'form-control']) !!}
                         </div>

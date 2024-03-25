@@ -27,7 +27,12 @@
                             <div class="halim-item">
                             <a class="halim-thumb" href="{{ route('movie',$movie->slug) }}" title="{{ $movie->title }}">
                                 <figure><img class="lazy img-responsive" src="{{  asset('uploads/movie/'.$movie->image) }}" alt="{{ $movie->title }}" title="{{ $movie->title }}"></figure>
-                                <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
+                                <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i> @if($movie->vietsub == 1)
+                                    Thuyet minh
+                                    
+                                @else
+                                    Vietsub
+                                @endif</span> 
                                 <div class="icon_overlay"></div>
                                 <div class="halim-post-title-box">
                                     <div class="halim-post-title ">

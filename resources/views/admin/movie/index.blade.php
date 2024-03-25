@@ -26,6 +26,7 @@
                         <th scope="col">Image</th>
                         <th scope="col">Category</th>
                         <th scope="col">Hot</th>
+                        <th scope="col">Phu de</th>
 
                         <th scope="col">Country</th>
                         <th scope="col">Genre</th>
@@ -75,6 +76,10 @@
                         
                         <td>{{ $list->categories->title }}</td>
                         <td>{!! $list->movie_hot == 0 ? '<span class="btn btn-danger btn-xs">Không</span>' : '<span class="btn btn-success btn-xs">Có</span>' !!}</td>
+                        <td>{!! $list->vietsub == 0 ? 
+                        '<span class="btn btn-primary btn-xs">Vietsub</span>' : 
+                        '<span class="btn btn-success btn-xs">Thuyet Minh</span>' !!}
+                        </td>
 
                         <td>{{ $list->countries->title }}</td>
                         <td>{{ $list->genres->title }}</td>
