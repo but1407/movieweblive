@@ -5,6 +5,7 @@
 @endsection
 @section('js')
     <script src="{{ asset('layout/category/category.js') }}"></script>
+    
 @endsection
 @section('content')
 <div class="container">

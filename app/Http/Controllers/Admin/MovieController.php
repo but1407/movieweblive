@@ -165,4 +165,13 @@ class MovieController extends Controller
         $movie->delete();
         return redirect()->back();
     }
+    public function update_year($request){
+        $data = $request->all();
+
+        $movie = Movie::find($data['id_phim'])->update(
+            [
+                'year' => $data['year'],
+            ]
+        );
+    }
 }

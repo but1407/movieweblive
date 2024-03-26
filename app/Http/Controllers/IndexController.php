@@ -13,8 +13,8 @@ class IndexController extends Controller
 {
     public function index(){
         $phimhot = Movie::where(function ($query) {
-            $query->where('hot_movie', 1)->orWhere('status', 1);
-        })->get();
+            $query->where('hot_movie', 1)->Where('status', 1);
+        })->orderByDesc('updated_at')->get();
         $category = Category::orderBy('id', 'DESC')->where('status',1)->get();
         $country = Country::orderBy('id', 'DESC')->get();
         $genre = Genre::orderBy('id', 'DESC')->get();

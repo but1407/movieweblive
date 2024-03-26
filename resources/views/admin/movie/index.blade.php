@@ -6,13 +6,30 @@
 @section('js')
     <script src="{{ asset('layout/category/category.js') }}"></script>
     <script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
+    <script type="text/javascript">
+        $('.select-year').change(()=>{
+            var year = $(this).find(':selected').val();
+            var id_phim =$(this).attr('id');
+            alert(year)
+            alert(id_phim)
+            console.log(year);
+            $.ajax({
+                url:"{{ url('/update-year-movie') }}",
+                method:'get',
+                data:{year:year,id_phim:id_phim},
+                success:()=>{
+                    alert('Changed Year'+ year + 'Successfully')
+                }
+            });
+        })
 
+    </script>
 @endsection
 @section('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
 @endsection
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <a href="{{ route('movie.create') }}" class="btn btn-primary">Thêm phim</a>
@@ -32,7 +49,12 @@
                         <th scope="col">Genre</th>
                         
                         <th scope="col">Status</th>
+
                         <th scope="col">Manager</th>
+                        <th scope="col">Year</th>
+
+                        <th scope="col">Updated_at</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -88,6 +110,10 @@
                         <td>{!! $list->status == 0 ? '<span class="btn btn-danger btn-xs">Chưa kích hoạt</span>' : '<span class="btn btn-success btn-xs">Kích hoạt</span>' !!}</td>
 
                         {{-- <td>{{ $list-> }}</td> --}}
+                        <td>{!! Form::selectYear('year',1990,2024,isset($list->year) ? $list->year : '',['class'=>'select-year','id'=>$list->id]) !!}</td>
+                        <td>{{ $list->updated_at }}</td>
+
+
                         <td>
                             {!! Form::open([
                                 'method'=>'delete',
@@ -99,6 +125,7 @@
                             <a href="{{ route('movie.edit',['movie'=> $list->id]) }}" class="btn btn-warning">Sửa</a>
 
                         </td>
+
                     </tr>
                 @endforeach
                 
