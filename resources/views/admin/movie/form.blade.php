@@ -39,6 +39,10 @@
                             {!! Form::text('name_eng', isset($movie) ? $movie->name_eng : '' , ['class'=>'form-control','placeholder' => 'Nhập dữ liệu...','id'=>'slug']) !!}
                         </div>
                         <div class="form-group">
+                            {!! Form::label('Thời lượng phim', 'Thời lượng phim', []) !!}
+                            {!! Form::text('movie_duration', isset($movie) ? $movie->movie_duration : '' , ['class'=>'form-control','placeholder' => 'Nhập dữ liệu...']) !!}
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('slug', 'slug', []) !!}
                             {!! Form::text('slug', isset($movie) ? $movie->slug : '' , ['class'=>'form-control','placeholder' => 'Nhập dữ liệu...','id'=>'convert_slug']) !!}
                         </div>

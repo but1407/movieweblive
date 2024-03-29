@@ -31,6 +31,7 @@ Route::get('/danh-muc/{slug}', [IndexController::class, 'category'])->name('cate
 Route::get('/the-loai/{slug}', [IndexController::class, 'genre'])->name('genre');
 Route::get('/quoc-gia/{slug}', [IndexController::class, 'country'])->name('country');
 Route::get('/xem-phim/{slug}', [IndexController::class, 'movie'])->name('movie');
+Route::get('/year/{year}', [IndexController::class, 'year'])->name('year');
 Route::get('/episode', [IndexController::class, 'episode'])->name('episode');
 
 
@@ -44,3 +45,4 @@ Route::post('resorting_category', [CategoryController::class,'resorting'])->name
 
 
 Route::get('/update-year-movie',[MovieController::class,'update_year']);
+

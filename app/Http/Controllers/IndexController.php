@@ -48,6 +48,25 @@ class IndexController extends Controller
 
         ]);
     }
+    public function year($year){
+        $category = Category::orderBy('id', 'DESC')->where('status',1)->get();
+        $country = Country::orderBy('id', 'DESC')->get();
+        $genre = Genre::orderBy('id', 'DESC')->get();
+        $year = $year;
+        $movies = Movie::where('year', $year)->orderByDesc('created_at')->get();
+    
+        return view('pages.year',[
+            'year' => $year,
+            'title' => 'Home',
+            'country' => $country,
+            'category' => $category,
+            'genre' => $genre,
+            'movies'=>$movies,
+            'title' => 'year',
+            // 'movies' => $movies,
+
+        ]);
+    }
     public function genre($slug){
         $category = Category::orderBy('id', 'DESC')->where('status',1)->get();
         $country = Country::orderBy('id', 'DESC')->get();

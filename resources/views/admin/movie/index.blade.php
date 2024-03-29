@@ -63,6 +63,8 @@
                     <tr>
                         <th scope="row">{{ $key }}</th>
                         <td>{{ $list->title }}</td>
+                        <td>{{ $list->movie_duration }}</td>
+                        <td>{{ $list->movie_duration }}</td>
                         <td>{{ $list->description }}</td>
                         <td><img src="{{ asset('uploads/movie/'. $list->image) }}" width="110%" alt=""></td>
                         <td>

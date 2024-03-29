@@ -79,10 +79,12 @@
                     @endforeach
                     <li class="mega dropdown">
                     <a title="Năm" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Năm <span class="caret"></span></a>
-                    <ul role="menu" class=" dropdown-menu">
-                        <li><a title="Phim 2020" href="danhmuc.php">Phim 2020</a></li>
-                        <li><a title="Năm 2019" href="danhmuc.php">Năm 2019</a></li>
-                        <li><a title="Năm 2018" href="danhmuc.php">Năm 2018</a></li>
+                    <ul role="menu" class="dropdown-menu">
+                         
+                        @for ($year = 1990; $year <= Carbon\Carbon::now()->year;$year ++)
+                            <li><a title="Phim 2020" href="{{ route('year',$year) }}">Phim {{ $year }}</a></li>
+                        @endfor
+                    
                     </ul>
                     </li>
                     

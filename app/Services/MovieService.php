@@ -39,6 +39,7 @@ class MovieService
                 'description' => $request->description,
                 'status' => $request->status,
                 'slug' => $request->slug,
+                'movie_duration' => $request->movie_duration,
                 'image' => $image['image'],
                 'country_id' => $request->country_id,
                 'name_eng' => $request->name_eng,
@@ -71,7 +72,8 @@ class MovieService
                 'vietsub'=>$request->vietsub,
                 'category_id' => $request->category_id,
                 'hot_movie' => $request->hot_movie,
-
+                'movie_duration' => $request->movie_duration,
+                
             ]);
         } catch(\Exception $e){
             return false;

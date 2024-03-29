@@ -1,4 +1,7 @@
 @extends('layout')
+@section('title')
+<title>{{ $title.'/'.$year }}</title>
+@endsection
 @section('content')
     <div class="row container" id="wrapper">
         <div class="halim-panel-filter">
@@ -6,7 +9,7 @@
             <div class="row">
                 <div class="col-xs-6">
                     <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">
-                        {{ $category_slug->name_eng }}</a> » <span class="breadcrumb_last" aria-current="page">2020</span></span></span></div>
+                        {{ $year}}</a> » <span class="breadcrumb_last" aria-current="page">2020</span></span></span></div>
                 </div>
             </div>
         </div>
@@ -17,20 +20,18 @@
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
         <section>
             <div class="section-bar clearfix">
-                <h1 class="section-title"><span>{{ $category_slug->name_eng }}</span></h1>
+                <h1 class="section-title"><span>{{ $year }}</span></h1>
             </div>
             <div class="halim_box">
                 @if (isset($movies))
                     
                     @foreach ($movies as $movie )
-                        {{-- @dd($movie) --}}
                         <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
                             <div class="halim-item">
                             <a class="halim-thumb" href="{{ route('movie',$movie->slug) }}" title="{{ $movie->title }}">
                                 <figure><img class="lazy img-responsive" src="{{  asset('uploads/movie/'.$movie->image) }}" alt="{{ $movie->title }}" title="{{ $movie->title }}"></figure>
                                 <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i> @if($movie->vietsub == 1)
                                     Thuyet minh
-                                    
                                 @else
                                     Vietsub
                                 @endif</span> 
