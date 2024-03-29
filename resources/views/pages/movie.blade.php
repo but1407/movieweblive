@@ -88,7 +88,7 @@
                                     Vietsub
                                 @endif</span></li>
                             <li class="list-info-group-item"><span>Điểm IMDb</span> : <span class="imdb">7.2</span></li>
-                            <li class="list-info-group-item"><span>Thời lượng</span> : 133 Phút</li>
+                            <li class="list-info-group-item" ><span>Thời lượng</span> : {{ $movie->movie_duration }}</li>
                             <li class="list-info-group-item"><span>Thể loại</span> : <a href="{{ route('country',$movie->categories->slug) }}" rel="category tag">{{ $movie->categories->title }}</a>, <a href="" rel="category tag">Hành động</a>, <a href="" rel="category tag">Phiêu Lưu</a>, <a href="" rel="category tag">Viễn Tưởng</a></li>
                             <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{ route('country',$movie->countries->slug) }}" rel="tag">{{ $movie->countries->title }}</a></li>
                             <li class="list-info-group-item"><span>Đạo diễn</span> : <a class="director" rel="nofollow" href="https://phimhay.co/dao-dien/cate-shortland" title="Cate Shortland">Cate Shortland</a></li>
