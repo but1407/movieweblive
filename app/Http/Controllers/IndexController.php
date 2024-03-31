@@ -129,4 +129,23 @@ class IndexController extends Controller
             'title' => 'episode',
         ]);
     }
+    public function tags($tag){
+        $category = Category::orderBy('id', 'DESC')->where('status',1)->get();
+        $genre = Genre::orderBy('id', 'DESC')->get();
+        $tag = $tag;
+        $movies = Movie::where('tags','LIKE','%'.$tag.'%')->orderBy('updated_at','DESC')->paginate(40);
+        $country = Country::orderBy('id', 'DESC')->get();
+
+
+        return view('pages.tags',[
+            'title' => 'Home',
+            'country' => $country,
+            'category' => $category,
+            'genre' => $genre,
+            'title' => 'Tags',
+            'movies' => $movies,
+            'tag'=> $tag
+
+        ]);
+    }
 }

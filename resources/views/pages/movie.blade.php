@@ -125,6 +125,30 @@
                     </article>
                     </div>
                 </div>
+                <div class="section-bar clearfix">
+                    <h2 class="section-title"><span style="color:#ffed4d">Tags</span></h2>
+                </div>
+                <div class="entry-content htmlwrap clearfix">
+                    <div class="video-item halim-entry-box">
+                    <article id="post-38424" class="item-content">
+                        
+                        @if (isset($movie->tags))
+                            
+                            @php
+                                
+                                $tags = [];
+                                $tags = explode(",",$movie->tags);
+                            @endphp
+                            
+                            
+                            @foreach ($tags as $key=>$tag)
+                                <a href="{{ route('tag',$tag) }}">{{ $tag }}</a>/
+                            @endforeach
+                        @endif
+
+                    </article>
+                    </div>
+                </div>
             </div>
         </section>
         <section class="related-movies">
@@ -137,7 +161,7 @@
                         
                         <article class="thumb grid-item post-38498">
                             <div class="halim-item">
-                                <a class="halim-thumb" href="{{ route('movie',$relate->slug) }}" title="{{ $relate->title }}">
+                                <a class="halim-thumb" href="{{ route('movie.detail',$relate->slug) }}" title="{{ $relate->title }}">
                                     <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/'.$relate->image) }}" alt="{{ $relate->title }}" title="{{ $relate->title }}"></figure>
                                     <span class="status">
                                         @switch($relate->resolution)

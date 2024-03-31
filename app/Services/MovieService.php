@@ -47,7 +47,9 @@ class MovieService
                 'vietsub' => $request->vietsub,
                 'genre_id' => $request->genre_id,
                 'hot_movie' => $request->hot_movie,
-                'category_id' => $request->category_id
+                'category_id' => $request->category_id,
+                'tags' => $request->tags,
+
 
             ]);
         } catch (\Exception $e) {
@@ -73,6 +75,7 @@ class MovieService
                 'category_id' => $request->category_id,
                 'hot_movie' => $request->hot_movie,
                 'movie_duration' => $request->movie_duration,
+                'tags' => $request->tags,
                 
             ]);
         } catch(\Exception $e){
