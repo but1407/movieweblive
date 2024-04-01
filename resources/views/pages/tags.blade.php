@@ -34,7 +34,6 @@
                                 <figure><img class="lazy img-responsive" src="{{  asset('uploads/movie/'.$movie->image) }}" alt="{{ $movie->title }}" title="{{ $movie->title }}"></figure>
                                 <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i> @if($movie->vietsub == 1)
                                     Thuyet minh
-                                    
                                 @else
                                     Vietsub
                                 @endif</span> 
@@ -50,8 +49,6 @@
                         </article>
                     @endforeach
                 @endif
-                
-            
             </div>
             <div class="clearfix"></div>
             <div class="text-center">

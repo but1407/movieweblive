@@ -15,6 +15,7 @@ class IndexController extends Controller
         $phimhot = Movie::where(function ($query) {
             $query->where('hot_movie', 1)->Where('status', 1);
         })->orderByDesc('updated_at')->get();
+        $phimhot_sidebar = Movie::where('hot_movie', 1)->where('status', 1)->orderByDesc('updated_at')->take(20)->get();
         $category = Category::orderBy('id', 'DESC')->where('status',1)->get();
         $country = Country::orderBy('id', 'DESC')->get();
         $genre = Genre::orderBy('id', 'DESC')->get();
@@ -26,10 +27,13 @@ class IndexController extends Controller
             'category_home' => $category_home,
             'category' => $category,
             'phimhot' =>$phimhot,
-            'genre' => $genre
+            'genre' => $genre,
+            'phimhot_sidebar'=>$phimhot_sidebar,
         ]);
     }
     public function category($slug){
+        $phimhot_sidebar = Movie::where('hot_movie', 1)->where('status', 1)->orderByDesc('updated_at')->take(20)->get();
+
         $category = Category::orderBy('id', 'DESC')->where('status',1)->get();
         $country = Country::orderBy('id', 'DESC')->get();
         $genre = Genre::orderBy('id', 'DESC')->get();
@@ -45,10 +49,13 @@ class IndexController extends Controller
             'category_slug'=>$category_slug,
             'title' => 'category',
             'movies' => $movies,
+            'phimhot_sidebar'=>$phimhot_sidebar
 
         ]);
     }
     public function year($year){
+        $phimhot_sidebar = Movie::where('hot_movie', 1)->where('status', 1)->orderByDesc('updated_at')->take(20)->get();
+
         $category = Category::orderBy('id', 'DESC')->where('status',1)->get();
         $country = Country::orderBy('id', 'DESC')->get();
         $genre = Genre::orderBy('id', 'DESC')->get();
@@ -63,11 +70,14 @@ class IndexController extends Controller
             'genre' => $genre,
             'movies'=>$movies,
             'title' => 'year',
+            'phimhot_sidebar'=>$phimhot_sidebar
             // 'movies' => $movies,
 
         ]);
     }
     public function genre($slug){
+        $phimhot_sidebar = Movie::where('hot_movie', 1)->where('status', 1)->orderByDesc('updated_at')->take(20)->get();
+
         $category = Category::orderBy('id', 'DESC')->where('status',1)->get();
         $country = Country::orderBy('id', 'DESC')->get();
         $genre = Genre::orderBy('id', 'DESC')->get();
@@ -80,11 +90,13 @@ class IndexController extends Controller
             'genre' => $genre,
             'genre_slug'=>$genre_slug,
             'movies' => $movies,
-
+            'phimhot_sidebar'=>$phimhot_sidebar,
 
             'title' => 'genre',
         ]);
     }public function country($slug){
+        $phimhot_sidebar = Movie::where('hot_movie', 1)->where('status', 1)->orderByDesc('updated_at')->take(20)->get();
+
         $category = Category::orderBy('id', 'DESC')->where('status',1)->get();
         $country = Country::orderBy('id', 'DESC')->get();
         $genre = Genre::orderBy('id', 'DESC')->get();
@@ -100,6 +112,7 @@ class IndexController extends Controller
             'country_slug'=>$country_slug,
             'title' => 'country',
             'movies' => $movies,
+            'phimhot_sidebar'=>$phimhot_sidebar
 
 
         ]);
