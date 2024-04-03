@@ -174,4 +174,13 @@ class MovieController extends Controller
             ]
         );
     }
+    public function update_topview($request){
+        $data = $request->all();
+
+        $movie = Movie::find($data['id_phim'])->update(
+            [
+                'topview' => $data['topview'],
+            ]
+        );
+    }
 }

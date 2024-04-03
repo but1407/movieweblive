@@ -52,6 +52,7 @@
 
                         <th scope="col">Manager</th>
                         <th scope="col">Year</th>
+                        <th scope="col">Topview</th>
 
                         <th scope="col">Updated_at</th>
 
@@ -107,15 +108,15 @@
 
                         <td>{{ $list->countries->title }}</td>
                         <td>{{ $list->genres->title }}</td>
-
-
                         <td>{!! $list->status == 0 ? '<span class="btn btn-danger btn-xs">Chưa kích hoạt</span>' : '<span class="btn btn-success btn-xs">Kích hoạt</span>' !!}</td>
 
                         {{-- <td>{{ $list-> }}</td> --}}
                         <td>{!! Form::selectYear('year',1990,2024,isset($list->year) ? $list->year : '',['class'=>'select-year','id'=>$list->id]) !!}</td>
+                        
+                        <td>{!! Form::select('topview', ['0'=>'Ngày','1'=>'Tuần','2'=>'tháng'],
+                        isset($list->topview) ?  $list->topview : '' ,['class'=>'select-topview','id'=>$list->id]) !!}
+
                         <td>{{ $list->updated_at }}</td>
-
-
                         <td>
                             {!! Form::open([
                                 'method'=>'delete',
@@ -125,12 +126,9 @@
                                 {!! Form::submit('Xóa', ['class'=>'btn btn-danger']) !!}
                             {!! Form::close() !!}
                             <a href="{{ route('movie.edit',['movie'=> $list->id]) }}" class="btn btn-warning">Sửa</a>
-
                         </td>
-
                     </tr>
                 @endforeach
-                
                 </tbody>
             </table>
         </div>

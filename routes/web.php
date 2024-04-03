@@ -47,4 +47,6 @@ Route::post('resorting_category', [CategoryController::class,'resorting'])->name
 
 
 Route::get('/update-year-movie',[MovieController::class,'update_year']);
+Route::get('/update-topview-phim',[MovieController::class,'update_topview']);
+
 
