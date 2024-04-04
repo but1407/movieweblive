@@ -121,7 +121,7 @@
                             <form action="" method="posy">
                                 @csrf
                                 
-                                {!! Form::selectRange('season', 0,20, isset($list->season) ? $list->season, ['class'=>'select-season','id'=>$list->id]) !!}
+                                {!! Form::selectRange('season', 0,20, isset($list->season) ? $list->season : '', ['class'=>'select-season','id'=>$list->id]) !!}
                             </form>
                         </td>
                         <td>{!! Form::select('topview', ['0'=>'Ngày','1'=>'Tuần','2'=>'tháng'],
