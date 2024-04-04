@@ -46,6 +46,7 @@ Route::resource('country', CountryController::class);
 Route::post('resorting_category', [CategoryController::class,'resorting'])->name('resorting_category');
 
 
+Route::get('/update-season-phim', [MovieController::class, 'season_update'])->name('season_update');
 Route::get('/update-year-movie',[MovieController::class,'update_year']);
 Route::get('/update-topview-phim',[MovieController::class,'update_topview']);
 

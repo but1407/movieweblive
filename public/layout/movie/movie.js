@@ -17,3 +17,17 @@ $('select-topview').change(() => {
         }
     })
 });
+$('select-season').change(() => {
+    var season = $(this).find(':selected').val();
+    var id_phim = $(this).attr('id');
+    var _token =$('input[name="_token"]').val();
+    
+    $.ajax({
+        url: "{{url('update-season-phim')}}",
+        method: "POST",
+        data: { season: season, id_phim: id_phim,_token: _token},
+        success: function () {
+            alert('thay doi phim theo Season '+season+'thanh cong')
+        }
+    })
+});

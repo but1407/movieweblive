@@ -51,7 +51,12 @@
                         <th scope="col">Status</th>
 
                         <th scope="col">Manager</th>
+                        <th scope="col">Thể Loại</th>
+                        <th scope="col">Status</th>
+
                         <th scope="col">Year</th>
+                        <th scope="col">Season</th>
+
                         <th scope="col">Topview</th>
 
                         <th scope="col">Updated_at</th>
@@ -112,7 +117,13 @@
 
                         {{-- <td>{{ $list-> }}</td> --}}
                         <td>{!! Form::selectYear('year',1990,2024,isset($list->year) ? $list->year : '',['class'=>'select-year','id'=>$list->id]) !!}</td>
-                        
+                        <td>
+                            <form action="" method="posy">
+                                @csrf
+                                
+                                {!! Form::selectRange('season', 0,20, isset($list->season) ? $list->season, ['class'=>'select-season','id'=>$list->id]) !!}
+                            </form>
+                        </td>
                         <td>{!! Form::select('topview', ['0'=>'Ngày','1'=>'Tuần','2'=>'tháng'],
                         isset($list->topview) ?  $list->topview : '' ,['class'=>'select-topview','id'=>$list->id]) !!}
 

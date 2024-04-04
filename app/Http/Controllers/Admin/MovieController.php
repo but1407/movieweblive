@@ -183,4 +183,13 @@ class MovieController extends Controller
             ]
         );
     }
+    public function update_season($request){
+        $data = $request->all();
+
+        $movie = Movie::find($data['id_phim'])->update(
+            [
+                'season' => $data['season'],
+            ]
+        );
+    }
 }
