@@ -28,12 +28,41 @@
                             <div class="halim-item">
                             <a class="halim-thumb" href="{{ route('movie.detail',$movie->slug) }}" title="{{ $movie->title }}">
                                 <figure><img class="lazy img-responsive" src="{{  asset('uploads/movie/'.$movie->image) }}" alt="{{ $movie->title }}" title="{{ $movie->title }}"></figure>
-                                <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i> @if($movie->vietsub == 1)
-                                    Thuyet minh
-                                    
-                                @else
-                                    Vietsub
-                                @endif</span> 
+                                <span class="status">
+                                    @switch($movie->resolution)
+                                    @case(0)
+                                        HD
+                                            @break
+                                    @case(1)
+                                        SD
+                                        @break
+                                    @case(2)
+                                        CAM
+                                        @break
+                                    @case(3)
+                                        RAW
+                                        @break
+                                    @case(4)
+                                        FullHD
+                                        @break
+                                    @case(5)
+                                        Trailer
+                                        @break
+                                
+                                    @default
+                                        
+                                @endswitch        
+                                </span>
+                                @if($movie->resolution != 5)
+                                    <span class="episode">
+                                        <i class="fa fa-play" aria-hidden="true"></i> 
+                                        @if($movie->vietsub == 1)
+                                                Thuyet minh
+                                            @else
+                                                Vietsub
+                                            @endif
+                                    </span> 
+                                @endif
                                 <div class="icon_overlay"></div>
                                 <div class="halim-post-title-box">
                                     <div class="halim-post-title ">

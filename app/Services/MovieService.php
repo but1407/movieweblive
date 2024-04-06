@@ -37,6 +37,8 @@ class MovieService
             $this->movie->create([
                 'title' => $request->title,
                 'description' => $request->description,
+                'trailer' => $request->trailer,
+
                 'status' => $request->status,
                 'slug' => $request->slug,
                 'movie_duration' => $request->movie_duration,
@@ -53,7 +55,7 @@ class MovieService
 
             ]);
         } catch (\Exception $e) {
-            return false;
+            return response()->json("Error: ". $e);
 
         }
         return true;
@@ -76,7 +78,8 @@ class MovieService
                 'hot_movie' => $request->hot_movie,
                 'movie_duration' => $request->movie_duration,
                 'tags' => $request->tags,
-                
+                'trailer' => $request->trailer,
+
             ]);
         } catch(\Exception $e){
             return false;

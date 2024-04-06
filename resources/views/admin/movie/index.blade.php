@@ -95,6 +95,10 @@
                                     <span class="btn btn-success btn-xs">FullHD</span>
 
                                     @break
+                                @case(4)
+                                    <span class="btn btn-success btn-xs">Trailer</span>
+
+                                    @break
                                 @default
                                     
                             @endswitch ()

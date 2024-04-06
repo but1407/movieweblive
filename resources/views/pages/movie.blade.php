@@ -76,6 +76,9 @@
                                         @case(4)
                                             FullHD
                                             @break
+                                        @case(5)
+                                            Trailer
+                                            @break
                                     
                                         @default
                                             
@@ -125,6 +128,7 @@
                     </article>
                     </div>
                 </div>
+                {{-- Tag phim --}}
                 <div class="section-bar clearfix">
                     <h2 class="section-title"><span style="color:#ffed4d">Tags</span></h2>
                 </div>
@@ -149,6 +153,23 @@
                     </article>
                     </div>
                 </div>
+                 {{-- Trailer phim --}}
+                 <div class="section-bar clearfix">
+                    <h2 class="section-title"><span style="color:#ffed4d">Trailer</span></h2>
+                </div>
+                <div class="entry-content htmlwrap clearfix">
+                    <div class="video-item halim-entry-box">
+                    <article id="post-38424" class="item-content">
+                        
+                        <iframe width="100%" height="315" 
+                        src="https://www.youtube.com/embed/{{ $movie->trailer }}?si=8tzAfjVT0YT5RjS8" 
+                        title="YouTube video player" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen></iframe>
+
+                    </article>
+                    </div>
+                </div>
             </div>
         </section>
         <section class="related-movies">
@@ -163,8 +184,7 @@
                             <div class="halim-item">
                                 <a class="halim-thumb" href="{{ route('movie.detail',$relate->slug) }}" title="{{ $relate->title }}">
                                     <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/'.$relate->image) }}" alt="{{ $relate->title }}" title="{{ $relate->title }}"></figure>
-                                    <span class="status">
-                                        @switch($relate->resolution)
+                                    @switch($movie->resolution)
                                         @case(0)
                                             HD
                                                 @break
@@ -180,10 +200,13 @@
                                         @case(4)
                                             FullHD
                                             @break
+                                        @case(5)
+                                            Trailer
+                                            @break
                                     
                                         @default
                                             
-                                    @endswitch       
+                                    @endswitch   
                                     </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i> @if($movie->vietsub == 1)
                                         Thuyet minh
                                         
