@@ -62,7 +62,7 @@
                             <a class="halim-thumb" href="{{ route('movie.detail',$hot->slug) }}" title="{{ $hot->title }}">
                                 <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/'.$hot->image) }}" alt="{{ $hot->title }}" title="{{ $hot->title }}"></figure>
                                 <span class="status">
-                                    @switch($movie->resolution)
+                                    @switch($hot->resolution)
                                     @case(0)
                                         HD
                                             @break
@@ -118,7 +118,7 @@
                                     <a class="halim-thumb" href="{{ route('movie.detail',$movie->slug) }}">
                                         <figure><img class="lazy img-responsive" src="{{  asset('uploads/movie/'.$movie->image) }}" alt="{{ $movie->title }}" title="{{ $movie->title }}"></figure>
                                         <span class="status">
-                                            @switch($movie->resolution)
+                                            @switch($hot->resolution)
                                         @case(0)
                                             HD
                                                 @break

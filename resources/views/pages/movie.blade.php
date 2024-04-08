@@ -2,6 +2,11 @@
 @section('title')
     <title>{{ $title }}</title>
 @endsection
+
+@section('js')
+<script type="text/javascript" src="{{ asset('layout/movie/movie.js') }}"></script>
+@endsection
+
 @section('content')
     <div class="row container" id="wrapper">
         <div class="halim-panel-filter">
@@ -47,13 +52,20 @@
                     </div>
                     <div class="movie_info col-xs-12">
                     <div class="movie-poster col-md-3">
-                        <img class="movie-thumb" src="{{ asset('uploads/movie/'. $movie->image) }}" alt="GÓA PHỤ ĐEN">
-                        <div class="bwa-content">
-                            <div class="loader"></div>
-                            <a href="xemphim.php" class="bwac-btn">
-                            <i class="fa fa-play"></i>
-                            </a>
-                        </div>
+                        <img class="movie-thumb" src="{{ asset('uploads/movie/'. $movie->image) }}" 
+                        alt="{{ $movie->title }}">
+                        @if ($movie->resolution !=5 )
+                
+                            <div class="bwa-content">
+                                <div class="loader"></div>
+                                <a href="
+                                {{-- {{ route('watch') }} --}}
+                                " class="bwac-btn">
+                                    <i class="fa fa-play"></i>
+                                </a>
+                            </div>
+                            @else <a href="#watch_trailer" style="display: block" class="btn btn-primary watch_trailer">Xem Trailer</a>
+                        @endif
                     </div>
                     <div class="film-poster col-md-9">
                         <h1 class="movie-title title-1" style="display:block;line-height:35px;margin-bottom: -14px;color: #ffed4d;text-transform: uppercase;font-size: 18px;">GÓA PHỤ ĐEN</h1>
@@ -157,19 +169,21 @@
                  <div class="section-bar clearfix">
                     <h2 class="section-title"><span style="color:#ffed4d">Trailer</span></h2>
                 </div>
-                <div class="entry-content htmlwrap clearfix">
-                    <div class="video-item halim-entry-box">
-                    <article id="post-38424" class="item-content">
-                        
-                        <iframe width="100%" height="315" 
-                        src="https://www.youtube.com/embed/{{ $movie->trailer }}?si=8tzAfjVT0YT5RjS8" 
-                        title="YouTube video player" frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen></iframe>
+                @if($movie->trailer != null)
+                    <div class="entry-content htmlwrap clearfix">
+                        <div class="video-item halim-entry-box">
+                        <article id="watch_trailer" class="item-content">
+                            
+                            <iframe width="100%" height="315" 
+                            src="https://www.youtube.com/embed/{{ $movie->trailer }}?si=8tzAfjVT0YT5RjS8" 
+                            title="YouTube video player" frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen></iframe>
 
-                    </article>
+                        </article>
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
         </section>
         <section class="related-movies">
