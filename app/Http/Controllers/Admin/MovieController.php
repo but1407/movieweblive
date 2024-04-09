@@ -7,8 +7,9 @@ use App\Models\Movie;
 use App\Models\Country;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Services\MovieService;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 // use App\Services\MovieService;
 class MovieController extends Controller
 {
@@ -24,7 +25,14 @@ class MovieController extends Controller
     }
     public function index()
     {
+
         $lists = Movie::orderBy('id','desc')->get();
+        $path = public_path() . '/json\/';
+
+        if(!is_dir($path)){
+            mkdir($path ,0777, true);
+        }
+        File::put($path . 'movies.json', json_encode($lists));
         return view('admin.movie.index',[
             'lists'=>$lists,
             'title'=> 'Quản lý Phim',

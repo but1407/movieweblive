@@ -5,6 +5,11 @@
 
 @section('js')
 <script type="text/javascript" src="{{ asset('layout/movie/movie.js') }}"></script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" 
+src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0" 
+nonce="bEqnJ9df">
+</script>
 @endsection
 
 @section('content')
@@ -124,19 +129,7 @@
                     <article id="post-38424" class="item-content">
                         Phim <a href="https://phimhay.co/goa-phu-den-38424/">{{ $movie->title }}</a> - 2021 - {{ $movie->countries->title }}:
                         <p>{{ $movie->title }} &#8211; {{ $movie->description }}</p>
-                        <h5>Từ Khoá Tìm Kiếm:</h5>
-                        <ul>
-                            <li>black widow vietsub</li>
-                            <li>Black Widow 2021 Vietsub</li>
-                            <li>phim black windows 2021</li>
-                            <li>xem phim black windows</li>
-                            <li>xem phim black widow</li>
-                            <li>phim black windows</li>
-                            <li>goa phu den</li>
-                            <li>xem phim black window</li>
-                            <li>phim black widow 2021</li>
-                            <li>xem black widow</li>
-                        </ul>
+                        
                     </article>
                     </div>
                 </div>
@@ -166,7 +159,7 @@
                     </div>
                 </div>
                  {{-- Trailer phim --}}
-                 <div class="section-bar clearfix">
+                <div class="section-bar clearfix">
                     <h2 class="section-title"><span style="color:#ffed4d">Trailer</span></h2>
                 </div>
                 @if($movie->trailer != null)
@@ -186,6 +179,23 @@
                 @endif
             </div>
         </section>
+        {{-- Comment phim --}}
+        <div class="section-bar clearfix">
+            <h2 class="section-title"><span style="color:#ffed4d">Comments</span></h2>
+        </div>
+        <div class="entry-content htmlwrap clearfix">
+            <div class="video-item halim-entry-box">
+            <article id="post-38424" class="item-content">
+                @php
+                    $currentUrl = Request::url();
+                @endphp
+                <div class="fb-comments" 
+                data-href="{{ $currentUrl }}" 
+                data-width="100%" data-numposts="5" ></div>
+
+            </article>
+            </div>
+        </div>
         <section class="related-movies">
             <div id="halim_related_movies-2xx" class="wrap-slider">
                 <div class="section-bar clearfix">
