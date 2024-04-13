@@ -33,6 +33,7 @@ Route::get('/quoc-gia/{slug}', [IndexController::class, 'country'])->name('count
 Route::get('/xem-phim/{slug}', [IndexController::class, 'movie'])->name('movie.detail');
 Route::get('/year/{year}', [IndexController::class, 'year'])->name('year');
 Route::get('/tag/{tag}', [IndexController::class, 'tags'])->name('tag');
+Route::get('/search', [IndexController::class, 'search'])->name('search');
 
 Route::get('/episode', [IndexController::class, 'episode'])->name('episode');
 

@@ -22,10 +22,15 @@
 
                     <div class="form-group form-search"></div>
                         <div class="input-group col-xs-12">
+                            <form action="{{ route('search') }}" method="get">
+
                             <input id="search" type="text" name="search" 
                             class="form-control" placeholder="Tìm kiếm..." 
                             autocomplete="off" required>
+                            <button class="btn btn-primary">Tìm kiếm</button>
                             <i class="animate-spin hl-spin4 hidden"></i>
+                        </form>
+
                         </div>
                     <ul id="result" class="list-group" style="display: none" ></ul>
 
