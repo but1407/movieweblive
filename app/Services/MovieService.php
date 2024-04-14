@@ -32,9 +32,13 @@ class MovieService
         return $data;
     }
     public function create($request, $image)
-    {
+    {   
+        $genre_id = '';
+        foreach($request->genre as $genre){
+            $genre_id = $genre[0];
+        }
         try {
-            $this->movie->create([
+            $movie =$this->movie->create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'trailer' => $request->trailer,
@@ -47,23 +51,29 @@ class MovieService
                 'name_eng' => $request->name_eng,
                 'resolution' => $request->resolution,
                 'vietsub' => $request->vietsub,
-                'genre_id' => $request->genre_id,
+                'genre_id' =>    $genre_id,
                 'hot_movie' => $request->hot_movie,
                 'category_id' => $request->category_id,
                 'tags' => $request->tags,
 
 
             ]);
+            //add more genre
+            $movie->movieGenres()->sync($request->genre);
         } catch (\Exception $e) {
             return response()->json("Error: ". $e);
-
+            
         }
         return true;
     }
     public function update($request,$model,$image){
+        $genre_id = '';
+        foreach($request->genre as $genre){
+            $genre_id = $genre[0];
+        }
         try{
 
-            $model->update([
+            $movie=$model->update([
                 'title'=>$request->title,
                 'description'=>$request->description,
                 'status' => $request->status,
@@ -71,7 +81,7 @@ class MovieService
                 'name_eng' => $request->name_eng,
                 'image'=> $image['image'] ?? null,
                 'country_id' => $request->country_id,
-                'genre_id' => $request->genre_id,
+                'genre_id' => $genre_id,
                 'resolution'=>$request->resolution,
                 'vietsub'=>$request->vietsub,
                 'category_id' => $request->category_id,
@@ -81,6 +91,8 @@ class MovieService
                 'trailer' => $request->trailer,
 
             ]);
+            $movie->movieGenres()->attach($request->genre);
+
         } catch(\Exception $e){
             return false;
         }

@@ -50,11 +50,13 @@ class MovieController extends Controller
         $category = Category::pluck('title','id');
         $country = Country::pluck('title','id');
         $genre = Genre::pluck('title','id');
+        $list_genre = Genre::orderBy('id', 'DESC')->get();
         return view('admin.movie.form',[
             'title'=> 'Quản lý Phim',
             'category'=>$category,
             'country'=>$country,
-            'genre'=>$genre
+            'genre'=>$genre,
+            'list_genre'=>$list_genre,
             ]);
     }
 
@@ -108,6 +110,8 @@ class MovieController extends Controller
     {
         $category = Category::pluck('title','id');
         $country = Country::pluck('title','id');
+        $list_genre = Genre::orderBy('id', 'DESC')->get();
+
         $genre = Genre::pluck('title','id');
         $lists = Movie::orderBy('id','desc')->get();
 
@@ -119,6 +123,8 @@ class MovieController extends Controller
             'country'=>$country,
             'genre'=>$genre,
             'movie'=>$movie,
+            'list_genre'=>$list_genre,
+
             ]);
     }
 
