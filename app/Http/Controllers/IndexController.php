@@ -125,7 +125,15 @@ class IndexController extends Controller
         $country = Country::orderBy('id', 'DESC')->get();
         $genre = Genre::orderBy('id', 'DESC')->get();
         $genre_slug = Genre::where('slug', $slug)->first();
-        $movies = $genre_slug->movies()->paginate(40);
+        //more genre
+        $movie_genre = Genre::find($genre_slug->id)->genreMovies;
+        $many_renre = [];
+        foreach($movie_genre as  $movie){
+            $many_renre[] = $movie->id;
+        }
+        // $movies = $genre_slug->movies()->whereIn('id',$many_renre)->paginate(40);
+        $movies = Movie::whereIn('id',$many_renre)
+        ->orderByDesc('created_at', 'DESC')->paginate(40);
         return view('pages.genre',[
             'title' => 'Home',
             'country' => $country,

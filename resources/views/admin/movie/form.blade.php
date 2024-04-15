@@ -87,7 +87,7 @@
                             @foreach ($list_genre as $key=>$genre )
                             @if (isset($movie))
                                 
-                                {!! Form::checkbox('genre[]', $genre->id,$movie->genre_id == $genre->id ? 'checked' : ''  ) !!}
+                                {!! Form::checkbox('genre[]', $genre->id,isset($movie->movieGenres) && $movie->movieGenres->contains($genre->id) ? true :false  ) !!}
                                 @else
                                     {!! Form::checkbox('genre[]', $genre->id,'') !!}
                             @endif

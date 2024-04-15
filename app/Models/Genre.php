@@ -12,4 +12,11 @@ class Genre extends Model
     public function movies(){
         return $this->hasMany(Movie::class)->orderBy('id', 'asc');
     }
+    public function genreMovies(){
+        return $this->belongsToMany(Movie::class,
+        'movie_genres',
+        'genre_id',
+        'movie_id');
+
+    }
 }

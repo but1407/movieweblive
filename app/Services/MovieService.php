@@ -59,21 +59,21 @@ class MovieService
 
             ]);
             //add more genre
-            $movie->movieGenres()->sync($request->genre);
+            $movie->movieGenres()->attach($request->genre);
         } catch (\Exception $e) {
             return response()->json("Error: ". $e);
             
         }
         return true;
     }
-    public function update($request,$model,$image){
+    public function update($request,$model,$image,$movie ){
         $genre_id = '';
         foreach($request->genre as $genre){
             $genre_id = $genre[0];
         }
         try{
 
-            $movie=$model->update([
+            $model->update([
                 'title'=>$request->title,
                 'description'=>$request->description,
                 'status' => $request->status,
@@ -91,7 +91,7 @@ class MovieService
                 'trailer' => $request->trailer,
 
             ]);
-            $movie->movieGenres()->attach($request->genre);
+            $movie->movieGenres()->sync($request->genre);
 
         } catch(\Exception $e){
             return false;
@@ -101,13 +101,14 @@ class MovieService
     }
     public function file_exist($model){
         try{
-            if(file_exists('uploads/movie'.$model->image)){
-                unlink('uploads/movie/'.$model->image);
+            if(file_exists('uploads/movie/'.$model->image)){
+
+                if(unlink('uploads/movie/'.$model->image)) return true;
             }
         } catch (\Exception $e) {
             return false;
         }
-        return true;
+        
 
     }
 }

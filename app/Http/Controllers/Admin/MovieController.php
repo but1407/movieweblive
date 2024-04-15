@@ -75,7 +75,7 @@ class MovieController extends Controller
             $create = $this->movieService->create($request,$image);
             if($create){
 
-                return redirect()->back();
+                return redirect()->route('movie.index');
             } 
             return response()->json([
                 'error'=>'Lỗi không tạo được'
@@ -116,6 +116,7 @@ class MovieController extends Controller
         $lists = Movie::orderBy('id','desc')->get();
 
         $movie = Movie::find($id);
+        
         return view('admin.movie.form',[
             'lists'=>$lists,
             'title'=> 'Quản lý Phim',
@@ -124,7 +125,7 @@ class MovieController extends Controller
             'genre'=>$genre,
             'movie'=>$movie,
             'list_genre'=>$list_genre,
-
+            
             ]);
     }
 
@@ -147,10 +148,11 @@ class MovieController extends Controller
             ]);
         }
         if($image != false){
-            $update = $this->movieService->update($request, $movie,$image);
+            $update = $this->movieService->update($request, $movie,$image,$movie );
             if($update){
 
-                return redirect()->back();
+                return redirect()->route('movie.index');
+
             }
             return response()->json([
                 'error'=>'Lỗi không cat nhat duoc'
