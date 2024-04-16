@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('movies', function (Blueprint $table) {
-            $table->text('name_eng');
+            $table->text('name_eng')->nullable();
         });
     }
 

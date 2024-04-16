@@ -73,7 +73,7 @@ nonce="bEqnJ9df">
                         @endif
                     </div>
                     <div class="film-poster col-md-9">
-                        <h1 class="movie-title title-1" style="display:block;line-height:35px;margin-bottom: -14px;color: #ffed4d;text-transform: uppercase;font-size: 18px;">GÓA PHỤ ĐEN</h1>
+                        <h1 class="movie-title title-1" style="display:block;line-height:35px;margin-bottom: -14px;color: #ffed4d;text-transform: uppercase;font-size: 18px;">{{ $movie->title }}</h1>
                         <h2 class="movie-title title-2" style="font-size: 12px;">{{ $movie->name_eng }} (2021)</h2>
                         <ul class="list-info-group">
                             <li class="list-info-group-item"><span>Trạng Thái</span> : <span class="quality">
@@ -109,7 +109,14 @@ nonce="bEqnJ9df">
                                 @endif</span></li>
                             <li class="list-info-group-item"><span>Điểm IMDb</span> : <span class="imdb">7.2</span></li>
                             <li class="list-info-group-item" ><span>Thời lượng</span> : {{ $movie->movie_duration }}</li>
-                            <li class="list-info-group-item"><span>Thể loại</span> : <a href="{{ route('country',$movie->categories->slug) }}" rel="category tag">{{ $movie->categories->title }}</a>, <a href="" rel="category tag">Hành động</a>, <a href="" rel="category tag">Phiêu Lưu</a>, <a href="" rel="category tag">Viễn Tưởng</a></li>
+                            
+                            <li class="list-info-group-item"><span>Thể loại</span> : 
+                                @foreach ($movie->movieGenres as $gen )
+                                    <a href="{{ route('genre',$gen->slug) }}" rel="category tag">
+                                        {{ $gen->title }}
+                                    </a>,
+                                @endforeach
+                            </li>
                             <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{ route('country',$movie->countries->slug) }}" rel="tag">{{ $movie->countries->title }}</a></li>
                             <li class="list-info-group-item"><span>Đạo diễn</span> : <a class="director" rel="nofollow" href="https://phimhay.co/dao-dien/cate-shortland" title="Cate Shortland">Cate Shortland</a></li>
                             <li class="list-info-group-item last-item" style="-overflow: hidden;-display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-flex: 1;-webkit-box-orient: vertical;"><span>Diễn viên</span> : <a href="" rel="nofollow" title="C.C. Smiff">C.C. Smiff</a>, <a href="" rel="nofollow" title="David Harbour">David Harbour</a>, <a href="" rel="nofollow" title="Erin Jameson">Erin Jameson</a>, <a href="" rel="nofollow" title="Ever Anderson">Ever Anderson</a>, <a href="" rel="nofollow" title="Florence Pugh">Florence Pugh</a>, <a href="" rel="nofollow" title="Lewis Young">Lewis Young</a>, <a href="" rel="nofollow" title="Liani Samuel">Liani Samuel</a>, <a href="" rel="nofollow" title="Michelle Lee">Michelle Lee</a>, <a href="" rel="nofollow" title="Nanna Blondell">Nanna Blondell</a>, <a href="" rel="nofollow" title="O-T Fagbenle">O-T Fagbenle</a></li>

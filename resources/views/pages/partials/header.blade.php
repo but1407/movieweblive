@@ -74,8 +74,7 @@
                     <li class="mega dropdown">
                         <a title="Thể Loại" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Thể Loại <span class="caret"></span></a>
                             <ul role="menu" class=" dropdown-menu">
-                                @foreach ($genre as $key => $gen)
-                                    
+                                @foreach ($genre as $gen)
                                     <li><a title="{{ $gen->title }}" href="{{ route('genre',['slug'=>$gen->slug]) }}">{{ $gen->title }}</a></li>
                                 @endforeach
 

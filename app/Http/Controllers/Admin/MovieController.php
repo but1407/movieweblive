@@ -150,7 +150,6 @@ class MovieController extends Controller
         if($image != false){
             $update = $this->movieService->update($request, $movie,$image,$movie );
             if($update){
-
                 return redirect()->route('movie.index');
 
             }

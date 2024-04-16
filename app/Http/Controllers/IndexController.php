@@ -147,7 +147,8 @@ class IndexController extends Controller
 
             'title' => 'genre',
         ]);
-    }public function country($slug){
+    }
+    public function country($slug){
         $phimhot_trailer = Movie::where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
         
         $phimhot_sidebar = Movie::where('hot_movie', 1)->where('status', 1)->orderByDesc('updated_at')->take(20)->get();
