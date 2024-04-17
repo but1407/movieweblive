@@ -177,6 +177,7 @@ class MovieController extends Controller
                 'msg' => 'Loi khong xoa duoc file'
             ]);
         }
+        $movie->movieGenres()->detach();
         $movie->delete();
         return redirect()->back();
     }
