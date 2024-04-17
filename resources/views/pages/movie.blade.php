@@ -28,7 +28,13 @@ nonce="bEqnJ9df">
                                         {{ $movie->countries->title }}
                                         </a> » 
                                         <span class="breadcrumb_last" aria-current="page">
-                                            {{ $movie->title }}</span>
+                                            {{ $movie->title }}
+                                        </span>
+                                        <span class="breadcrumb_last" aria-current="page">
+                                            @foreach ($movie->movieGenres as $gen )
+                                                
+                                                <a href="{{ route('genre',[$gen->slug]) }}"> {{ $gen->title }}</a> » 
+                                            @endforeach
                                         </span>
                                     </span>
                                 </a>
@@ -109,6 +115,7 @@ nonce="bEqnJ9df">
                                 @endif</span></li>
                             <li class="list-info-group-item"><span>Điểm IMDb</span> : <span class="imdb">7.2</span></li>
                             <li class="list-info-group-item" ><span>Thời lượng</span> : {{ $movie->movie_duration }}</li>
+                            <li class="list-info-group-item" ><span>Số tập phim</span> : {{ $movie->sotap }}/{{ $movie->sotap }}</li>
                             
                             <li class="list-info-group-item"><span>Thể loại</span> : 
                                 @foreach ($movie->movieGenres as $gen )

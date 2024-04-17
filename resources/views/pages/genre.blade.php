@@ -56,9 +56,9 @@
                                     <span class="episode">
                                         <i class="fa fa-play" aria-hidden="true"></i> 
                                         @if($movie->vietsub == 1)
-                                                Thuyet minh
+                                                Thuyet minh - tập {{ $movie->sotap }}/{{ $movie->sotap }}
                                             @else
-                                                Vietsub
+                                                Vietsub - tập {{ $movie->sotap }}/{{ $movie->sotap }}
                                             @endif
                                     </span> 
                                 @endif

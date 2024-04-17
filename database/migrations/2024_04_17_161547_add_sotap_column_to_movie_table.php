@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('movies', function (Blueprint $table) {
-            $table->tinyInteger('hot_movie');
+            $table->integer('sotap')->default(1);
 
         });
     }
@@ -27,6 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('movies', function (Blueprint $table) {
+            //
         });
     }
 };

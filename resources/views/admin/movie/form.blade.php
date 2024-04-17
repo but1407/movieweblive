@@ -51,7 +51,10 @@
                             {!! Form::label('Thời lượng phim', 'Thời lượng phim', []) !!}
                             {!! Form::text('movie_duration', isset($movie) ? $movie->movie_duration : '' , ['class'=>'form-control','placeholder' => 'Nhập dữ liệu...']) !!}
                         </div>
-                        
+                        <div class="form-group">
+                            {!! Form::label('sotap', 'Số tập phim', []) !!}
+                            {!! Form::text('sotap', isset($movie) ? $movie->sotap : '' , ['class'=>'form-control','placeholder' => 'Nhập dữ liệu...']) !!}
+                        </div>
                         <div class="form-group">
                             {!! Form::label('desciption', 'Desciption', []) !!}
                             {!! Form::textarea('description', isset($movie) ? $movie->description : '', ['style'=>'resize:none','class'=>'form-control','placeholder' => 'Nhập dữ liệu...']) !!}

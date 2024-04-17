@@ -48,6 +48,7 @@
                         <th scope="col">Phu de</th>
 
                         <th scope="col">Country</th>
+                        <th scope="col">episode</th>
                         <th scope="col">Genre</th>
                         
                         <th scope="col">Status</th>
@@ -80,6 +81,7 @@
                             '<span class="btn btn-success btn-xs">Thuyet Minh</span>' !!}
                         </td>
                         <td>{{ $list->countries->title }}</td>
+                        <td>{{ $list->sotap }}</td>
                         <td>
                             @foreach ($list->movieGenres as $genre )
                                 <span class="badge badge-dark">{{ $genre->title }}</span>

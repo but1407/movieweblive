@@ -42,6 +42,7 @@ class MovieService
                 'title' => $request->title,
                 'description' => $request->description,
                 'trailer' => $request->trailer,
+                'sotap' => $request->sotap,
 
                 'status' => $request->status,
                 'slug' => $request->slug,
@@ -89,6 +90,8 @@ class MovieService
                 'movie_duration' => $request->movie_duration,
                 'tags' => $request->tags,
                 'trailer' => $request->trailer,
+                'sotap' => $request->sotap,
+
 
             ]);
             $movie->movieGenres()->sync($request->genre);
