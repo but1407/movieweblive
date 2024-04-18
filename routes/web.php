@@ -50,5 +50,7 @@ Route::post('resorting_category', [CategoryController::class,'resorting'])->name
 Route::get('/update-season-phim', [MovieController::class, 'season_update'])->name('season_update');
 Route::get('/update-year-movie',[MovieController::class,'update_year']);
 Route::get('/update-topview-phim',[MovieController::class,'update_topview']);
+Route::get('/select-movie', [EpisodeController::class,'select_movie'])->name('select-movie.episode');
+
 
 

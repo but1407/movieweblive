@@ -36,7 +36,7 @@ function ChangeToSlug()
 $( function() {
     $(".order_position").sortable({
         placeholder: 'ui-state-highlight',
-        update: (event, ui) => {
+        update: function(event, ui) {
             var array_id = [];
             $('.order_position tr').each(() => {
                 array_id.push($(this).attr('id'));
@@ -55,6 +55,6 @@ $( function() {
         }
     });
     });
-$(document).ready(() => {
+$(document).ready(function()  {
     $('#tablephim').DataTable()
 });

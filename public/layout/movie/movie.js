@@ -1,4 +1,4 @@
-$('select-topview').change(() => {
+$('select-topview').change(function()  {
     var topview = $(this).find(':selected').val();
     var id_phim = $(this).attr('id');
     if (topview == 0) {
@@ -17,7 +17,7 @@ $('select-topview').change(() => {
         }
     })
 });
-$('select-season').change(() => {
+$('select-season').change(function()  {
     var season = $(this).find(':selected').val();
     var id_phim = $(this).attr('id');
     var _token =$('input[name="_token"]').val();
