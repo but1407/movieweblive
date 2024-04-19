@@ -39,7 +39,7 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        $store = Country::create([
+        Country::create([
             'title'=>$request->title,
             'description'=>$request->description,
             'status' => $request->status,

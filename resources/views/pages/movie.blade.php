@@ -70,7 +70,7 @@ nonce="bEqnJ9df">
                             <div class="bwa-content">
                                 <div class="loader"></div>
                                 <a href="
-                                {{-- {{ route('watch') }} --}}
+                                {{ route('movie.watch',$movie->slug) }}
                                 " class="bwac-btn">
                                     <i class="fa fa-play"></i>
                                 </a>

@@ -24,4 +24,7 @@ class Movie extends Model
         'movie_id','genre_id');
 
     }
+    public function episodes(){
+        return $this->hasMany(Episode::class)->orderBy('id', 'asc');
+    }
 }

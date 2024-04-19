@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\EpisodeService;
 
 class EpisodeController extends Controller
 {
@@ -13,6 +14,10 @@ class EpisodeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $episodeService;
+    public function __construct(EpisodeService $episodeService){
+        $this->episodeService = $episodeService;
+    }
     public function index()
     {
         //
@@ -25,6 +30,7 @@ class EpisodeController extends Controller
      */
     public function create()
     {
+        
         $list_movie = Movie::orderBy('id', 'desc')->pluck('title','id');
         return view('admin.episode.form',[
             'list_movie'=>$list_movie,
@@ -40,7 +46,13 @@ class EpisodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($this->episodeService->create($request)){
+            return redirect()->back(); 
+        }
+        return response()->json([
+            'error' =>'Có lỗi trong quy trình tạo'
+        ]);
+
     }
 
     /**

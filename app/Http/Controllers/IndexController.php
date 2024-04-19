@@ -227,4 +227,26 @@ class IndexController extends Controller
 
         ]);
     }
+    public function watch($slug){
+        $phimhot_trailer = Movie::where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
+
+        $category = Category::orderBy('id', 'DESC')
+        ->where('status',1)
+        ->get();
+        $country = Country::orderBy('id', 'DESC')->get();
+        $genre = Genre::orderBy('id', 'DESC')->get();
+        $movie = Movie::where('slug',$slug)
+        ->where('status',1)
+        ->first();
+    
+    
+        return view('pages.watch',[
+            'title' => 'movie',
+            'country' => $country,
+            'category' => $category,
+            'genre' => $genre,
+            'movie'=>$movie,
+            'phimhot_trailer'=>$phimhot_trailer,
+        ]);
+    }
 }

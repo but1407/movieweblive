@@ -5,7 +5,7 @@
 @endsection
 @section('js')
     <script src="{{ asset('layout/episode/index.js') }}" type="text/javascript">
-        window.selectMovieUrl = "http://127.0.0.1:8000/select-movie";
+        
     </script>
     
     @endsection
@@ -39,10 +39,10 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('link_movie', 'Đường dẫn tới phim', []) !!}
-                            {!! Form::text('link', isset($episode) ? $episode->movie_link : '' , ['class'=>'form-control','placeholder' => 'Nhập đường link...']) !!}
+                            {!! Form::text('movie_link', isset($episode) ? $episode->movie_link : '' , ['class'=>'form-control','placeholder' => 'Nhập đường link...']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('link_movie', 'Chọn Tập phim', []) !!}
+                            {!! Form::label('choose_movie', 'Chọn Tập phim', []) !!}
 
                             <select name="episode" class="form-control" id="show_movie">
                                 

@@ -9,7 +9,7 @@ $('select-topview').change(function()  {
         var text = 'Năm';
     }
     $.ajax({
-        url: "{{url('update-topview-phim')}}",
+        url: "/update-topview-phim",
         method: "GET",
         data: { topview: topview, id_phim: id_phim },
         success: function () {
@@ -23,7 +23,7 @@ $('select-season').change(function()  {
     var _token =$('input[name="_token"]').val();
     
     $.ajax({
-        url: "{{url('update-season-phim')}}",
+        url: "/update-season-phim/",
         method: "POST",
         data: { season: season, id_phim: id_phim,_token: _token},
         success: function () {
