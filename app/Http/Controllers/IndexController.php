@@ -75,8 +75,7 @@ class IndexController extends Controller
         $genre = Genre::orderBy('id', 'DESC')->get();
         $category_slug = Category::where('slug', $slug)->first();
         $movies = $category_slug->movies()->paginate(40);
-        // dd($movies);
-        // dd($movies);
+
         return view('pages.category',[
             'title' => 'Home',
             'country' => $country,
@@ -183,10 +182,10 @@ class IndexController extends Controller
         ->get();
         $country = Country::orderBy('id', 'DESC')->get();
         $genre = Genre::orderBy('id', 'DESC')->get();
-        $movie = Movie::where('slug',$slug)
+        $movie = Movie::with('genres','countries','categories')->where('slug',$slug)
         ->where('status',1)
         ->first();
-        $related = Movie::where('category_id',$movie->categories->id)
+        $related = Movie::with('genres','countries','categories')->where('category_id',$movie->categories->id)
         ->orderBy(DB::raw('RAND()'))
         ->whereNotIn('slug',[$slug])->get(); 
         return view('pages.movie',[

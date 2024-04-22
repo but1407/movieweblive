@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Episode;
 use App\Services\EpisodeService;
 
 class EpisodeController extends Controller
@@ -15,12 +16,24 @@ class EpisodeController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $episodeService;
-    public function __construct(EpisodeService $episodeService){
+    protected $episode;
+
+    public function __construct(EpisodeService $episodeService,Episode $episode){
         $this->episodeService = $episodeService;
+        $this->episode = $episode;
+        
     }
     public function index()
     {
-        //
+
+        $list_episode = $this->episode->with('movies')->orderBy('movie_id' ,'desc')->get() ;
+        // return response()->json([
+        //     'message' => $list_movie
+        // ]);
+        return view('admin.episode.index',[
+            'title'=>'List Movie',
+            'list_episode'=>$list_episode
+        ]);
     }
 
     /**
