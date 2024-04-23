@@ -35,18 +35,23 @@
                         
                         <div class="form-group">
                             {!! Form::label('Movie', 'Chọn Phim', []) !!}
-                            {!! Form::select('movie_id',['0'=>'Chọn phim','phim'=>$list_movie],isset($episode)  ? $episode->movie_id  : '' ,['class'=>'form-control select_movie']) !!}
+                            {!! Form::select('movie_id',['0'=>'Chọn phim','phim mới nhất'=>$list_movie],isset($episode)  ? $episode->movie_id  : '' ,['class'=>'form-control select_movie' , isset($episode) ? 'disabled' : '' ]) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('link_movie', 'Đường dẫn tới phim', []) !!}
                             {!! Form::text('movie_link', isset($episode) ? $episode->movie_link : '' , ['class'=>'form-control','placeholder' => 'Nhập đường link...']) !!}
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" {{ isset($episode) ? 'hidden' : '' }}>
                             {!! Form::label('choose_movie', 'Chọn Tập phim', []) !!}
 
-                            <select name="episode" class="form-control" id="show_movie">
+                            <select name="episode"  class="form-control" id="show_movie">
                                 
                             </select>
+                        </div>
+
+                        <div class="form-group" {{ !isset($episode) ? 'hidden' : '' }}>
+                            {!! Form::label('episode', 'Tập phim', []) !!}
+                            {!! Form::text('episode_new', isset($episode) ? $episode->episode : '' , ['class'=>'form-control','placeholder' => 'Nhập đường link...','disabled']) !!}
                         </div>
                         @if (!isset($episode))
                             {!! Form::submit('Thêm tập phim', ['class'=> 'btn btn-success']) !!}

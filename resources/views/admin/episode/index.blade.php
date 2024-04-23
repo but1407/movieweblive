@@ -21,6 +21,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Title</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Tập phim</th>
                             <th scope="col">Link phim</th>
                             <th scope="col">Manager</th>
@@ -32,6 +33,9 @@
                             <tr id="{{ $episode->id }}">
                                 <th scope="row">{{ $key }}</th>
                                 <td>{{ $episode->movies->title }}</td>
+                                
+                                <td><img src="{{ asset('uploads/movie/'.  $episode->movies->image ) }}" width="100%" height="100%" alt=""></td>
+
                                 <td>{{ $episode->episode }}</td>
                                 <td>{!! $episode->movie_link !!}</td>
 

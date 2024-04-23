@@ -26,4 +26,15 @@ class EpisodeService
         return false;
     
     }
+    public function update($request, $id){
+        $store = $this->episode->find($id)->update([
+            'movie_link'=>$request->movie_link,
+        ]);
+        if($store){
+
+            return true;
+        }
+        return false;
+    
+    }
 }

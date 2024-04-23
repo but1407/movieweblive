@@ -27,9 +27,7 @@ class EpisodeController extends Controller
     {
 
         $list_episode = $this->episode->with('movies')->orderBy('movie_id' ,'desc')->get() ;
-        // return response()->json([
-        //     'message' => $list_movie
-        // ]);
+    
         return view('admin.episode.index',[
             'title'=>'List Movie',
             'list_episode'=>$list_episode
@@ -43,7 +41,6 @@ class EpisodeController extends Controller
      */
     public function create()
     {
-        
         $list_movie = Movie::orderBy('id', 'desc')->pluck('title','id');
         return view('admin.episode.form',[
             'list_movie'=>$list_movie,
@@ -87,7 +84,15 @@ class EpisodeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $list_movie = Movie::orderBy('id', 'desc')->pluck('title','id');
+
+        $episode = Episode::find($id);
+        return view('admin.episode.form',[
+            'list_movie'=>$list_movie,
+            'episode'=>$episode,
+
+            'title'=>'Thêm tập phim',
+        ]);
     }
 
     /**
@@ -99,7 +104,12 @@ class EpisodeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($this->episodeService->update($request, $id)){
+            return redirect()->route('episode.index');
+        }
+        return response()->json([
+            'error' => 'Lỗi update'
+        ]);
     }
 
     /**
