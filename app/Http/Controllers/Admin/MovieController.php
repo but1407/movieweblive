@@ -177,8 +177,13 @@ class MovieController extends Controller
                 'msg' => 'Loi khong xoa duoc file'
             ]);
         }
+        //detach thể loại
         $movie->movieGenres()->detach();
+        //xóa tập phim
+        $movie->episodes()->delete();
+        //xóa phim
         $movie->delete();
+
         return redirect()->back();
     }
     public function update_year($request){
