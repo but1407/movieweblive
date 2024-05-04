@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Genre\GenreCreateRequest;
 use Illuminate\Http\Request;
 use App\Models\Genre;
 
@@ -37,7 +38,7 @@ class GenreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GenreCreateRequest $request)
     {
         $store = Genre::create([
             'title'=>$request->title,
@@ -82,7 +83,7 @@ class GenreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(GenreCreateRequest $request, $id)
     {
         $store = Genre::find($id)->update([
             'title'=>$request->title,

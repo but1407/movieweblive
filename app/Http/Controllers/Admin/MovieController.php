@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Services\MovieService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\Movie\MovieCreateRequest;
 // use App\Services\MovieService;
 class MovieController extends Controller
 {
@@ -66,7 +67,7 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MovieCreateRequest $request)
     {
 
         $image = $this->movieService->uploadImage($request);
@@ -136,7 +137,7 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MovieCreateRequest $request, $id)
     {
         $image = $this->movieService->uploadImage($request);
         $movie = Movie::find($id);

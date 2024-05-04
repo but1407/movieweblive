@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Country;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Country\CountryCreateRequest;
 
 class CountryController extends Controller
 {
@@ -37,7 +37,7 @@ class CountryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CountryCreateRequest $request)
     {
         Country::create([
             'title'=>$request->title,
@@ -82,7 +82,7 @@ class CountryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CountryCreateRequest $request, $id)
     {
         $store = Country::find($id)->update([
             'title'=>$request->title,

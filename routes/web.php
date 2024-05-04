@@ -26,6 +26,7 @@ Route::get('/', function (){
     return redirect('/login');
 });
 
+
 Route::get('/home', [IndexController::class, 'index'])->name('home');
 Route::get('/danh-muc/{slug}', [IndexController::class, 'category'])->name('category');
 Route::get('/the-loai/{slug}', [IndexController::class, 'genre'])->name('genre');
@@ -35,28 +36,35 @@ Route::get('/quoc-gia/{slug}', [IndexController::class, 'country'])->name('count
 Route::get('/xem-phim/{slug}', [IndexController::class, 'movie'])->name('movie.detail');
 Route::get('/phim/{slug}', [IndexController::class, 'watch'])->name('movie.watch');
 
-
-
 Route::get('/year/{year}', [IndexController::class, 'year'])->name('year');
 Route::get('/tag/{tag}', [IndexController::class, 'tags'])->name('tag');
 Route::get('/search', [IndexController::class, 'search'])->name('search');
-
 Route::get('/episode/watch-movie', [IndexController::class, 'episode'])->name('episodes');
 
+Route::middleware(['auth'])
+    ->group(function () {
+        //Admin
+        Route::prefix('admin')->group(function () {
+            //Category
+            Route::resource('category', CategoryController::class);
+            Route::post('resorting_category', [CategoryController::class, 'resorting'])->name('resorting_category');
 
-Route::resource('category', CategoryController::class);
-Route::resource('movie', MovieController::class);
-Route::resource('genre', GenreController::class);
-Route::resource('episode', EpisodeController::class);
-Route::resource('country', CountryController::class);
+            //Movie
+            Route::resource('movie', MovieController::class);
+            Route::get('/update-season-phim', [MovieController::class, 'season_update'])->name('season_update');
+            Route::get('/update-year-movie', [MovieController::class, 'update_year']);
+            Route::get('/update-topview-phim', [MovieController::class, 'update_topview']);
 
-Route::post('resorting_category', [CategoryController::class,'resorting'])->name('resorting_category');
+            //Genre
+            Route::resource('genre', GenreController::class);
 
+            //Episode
+            Route::resource('episode', EpisodeController::class);
+            Route::get('/select-movie', [EpisodeController::class, 'select_movie'])->name('select-movie.episode');
 
-Route::get('/update-season-phim', [MovieController::class, 'season_update'])->name('season_update');
-Route::get('/update-year-movie',[MovieController::class,'update_year']);
-Route::get('/update-topview-phim',[MovieController::class,'update_topview']);
-Route::get('/select-movie', [EpisodeController::class,'select_movie'])->name('select-movie.episode');
-
+            //Country
+            Route::resource('country', CountryController::class);
+        });
+});
 
 
