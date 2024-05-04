@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\Country;
+use App\Models\Episode;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -91,7 +92,6 @@ class IndexController extends Controller
     }
     public function year($year){
         $phimhot_trailer = Movie::where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
-
         $phimhot_sidebar = Movie::where('hot_movie', 1)->where('status', 1)->orderByDesc('updated_at')->take(20)->get();
 
         $category = Category::orderBy('id', 'DESC')->where('status',1)->get();
@@ -187,7 +187,8 @@ class IndexController extends Controller
         ->first();
         $related = Movie::with('genres','countries','categories')->where('category_id',$movie->categories->id)
         ->orderBy(DB::raw('RAND()'))
-        ->whereNotIn('slug',[$slug])->get(); 
+        ->whereNotIn('slug',[$slug])->get();
+        $episode = Episode::with('movies')->where('movie_id', $movie->id)->orderByDesc('episode')->take(3)->get();
         return view('pages.movie',[
             'title' => 'movie',
             'country' => $country,
@@ -196,6 +197,7 @@ class IndexController extends Controller
             'movie'=>$movie,
             'related'=>$related,
             'phimhot_trailer'=>$phimhot_trailer,
+            'episode'=>$episode,
 
         ]);
     }public function episode(){
@@ -205,16 +207,14 @@ class IndexController extends Controller
     }
     public function tags($tag){
         $phimhot_trailer = Movie::where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
-
+        $phimhot_sidebar  = Movie::where('hot_movie',1)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
         $category = Category::orderBy('id', 'DESC')->where('status',1)->get();
         $genre = Genre::orderBy('id', 'DESC')->get();
         $tag = $tag;
         $movies = Movie::where('tags','LIKE','%'.$tag.'%')->orderBy('updated_at','DESC')->paginate(40);
         $country = Country::orderBy('id', 'DESC')->get();
 
-
         return view('pages.tags',[
-            'title' => 'Home',
             'country' => $country,
             'category' => $category,
             'genre' => $genre,
@@ -222,22 +222,22 @@ class IndexController extends Controller
             'movies' => $movies,
             'tag'=> $tag,
             'phimhot_trailer'=>$phimhot_trailer,
+            'phimhot_sidebar'=>$phimhot_sidebar,
 
 
         ]);
     }
     public function watch($slug){
         $phimhot_trailer = Movie::where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
-
+        $phimhot_sidebar  = Movie::where('hot_movie',1)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
         $category = Category::orderBy('id', 'DESC')
         ->where('status',1)
         ->get();
         $country = Country::orderBy('id', 'DESC')->get();
         $genre = Genre::orderBy('id', 'DESC')->get();
-        $movie = Movie::where('slug',$slug)
+        $movie = Movie::with('categories', 'genres', 'episodes', 'movieGenres', 'countries')->where('slug',$slug)
         ->where('status',1)
         ->first();
-    
     
         return view('pages.watch',[
             'title' => 'movie',
@@ -246,6 +246,7 @@ class IndexController extends Controller
             'genre' => $genre,
             'movie'=>$movie,
             'phimhot_trailer'=>$phimhot_trailer,
+            'phimhot_sidebar'=>$phimhot_sidebar,
         ]);
     }
 }

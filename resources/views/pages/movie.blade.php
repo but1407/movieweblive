@@ -70,7 +70,7 @@ nonce="bEqnJ9df">
                             <div class="bwa-content">
                                 <div class="loader"></div>
                                 <a href="
-                                {{ route('movie.watch',$movie->slug) }}
+                                {{ route('movie.watch',['slug'=>$movie->slug]) }}
                                 " class="bwac-btn">
                                     <i class="fa fa-play"></i>
                                 </a>
@@ -125,6 +125,15 @@ nonce="bEqnJ9df">
                                 @endforeach
                             </li>
                             <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{ route('country',$movie->countries->slug) }}" rel="tag">{{ $movie->countries->title }}</a></li>
+                            <li class="list-info-group-item">
+                                <span>Tập phim mới nhất</span> : 
+                                @foreach ($episode as $e )
+                                    <a href="{{ route('movie.watch', ['slug'=>$movie->slug]) }}" rel="tag">
+                                        Tập {{ $e->episode }},
+                                    </a>
+                                @endforeach
+                            </li>
+                            
                             <li class="list-info-group-item"><span>Đạo diễn</span> : <a class="director" rel="nofollow" href="https://phimhay.co/dao-dien/cate-shortland" title="Cate Shortland">Cate Shortland</a></li>
                             <li class="list-info-group-item last-item" style="-overflow: hidden;-display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-flex: 1;-webkit-box-orient: vertical;"><span>Diễn viên</span> : <a href="" rel="nofollow" title="C.C. Smiff">C.C. Smiff</a>, <a href="" rel="nofollow" title="David Harbour">David Harbour</a>, <a href="" rel="nofollow" title="Erin Jameson">Erin Jameson</a>, <a href="" rel="nofollow" title="Ever Anderson">Ever Anderson</a>, <a href="" rel="nofollow" title="Florence Pugh">Florence Pugh</a>, <a href="" rel="nofollow" title="Lewis Young">Lewis Young</a>, <a href="" rel="nofollow" title="Liani Samuel">Liani Samuel</a>, <a href="" rel="nofollow" title="Michelle Lee">Michelle Lee</a>, <a href="" rel="nofollow" title="Nanna Blondell">Nanna Blondell</a>, <a href="" rel="nofollow" title="O-T Fagbenle">O-T Fagbenle</a></li>
                         </ul>

@@ -73,7 +73,7 @@
                             </div>
                         </a>
                         <div class="title-wrapper-xem full">
-                            <h1 class="entry-title"><a href="" title="{{ $movie->title }}" class="tl">{{ $movie->title }} tập 1</a></h1>
+                            <h1 class="entry-title"><a href="" title="{{ $movie->title }}" class="tl">{{ $movie->title }} tập ?</a></h1>
                         </div>
                     </div>
                     <div class="entry-content htmlwrap clearfix collapse" id="expand-post-content">
