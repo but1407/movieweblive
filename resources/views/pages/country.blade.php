@@ -1,11 +1,24 @@
 @extends('layout')
+@section('title')
+    <title>{{ $title }}</title>
+@endsection
 @section('content')
     <div class="row container" id="wrapper">
         <div class="halim-panel-filter">
         <div class="panel-heading">
             <div class="row">
                 <div class="col-xs-6">
-                    <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">{{ $country_slug->name_eng }}</a> » <span class="breadcrumb_last" aria-current="page">2020</span></span></span></div>
+                    <div class="yoast_breadcrumb hidden-xs">
+                        <span>
+                            <span>
+                                <a href="{{ route('country',['slug'=>$country_slug->slug]) }}">{{ $country_slug->title }}</a> »
+                                <a href="">{{ $country_slug->name_eng }}</a>
+                                » <span class="breadcrumb_last" aria-current="page">
+                                    2020
+                                </span>
+                            </span>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>

@@ -61,20 +61,18 @@ class IndexController extends Controller
             $query->where('hot_movie', 1)->Where('status', 1);
         })->orderByDesc('updated_at')->get();
         $phimhot_sidebar = $this->movie->where('hot_movie', 1)->where('status', 1)->orderByDesc('updated_at')->take(20)->get();
-        $category = $this->category->orderBy('id', 'DESC')->where('status',1)->get();
-        $country = $this->country->orderBy('id', 'DESC')->get();
-        $genre = $this->genre->orderBy('id', 'DESC')->get();
         $category_home = $this->category->with('movies')->orderBy('id', 'DESC')->where('status',1)->get();
+        // $category = $this->category->orderBy('id', 'DESC')->where('status',1)->get();
+        // $genre = $this->genre->orderBy('id', 'DESC')->get();
 
         return view('pages.home',[
             'title' => 'Home',
-            'country' => $country,
             'category_home' => $category_home,
-            'category' => $category,
             'phimhot' =>$phimhot,
-            'genre' => $genre,
             'phimhot_sidebar'=>$phimhot_sidebar,
             'phimhot_trailer'=>$phimhot_trailer,
+            // 'category' => $category,
+            // 'genre' => $genre,
 
         ]);
     }
@@ -88,12 +86,11 @@ class IndexController extends Controller
         $movies = $category_slug->movies()->paginate(40);
 
         return view('pages.category',[
-            'title' => 'Home',
+            'title' => $category_slug->title,
             'country' => $country,
             'category' => $category,
             'genre' => $genre,
             'category_slug'=>$category_slug,
-            'title' => 'category',
             'movies' => $movies,
             'phimhot_sidebar'=>$phimhot_sidebar,
             'phimhot_trailer'=>$phimhot_trailer,
@@ -138,7 +135,7 @@ class IndexController extends Controller
         $movies = $this->movie->whereIn('id',$many_renre)
         ->orderByDesc('created_at', 'DESC')->paginate(40);
         return view('pages.genre',[
-            'title' => 'Home',
+            'title' => $this->genre->find($genre_slug->id)->title,
             'country' => $country,
             'category' => $category,
             'genre' => $genre,
@@ -148,7 +145,6 @@ class IndexController extends Controller
             'phimhot_trailer'=>$phimhot_trailer,
 
 
-            'title' => 'genre',
         ]);
     }
     public function country($slug){
@@ -161,12 +157,11 @@ class IndexController extends Controller
         $movies = $country_slug->movies()->paginate(40);
 
         return view('pages.country',[
-            'title' => 'Home',
+            'title' => $country_slug->title,
             'country' => $country,
             'category' => $category,
             'genre' => $genre,
             'country_slug'=>$country_slug,
-            'title' => 'country',
             'movies' => $movies,
             'phimhot_sidebar'=>$phimhot_sidebar,
             'phimhot_trailer'=>$phimhot_trailer,
