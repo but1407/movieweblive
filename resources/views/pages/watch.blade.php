@@ -30,9 +30,16 @@
             <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
                 <section id="content" class="test">
                 <div class="clearfix wrap-content">
-                    
-                    <iframe width="100%" height="500" src="https://www.youtube.com/embed/r958O404e4U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    
+                    <style type="text/css">
+                        .iframe_movie iframe{
+                            width: 100%;
+                            height: 500px;
+                        }
+                    </style>
+                    <div class="iframe_movie" >
+
+                        {!! $episode->movie_link ?? '<img src="http://127.0.0.1:8000/images/links/404error.png" alt="Link hỏng">' !!}
+                    </div>
                     {{-- <div class="button-watch">
                         <ul class="halim-social-plugin col-xs-4 hidden-xs">
                             <li class="fb-like" data-href="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></li>
@@ -73,7 +80,7 @@
                             </div>
                         </a>
                         <div class="title-wrapper-xem full">
-                            <h1 class="entry-title"><a href="" title="{{ $movie->title }}" class="tl">{{ $movie->title }} tập ?</a></h1>
+                            <h1 class="entry-title"><a href="" title="{{ $movie->title }}" class="tl">{{ $movie->title }} tập {{ $episode->episode}}</a></h1>
                         </div>
                     </div>
                     <div class="entry-content htmlwrap clearfix collapse" id="expand-post-content">
@@ -111,7 +118,7 @@
                                     @foreach($movie->episodes as $key => $episode)
                                         <li class="halim-episode">
                                             <a href="{{ route('episodes') }}">
-                                                <span class="halim-btn halim-btn-2 {{ $key==0 ? 'active' :'' }} halim-info-1-1 box-shadow" data-post-id="37976" data-server="1" data-episode="1" data-position="first" data-embed="0" data-title="Xem phim {{ $movie->title }} - Tập 1 - Be Together - vietsub + Thuyết Minh" data-h1="{{ $movie->title }} - tập {{ $episode}}">
+                                                <span class="halim-btn halim-btn-2 {{ $tapphim==$episode->episode ? 'active' :'' }} halim-info-1-1 box-shadow" data-post-id="37976" data-server="1" data-episode="1" data-position="first" data-embed="0" data-title="Xem phim {{ $movie->title }} - Tập 1 - Be Together - vietsub + Thuyết Minh" data-h1="{{ $movie->title }} - tập {{ $episode}}">
                                                     {{ $episode->episode }}
                                                 </span>
                                             </a>

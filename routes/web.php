@@ -34,8 +34,7 @@ Route::get('/quoc-gia/{slug}', [IndexController::class, 'country'])->name('count
 
 //movie
 Route::get('/xem-phim/{slug}', [IndexController::class, 'movie'])->name('movie.detail');
-Route::get('/phim/{slug}', [IndexController::class, 'watch'])->name('movie.watch');
-
+Route::get('/phim/{slug}/episode-{tap}', [IndexController::class, 'watch'])->name('movie.watch');
 Route::get('/year/{year}', [IndexController::class, 'year'])->name('year');
 Route::get('/tag/{tag}', [IndexController::class, 'tags'])->name('tag');
 Route::get('/search', [IndexController::class, 'search'])->name('search');

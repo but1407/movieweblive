@@ -70,7 +70,7 @@ nonce="bEqnJ9df">
                             <div class="bwa-content">
                                 <div class="loader"></div>
                                 <a href="
-                                {{ route('movie.watch',['slug'=>$movie->slug]) }}
+                                {{ route('movie.watch',['slug'=>$movie->slug, 'episode' => $episode_fistep->episode ?? '']) }}
                                 " class="bwac-btn">
                                     <i class="fa fa-play"></i>
                                 </a>
@@ -128,7 +128,7 @@ nonce="bEqnJ9df">
                             <li class="list-info-group-item">
                                 <span>Tập phim mới nhất</span> : 
                                 @foreach ($episode as $e )
-                                    <a href="{{ route('movie.watch', ['slug'=>$movie->slug]) }}" rel="tag">
+                                    <a href="{{ route('movie.watch', ['slug'=>$movie->slug, 'episode' => $e->episode]) }}" rel="tag">
                                         Tập {{ $e->episode }},
                                     </a>
                                 @endforeach
