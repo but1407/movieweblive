@@ -112,22 +112,22 @@
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active server-1" id="server-0">
-                            <div class="halim-server">
-                                <ul class="halim-list-eps">
+                                <div class="halim-server">
+                                    <ul class="halim-list-eps">
 
-                                    @foreach($movie->episodes as $key => $episode)
-                                        <li class="halim-episode">
-                                            <a href="{{ route('episodes') }}">
-                                                <span class="halim-btn halim-btn-2 {{ $tapphim==$episode->episode ? 'active' :'' }} halim-info-1-1 box-shadow" data-post-id="37976" data-server="1" data-episode="1" data-position="first" data-embed="0" data-title="Xem phim {{ $movie->title }} - Tập 1 - Be Together - vietsub + Thuyết Minh" data-h1="{{ $movie->title }} - tập {{ $episode}}">
-                                                    {{ $episode->episode }}
-                                                </span>
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                
-                                </ul>
-                                <div class="clearfix"></div>
-                            </div>
+                                        @foreach($movie->episodes as $key => $episode)
+                                            <li class="halim-episode">
+                                                <a href="{{ route('episodes') }}">
+                                                    <span class="halim-btn halim-btn-2 {{ $tapphim==$episode->episode ? 'active' :'' }} halim-info-1-1 box-shadow" data-post-id="37976" data-server="1" data-episode="1" data-position="first" data-embed="0" data-title="Xem phim {{ $movie->title }} - Tập 1 - Be Together - vietsub + Thuyết Minh" data-h1="{{ $movie->title }} - tập {{ $episode}}">
+                                                        {{ $episode->episode }}
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
                             </div>
                         </div>
                     </div>

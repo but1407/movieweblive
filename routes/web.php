@@ -26,20 +26,19 @@ Route::get('/', function (){
     return redirect('/login');
 });
 
-
-Route::get('/home', [IndexController::class, 'index'])->name('home');
-Route::get('/danh-muc/{slug}', [IndexController::class, 'category'])->name('category');
-Route::get('/the-loai/{slug}', [IndexController::class, 'genre'])->name('genre');
-Route::get('/quoc-gia/{slug}', [IndexController::class, 'country'])->name('country');
-
-//movie
-Route::get('/xem-phim/{slug}', [IndexController::class, 'movie'])->name('movie.detail');
-Route::get('/phim/{slug}/episode-{tap}', [IndexController::class, 'watch'])->name('movie.watch');
-Route::get('/year/{year}', [IndexController::class, 'year'])->name('year');
-Route::get('/tag/{tag}', [IndexController::class, 'tags'])->name('tag');
-Route::get('/search', [IndexController::class, 'search'])->name('search');
-Route::get('/episode/watch-movie', [IndexController::class, 'episode'])->name('episodes');
-
+//Index controller routes
+Route::controller(IndexController::class)->group(function () {
+    Route::get('/home', 'index')->name('home');
+    Route::get('/danh-muc/{slug}', 'category')->name('category');
+    Route::get('/the-loai/{slug}', 'genre')->name('genre');
+    Route::get('/quoc-gia/{slug}', 'country')->name('country');
+    Route::get('/xem-phim/{slug}', 'movie')->name('movie.detail');
+    Route::get('/phim/{slug}/episode-{tap}', 'watch')->name('movie.watch');
+    Route::get('/year/{year}', 'year')->name('year');
+    Route::get('/tag/{tag}', 'tags')->name('tag');
+    Route::get('/search', 'search')->name('search');
+    Route::get('/episode/watch-movie', 'episode')->name('episodes');
+});
 Route::middleware(['auth'])
     ->group(function () {
         //Admin

@@ -80,9 +80,7 @@ class IndexController extends Controller
     }
     public function category($slug){
         $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
-
         $phimhot_sidebar = $this->movie->where('hot_movie', 1)->where('status', 1)->orderByDesc('updated_at')->take(20)->get();
-
         $category = $this->category->orderBy('id', 'DESC')->where('status',1)->get();
         $country = $this->country->orderBy('id', 'DESC')->get();
         $genre = $this->genre->orderBy('id', 'DESC')->get();
@@ -105,7 +103,6 @@ class IndexController extends Controller
     public function year($year){
         $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
         $phimhot_sidebar = $this->movie->where('hot_movie', 1)->where('status', 1)->orderByDesc('updated_at')->take(20)->get();
-
         $category = $this->category->orderBy('id', 'DESC')->where('status',1)->get();
         $country = $this->country->orderBy('id', 'DESC')->get();
         $genre = $this->genre->orderBy('id', 'DESC')->get();
@@ -122,16 +119,11 @@ class IndexController extends Controller
             'title' => 'year',
             'phimhot_sidebar'=>$phimhot_sidebar,
             'phimhot_trailer'=>$phimhot_trailer,
-
-            // 'movies' => $movies,
-
         ]);
     }
     public function genre($slug){
         $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
-
         $phimhot_sidebar = $this->movie->where('hot_movie', 1)->where('status', 1)->orderByDesc('updated_at')->take(20)->get();
-
         $category = $this->category->orderBy('id', 'DESC')->where('status',1)->get();
         $country = $this->country->orderBy('id', 'DESC')->get();
         $genre = $this->genre->orderBy('id', 'DESC')->get();
@@ -161,15 +153,12 @@ class IndexController extends Controller
     }
     public function country($slug){
         $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
-        
         $phimhot_sidebar = $this->movie->where('hot_movie', 1)->where('status', 1)->orderByDesc('updated_at')->take(20)->get();
-
         $category = $this->category->orderBy('id', 'DESC')->where('status',1)->get();
         $country = $this->country->orderBy('id', 'DESC')->get();
         $genre = $this->genre->orderBy('id', 'DESC')->get();
         $country_slug = $this->country->where('slug', $slug)->first();
         $movies = $country_slug->movies()->paginate(40);
-
 
         return view('pages.country',[
             'title' => 'Home',
@@ -182,13 +171,10 @@ class IndexController extends Controller
             'phimhot_sidebar'=>$phimhot_sidebar,
             'phimhot_trailer'=>$phimhot_trailer,
 
-
-
         ]);
     }
     public function movie($slug){
         $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
-
         $category = $this->category->orderBy('id', 'DESC')
         ->where('status',1)
         ->get();
@@ -237,8 +223,6 @@ class IndexController extends Controller
             'tag'=> $tag,
             'phimhot_trailer'=>$phimhot_trailer,
             'phimhot_sidebar'=>$phimhot_sidebar,
-
-
         ]);
     }
     public function watch($slug,$tap){
