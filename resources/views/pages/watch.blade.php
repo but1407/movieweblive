@@ -80,8 +80,11 @@
                             </div>
                         </a>
                         <div class="title-wrapper-xem full">
-                            <h1 class="entry-title"><a href="" title="{{ $movie->title }}" 
-                                class="tl">{{ $movie->title }} tập {{ $episode->episode}}</a></h1>
+                            <h1 class="entry-title">
+                                <a href="" title="{{ $movie->title }}"
+                                    class="tl">{{ $movie->title }} tập {{ $episode->episode}}
+                                </a>
+                            </h1>
                         </div>
                     </div>
                     <div class="entry-content htmlwrap clearfix collapse" id="expand-post-content">
@@ -123,7 +126,7 @@
                                                         data-post-id="37976" 
                                                         data-server="1" data-episode="1" 
                                                         data-position="first" data-embed="0" 
-                                                        data-title="Xem phim {{ $movie->title }} - Tập 1 - Be Together - vietsub + Thuyết Minh" data-h1="{{ $movie->title }} - tập {{ $episode}}">
+                                                        data-title="Xem phim {{ $movie->title }} - Tập {{ $episode->episode }} - Be Together - vietsub + Thuyết Minh" data-h1="{{ $movie->title }} - tập {{ $episode}}">
                                                         {{ $episode->episode }}
                                                     </span>
                                                 </a>

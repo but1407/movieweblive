@@ -32,7 +32,6 @@ nonce="bEqnJ9df">
                                         </span>
                                         <span class="breadcrumb_last" aria-current="page">
                                             @foreach ($movie->movieGenres as $gen )
-                                                
                                                 <a href="{{ route('genre',[$gen->slug]) }}"> {{ $gen->title }}</a> » 
                                             @endforeach
                                         </span>
@@ -54,97 +53,91 @@ nonce="bEqnJ9df">
                 
                 <div class="halim-movie-wrapper">
                     <div class="title-block">
-                    <div id="bookmark" class="bookmark-img-animation primary_ribbon" data-id="38424">
-                        <div class="halim-pulse-ring"></div>
-                    </div>
-                    <div class="title-wrapper" style="font-weight: bold;">
-                        Bookmark
-                    </div>
+                        <div id="bookmark" class="bookmark-img-animation primary_ribbon" data-id="38424">
+                            <div class="halim-pulse-ring"></div>
+                        </div>
+                        <div class="title-wrapper" style="font-weight: bold;">
+                            Bookmark
+                        </div>
                     </div>
                     <div class="movie_info col-xs-12">
-                    <div class="movie-poster col-md-3">
-                        <img class="movie-thumb" src="{{ asset('uploads/movie/'. $movie->image) }}" 
-                        alt="{{ $movie->title }}">
-                        @if ($movie->resolution !=5 )
-                
-                            <div class="bwa-content">
-                                <div class="loader"></div>
-                                @if ($movie->sotap == 1)
-                                    
-                                    <a href="
-                                        {{ route('movie.watch',['slug'=>$movie->slug, 'tap' => $episode_fistep->episode ?? '']) }}
-                                    " class="bwac-btn">
-                                    <i class="fa fa-play"></i>
-                                    </a>
+                        <div class="movie-poster col-md-3">
+                            <img class="movie-thumb" src="{{ asset('uploads/movie/'. $movie->image) }}" 
+                            alt="{{ $movie->title }}">
+                            @if ($movie->resolution !=5 )
+                                <div class="bwa-content">
+                                    <div class="loader"></div>
+                                    @if ($movie->thuocphim == 1)
+                                        <a href="
+                                            {{ route('movie.watch',['slug'=>$movie->slug, 'tap' => $episode_fistep->episode ?? '']) }}
+                                        " class="bwac-btn">
+                                        <i class="fa fa-play"></i>
+                                        </a>
+                                @endif
+                                </div>
+                                @else <a href="#watch_trailer" style="display: block" class="btn btn-primary watch_trailer">Xem Trailer</a>
                             @endif
-                            </div>
-                            @else <a href="#watch_trailer" style="display: block" class="btn btn-primary watch_trailer">Xem Trailer</a>
-                        @endif
-                    </div>
-                    <div class="film-poster col-md-9">
-                        <h1 class="movie-title title-1" style="display:block;line-height:35px;margin-bottom: -14px;color: #ffed4d;text-transform: uppercase;font-size: 18px;">{{ $movie->title }}</h1>
-                        <h2 class="movie-title title-2" style="font-size: 12px;">{{ $movie->name_eng }} (2021)</h2>
-                        <ul class="list-info-group">
-                            <li class="list-info-group-item"><span>Trạng Thái</span> : <span class="quality">
-                                @switch($movie->resolution)
-                                        @case(0)
-                                            HD
+                        </div>
+                        <div class="film-poster col-md-9">
+                            <h1 class="movie-title title-1" style="display:block;line-height:35px;margin-bottom: -14px;color: #ffed4d;text-transform: uppercase;font-size: 18px;">{{ $movie->title }}</h1>
+                            <h2 class="movie-title title-2" style="font-size: 12px;">{{ $movie->name_eng }} (2021)</h2>
+                            <ul class="list-info-group">
+                                <li class="list-info-group-item"><span>Trạng Thái</span> : <span class="quality">
+                                    @switch($movie->resolution)
+                                            @case(0)
+                                                HD
+                                                    @break
+                                            @case(1)
+                                                SD
                                                 @break
-                                        @case(1)
-                                            SD
-                                            @break
-                                        @case(2)
-                                            CAM
-                                            @break
-                                        @case(3)
-                                            RAW
-                                            @break
-                                        @case(4)
-                                            FullHD
-                                            @break
-                                        @case(5)
-                                            Trailer
-                                            @break
-                                    
-                                        @default
-                                            
-                                    @endswitch       
-                            </span><span class="episode">
-                                @if($movie->vietsub == 1)
-                                Thuyet minh
-                                
-                                @else
-                                    Vietsub
-                                @endif</span></li>
-                            <li class="list-info-group-item"><span>Điểm IMDb</span> : <span class="imdb">7.2</span></li>
-                            <li class="list-info-group-item" ><span>Thời lượng</span> : {{ $movie->movie_duration }}</li>
-                            @if ($movie->thuocphim == 1)
-                                
-                                <li class="list-info-group-item" ><span>Số tập phim</span> : {{ $episode_current_list_count }}/{{ $movie->sotap }} - {{ $movie->sotap - $episode_current_list_count == 0 ? "Hoàn Thành" : "Chưa Hoàn thành"  }}</li>
-                            @endif
-                            
-                            <li class="list-info-group-item"><span>Thể loại</span> : 
-                                @foreach ($movie->movieGenres as $gen )
-                                    <a href="{{ route('genre',$gen->slug) }}" rel="category tag">
-                                        {{ $gen->title }}
-                                    </a>,
-                                @endforeach
+                                            @case(2)
+                                                CAM
+                                                @break
+                                            @case(3)
+                                                RAW
+                                                @break
+                                            @case(4)
+                                                FullHD
+                                                @break
+                                            @case(5)
+                                                Trailer
+                                                @break
+                                        
+                                            @default
+                                                
+                                        @endswitch       
+                                </span>
+                                <span class="episode">
+                                    {{ $movie->vietsub == 1 ? "Thuyet minh" : "Vietsub" }}
+                                </span>
                             </li>
-                            <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{ route('country',$movie->countries->slug) }}" rel="tag">{{ $movie->countries->title }}</a></li>
-                            <li class="list-info-group-item">
-                                <span>Tập phim mới nhất</span> : 
-                                @foreach ($episode as $e )
-                                    <a href="{{ route('movie.watch', ['slug'=>$movie->slug, 'tap' => $e->episode]) }}" rel="tag">
-                                        Tập {{ $e->episode }},
-                                    </a>
-                                @endforeach
-                            </li>
-                            
-                            <li class="list-info-group-item"><span>Đạo diễn</span> : <a class="director" rel="nofollow" href="https://phimhay.co/dao-dien/cate-shortland" title="Cate Shortland">Cate Shortland</a></li>
-                            <li class="list-info-group-item last-item" style="-overflow: hidden;-display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-flex: 1;-webkit-box-orient: vertical;"><span>Diễn viên</span> : <a href="" rel="nofollow" title="C.C. Smiff">C.C. Smiff</a>, <a href="" rel="nofollow" title="David Harbour">David Harbour</a>, <a href="" rel="nofollow" title="Erin Jameson">Erin Jameson</a>, <a href="" rel="nofollow" title="Ever Anderson">Ever Anderson</a>, <a href="" rel="nofollow" title="Florence Pugh">Florence Pugh</a>, <a href="" rel="nofollow" title="Lewis Young">Lewis Young</a>, <a href="" rel="nofollow" title="Liani Samuel">Liani Samuel</a>, <a href="" rel="nofollow" title="Michelle Lee">Michelle Lee</a>, <a href="" rel="nofollow" title="Nanna Blondell">Nanna Blondell</a>, <a href="" rel="nofollow" title="O-T Fagbenle">O-T Fagbenle</a></li>
-                        </ul>
-                        <div class="movie-trailer hidden"></div>
-                    </div>
+                                <li class="list-info-group-item"><span>Điểm IMDb</span> : <span class="imdb">7.2</span></li>
+                                <li class="list-info-group-item" ><span>Thời lượng</span> : {{ $movie->movie_duration }}</li>
+                                @if ($movie->thuocphim == 1)
+                                    <li class="list-info-group-item" ><span>Số tập phim</span> : {{ $episode_current_list_count }}/{{ $movie->sotap }} - {{ $movie->sotap - $episode_current_list_count == 0 ? "Hoàn Thành" : "Chưa Hoàn thành"  }}</li>
+                                @endif
+                                
+                                <li class="list-info-group-item"><span>Thể loại</span> : 
+                                    @foreach ($movie->movieGenres as $gen )
+                                        <a href="{{ route('genre',$gen->slug) }}" rel="category tag">
+                                            {{ $gen->title }}
+                                        </a>,
+                                    @endforeach
+                                </li>
+                                <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{ route('country',$movie->countries->slug) }}" rel="tag">{{ $movie->countries->title }}</a></li>
+                                <li class="list-info-group-item"><span>Đạo diễn</span> : <a class="director" rel="nofollow" href="https://phimhay.co/dao-dien/cate-shortland" title="Cate Shortland">Cate Shortland</a></li>
+                                <li class="list-info-group-item last-item" style="-overflow: hidden;-display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-flex: 1;-webkit-box-orient: vertical;"><span>Diễn viên</span> : <a href="" rel="nofollow" title="C.C. Smiff">C.C. Smiff</a>, <a href="" rel="nofollow" title="David Harbour">David Harbour</a>, <a href="" rel="nofollow" title="Erin Jameson">Erin Jameson</a>, <a href="" rel="nofollow" title="Ever Anderson">Ever Anderson</a>, <a href="" rel="nofollow" title="Florence Pugh">Florence Pugh</a>, <a href="" rel="nofollow" title="Lewis Young">Lewis Young</a>, <a href="" rel="nofollow" title="Liani Samuel">Liani Samuel</a>, <a href="" rel="nofollow" title="Michelle Lee">Michelle Lee</a>, <a href="" rel="nofollow" title="Nanna Blondell">Nanna Blondell</a>, <a href="" rel="nofollow" title="O-T Fagbenle">O-T Fagbenle</a></li>
+                                <li class="list-info-group-item">
+                                    <span>Tập phim mới nhất</span> : 
+                                        @foreach ($episode as $e )
+                                            <a href="{{ route('movie.watch', ['slug'=>$movie->slug, 'tap' => $e->episode]) }}" rel="tag">
+                                                Tập {{ $e->episode }},
+                                            </a>
+                                        @endforeach
+                                </li>
+                            </ul>
+                            <div class="movie-trailer hidden"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -260,12 +253,11 @@ nonce="bEqnJ9df">
                                         @default
                                             
                                     @endswitch   
-                                    </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i> @if($movie->vietsub == 1)
-                                        Thuyet minh
-                                        
-                                    @else
-                                        Vietsub
-                                    @endif</span> 
+                                    </span>
+                                    <span class="episode">
+                                        <i class="fa fa-play" aria-hidden="true"></i> 
+                                        {{ $movie->vietsub == 1 ? "Thuyet minh" : "Vietsub" }}
+                                    </span> 
                                     <div class="icon_overlay"></div>
                                     <div class="halim-post-title-box">
                                         <div class="halim-post-title ">
@@ -276,11 +268,7 @@ nonce="bEqnJ9df">
                                 </a>
                             </div>
                         </article>
-
                     @endforeach
-                
-                    
-                
                 </div>
                 <script>
                     jQuery(document).ready(function($) {				
