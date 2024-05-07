@@ -69,11 +69,14 @@ nonce="bEqnJ9df">
                 
                             <div class="bwa-content">
                                 <div class="loader"></div>
-                                <a href="
-                                {{ route('movie.watch',['slug'=>$movie->slug, 'episode' => $episode_fistep->episode ?? '']) }}
-                                " class="bwac-btn">
+                                @if ($movie->sotap == 1)
+                                    
+                                    <a href="
+                                        {{ route('movie.watch',['slug'=>$movie->slug, 'tap' => $episode_fistep->episode ?? '']) }}
+                                    " class="bwac-btn">
                                     <i class="fa fa-play"></i>
-                                </a>
+                                    </a>
+                            @endif
                             </div>
                             @else <a href="#watch_trailer" style="display: block" class="btn btn-primary watch_trailer">Xem Trailer</a>
                         @endif
@@ -115,7 +118,10 @@ nonce="bEqnJ9df">
                                 @endif</span></li>
                             <li class="list-info-group-item"><span>Điểm IMDb</span> : <span class="imdb">7.2</span></li>
                             <li class="list-info-group-item" ><span>Thời lượng</span> : {{ $movie->movie_duration }}</li>
-                            <li class="list-info-group-item" ><span>Số tập phim</span> : {{ $movie->sotap }}/{{ $movie->sotap }}</li>
+                            @if ($movie->thuocphim == 1)
+                                
+                                <li class="list-info-group-item" ><span>Số tập phim</span> : {{ $episode_current_list_count }}/{{ $movie->sotap }} - {{ $movie->sotap - $episode_current_list_count == 0 ? "Hoàn Thành" : "Chưa Hoàn thành"  }}</li>
+                            @endif
                             
                             <li class="list-info-group-item"><span>Thể loại</span> : 
                                 @foreach ($movie->movieGenres as $gen )
@@ -128,7 +134,7 @@ nonce="bEqnJ9df">
                             <li class="list-info-group-item">
                                 <span>Tập phim mới nhất</span> : 
                                 @foreach ($episode as $e )
-                                    <a href="{{ route('movie.watch', ['slug'=>$movie->slug, 'episode' => $e->episode]) }}" rel="tag">
+                                    <a href="{{ route('movie.watch', ['slug'=>$movie->slug, 'tap' => $e->episode]) }}" rel="tag">
                                         Tập {{ $e->episode }},
                                     </a>
                                 @endforeach

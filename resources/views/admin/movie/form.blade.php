@@ -30,7 +30,6 @@
                         {!! Form::open(['route' => ['movie.update',$movie->id],'method' => 'put', 'enctype'=>'multipart/form-data']) !!}
                         
                     @endif
-                        
                         <div class="form-group">
                             {!! Form::label('Title', 'Title', []) !!}
                             {!! Form::text('title', isset($movie) ? $movie->title : '' , ['class'=>'form-control','placeholder' => 'Nhập dữ liệu...','id'=>'slug','onkeyup'=>'ChangeToSlug()']) !!}
@@ -78,6 +77,10 @@
                         <div class="form-group">
                             {!! Form::label('Category', 'Category', []) !!}
                             {!! Form::select('category_id',$category, isset($movie) ?  $movie->category : '' ,['class'=>'form-control']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('thuocphim', 'Thuộc thể loại phim', []) !!}
+                            {!! Form::select('thuocphim',['0'=>'Phim lẻ','1'=>'Phim bộ'] , isset($movie) ?  $movie->thuocphim : '' ,['class'=>'form-control']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('Country', 'Country', []) !!}

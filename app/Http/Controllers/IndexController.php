@@ -182,7 +182,13 @@ class IndexController extends Controller
         $related = $this->movie->with('genres','countries','categories')->where('category_id',$movie->categories->id)
         ->orderBy(DB::raw('RAND()'))
         ->whereNotIn('slug',[$slug])->get();
+
+        //Lấy 3 tập gần nhất
         $episode = $this->episode->with('movies')->where('movie_id', $movie->id)->orderByDesc('episode')->take(3)->get();
+        
+        //Lấy hết tập phim đã thêm
+        $episode_current_list= $this->episode->with('movies')->where('movie_id', $movie->id)->get();
+        $episode_current_list_count = $episode_current_list->count();
         return view('pages.movie',[
             'title' => 'movie',
             'country' => $country,
@@ -193,6 +199,7 @@ class IndexController extends Controller
             'phimhot_trailer'=>$phimhot_trailer,
             'episode'=>$episode,
             'episode_fistep'=>$episode_fistep,
+            'episode_current_list_count'=>$episode_current_list_count,
 
         ]);
     }public function episode(){
