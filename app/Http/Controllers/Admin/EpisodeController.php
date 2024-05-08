@@ -58,12 +58,9 @@ class EpisodeController extends Controller
     public function store(EpisodeCreateRequest $request)
     {
         if($this->episodeService->create($request)){
-            return redirect()->back(); 
+            return redirect()->back()->with('success', 'Episode created successfully'); 
         }
-        return response()->json([
-            'error' =>'Có lỗi trong quy trình tạo'
-        ]);
-
+        return redirect()->back()->with('error', 'Episode created failed'); 
     }
 
     /**
@@ -106,11 +103,11 @@ class EpisodeController extends Controller
     public function update(EpisodeCreateRequest $request, $id)
     {
         if($this->episodeService->update($request, $id)){
-            return redirect()->route('episode.index');
+            return redirect()->route('episode.index')->with('success', 'Episode updated');
         }
-        return response()->json([
-            'error' => 'Lỗi update'
-        ]);
+        return redirect()->back()->with('error', 'Episode updated failed'); 
+
+
     }
 
     /**
@@ -121,9 +118,12 @@ class EpisodeController extends Controller
      */
     public function destroy($id)
     {
-        $this->episode->find($id)->delete();
-        
-        return redirect()->route('episode.index');
+        try{
+            $this->episode->find($id)->delete();
+        } catch (\Exception $e){
+            return redirect()->route('episode.index')->with('error', 'Delete episode failed');
+        }
+        return redirect()->route('episode.index')->with('success', 'Delete episode successfully');
     }
 
     public function select_movie(Request $request){

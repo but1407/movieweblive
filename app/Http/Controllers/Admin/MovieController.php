@@ -69,24 +69,16 @@ class MovieController extends Controller
      */
     public function store(MovieCreateRequest $request)
     {
-
         $image = $this->movieService->uploadImage($request);
-
         if($image != false){
             $create = $this->movieService->create($request,$image);
             if($create){
-
-                return redirect()->route('movie.index');
+                return redirect()->route('movie.index')->with('success', 'Movie created');
             } 
-            return response()->json([
-                'error'=>'Lỗi không tạo được'
-            ]);
+            return redirect()->back()->with('error', 'Movie created failed from image');
             
         }
-        return response()->json([
-            'error'=>'Lỗi không xác định'
-        ]);
-
+        return redirect()->back()->with('error', 'Movie created failed');
     }
 
     /**
@@ -141,26 +133,19 @@ class MovieController extends Controller
     {
         $image = $this->movieService->uploadImage($request);
         $movie = Movie::find($id);
-        $get_image = $request->file('image');
         $file_exist = $this->movieService->file_exist($movie);
         if(!$file_exist){
-            return response()->json([
-                'msg' => 'Loi khong xoa duoc file'
-            ]);
+            return redirect()->back()->with('error', 'Lỗi không xóa được file');
         }
         if($image != false){
             $update = $this->movieService->update($request, $movie,$image,$movie );
             if($update){
-                return redirect()->route('movie.index');
+                return redirect()->route('movie.index')->with('success', 'Movie Created Successfully');
 
             }
-            return response()->json([
-                'error'=>'Lỗi không cat nhat duoc'
-            ]);
+            return redirect()->back()->with('error', 'Lỗi không upload được ảnh');
         }
-        return response()->json([
-            'error'=>'Lỗi không xác định'
-        ]);
+        return redirect()->back()->with('error', 'Lỗi không cật nhật được');
     }
 
     /**
@@ -174,9 +159,7 @@ class MovieController extends Controller
         $movie =Movie::find($id);
         $file_exist = $this->movieService->file_exist($movie);
         if(!$file_exist){
-            return response()->json([
-                'msg' => 'Loi khong xoa duoc file'
-            ]);
+            return redirect()->back()->with('error', 'Delete failed');
         }
         //detach thể loại
         $movie->movieGenres()->detach();
@@ -185,7 +168,7 @@ class MovieController extends Controller
         //xóa phim
         $movie->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Delete Successfully');
     }
     public function update_year($request){
         $data = $request->all();

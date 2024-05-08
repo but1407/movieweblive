@@ -39,14 +39,19 @@ class CountryController extends Controller
      */
     public function store(CountryCreateRequest $request)
     {
-        Country::create([
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'status' => $request->status,
-            'slug' => $request->slug,
-
-        ]);
-        return redirect()->back();
+        try {
+            Country::create([
+                'title'=>$request->title,
+                'description'=>$request->description,
+                'status' => $request->status,
+                'slug' => $request->slug,
+    
+            ]);
+        } catch(\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+        
+        return redirect()->back()->with('success', "Created successfully");
     }
 
     /**
@@ -84,14 +89,18 @@ class CountryController extends Controller
      */
     public function update(CountryCreateRequest $request, $id)
     {
-        $store = Country::find($id)->update([
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'status' => $request->status,
-            'slug' => $request->slug,
-
-        ]);
-        return redirect()->back();
+        try {
+            Country::find($id)->update([
+                'title'=>$request->title,
+                'description'=>$request->description,
+                'status' => $request->status,
+                'slug' => $request->slug,
+            ]);
+        } catch(\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+        
+        return redirect()->back()->with("success","Update Successfully");
     }
 
     /**
@@ -102,7 +111,11 @@ class CountryController extends Controller
      */
     public function destroy($id)
     {
-        Country::find($id)->delete();
-        return redirect()->back();
+        try {
+            Country::find($id)->delete();
+        } catch(\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+        return redirect()->back()->with('success','Successfully deleted');
     }
 }

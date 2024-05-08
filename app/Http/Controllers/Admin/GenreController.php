@@ -40,14 +40,18 @@ class GenreController extends Controller
      */
     public function store(GenreCreateRequest $request)
     {
-        $store = Genre::create([
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'status' => $request->status,
-            'slug' => $request->slug,
-
-        ]);
-        return redirect()->back();
+        try {
+            Genre::create([
+                'title'=>$request->title,
+                'description'=>$request->description,
+                'status' => $request->status,
+                'slug' => $request->slug,
+    
+            ]);
+        } catch(\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+        return redirect()->back()->with('error','Failed to create');
     }
 
     /**
@@ -85,14 +89,17 @@ class GenreController extends Controller
      */
     public function update(GenreCreateRequest $request, $id)
     {
-        $store = Genre::find($id)->update([
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'status' => $request->status,
-            'slug' => $request->slug,
-
-        ]);
-        return redirect()->back();
+        try {
+            Genre::find($id)->update([
+                'title'=>$request->title,
+                'description'=>$request->description,
+                'status' => $request->status,
+                'slug' => $request->slug,
+            ]);
+        } catch(\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+        return redirect()->back()->with('error', 'Failed to update');
     }
 
     /**
@@ -103,7 +110,12 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        Genre::find($id)->delete();
-        return redirect()->back();
+        try{
+            Genre::find($id)->delete();
+        } catch(\Exception $e){
+            return redirect()->back()->with('error', $e->getMessage());
+
+        }
+        return redirect()->back()->with('success', 'destroy successfully');
     }
 }

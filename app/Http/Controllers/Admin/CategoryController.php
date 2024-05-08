@@ -38,14 +38,17 @@ class CategoryController extends Controller
      */
     public function store(CategoryCreateRequest $request)
     {
-        $store = Category::create([
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'status' => $request->status,
-            'slug' => $request->slug,
-
-        ]);
-        return redirect()->back();
+        try {
+            Category::create([
+                'title'=>$request->title,
+                'description'=>$request->description,
+                'status' => $request->status,
+                'slug' => $request->slug,
+            ]);
+        } catch(\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+        return redirect()->back()->with('success','create dashboard Successfully');
     }
 
     /**
@@ -69,7 +72,6 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $lists = Category::orderBy('position','asc')->get();
-
         $title = 'Sua danh muc';
         return view('admin.category.form',compact('title','category','lists'));
     }
@@ -83,14 +85,18 @@ class CategoryController extends Controller
      */
     public function update(CategoryCreateRequest $request, $id)
     {
-        $store = Category::find($id)->update([
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'status' => $request->status,
-            'slug' => $request->slug,
-
-        ]);
-        return redirect()->back();
+        try{
+            Category::find($id)->update([
+                'title'=>$request->title,
+                'description'=>$request->description,
+                'status' => $request->status,
+                'slug' => $request->slug,
+                
+            ]);
+        } catch(\Exception $e){
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+        return redirect()->back()->with('success', 'Updated Successfully');
     }
 
     /**
@@ -101,8 +107,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::find($id)->delete();
-        return redirect()->back();
+        try{
+            Category::find($id)->delete();
+        } catch(\Exception $e){
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+        return redirect()->back()->with('success', 'Destroyed category successfully');
     }
     public function resorting(Request $request){
         $data = $request->all();
