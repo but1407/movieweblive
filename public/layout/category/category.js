@@ -45,7 +45,7 @@ $( function() {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "/resorting_category",
+                url: "/admin/resorting_category",
                 method: 'POST',
                 data: { array_id: array_id },
                 success: (data) => {

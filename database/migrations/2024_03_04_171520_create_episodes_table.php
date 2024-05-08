@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('movie_id');
             $table->text('movie_link');
-            $table->integer('episode');
+            $table->text('episode');
             $table->timestamps();
         });
     }

@@ -50,7 +50,6 @@ nonce="bEqnJ9df">
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
         <section id="content" class="test">
             <div class="clearfix wrap-content">
-                
                 <div class="halim-movie-wrapper">
                     <div class="title-block">
                         <div id="bookmark" class="bookmark-img-animation primary_ribbon" data-id="38424">
@@ -64,17 +63,16 @@ nonce="bEqnJ9df">
                         <div class="movie-poster col-md-3">
                             <img class="movie-thumb" src="{{ asset('uploads/movie/'. $movie->image) }}" 
                             alt="{{ $movie->title }}">
-                            @if ($movie->resolution !=5 )
-                                <div class="bwa-content">
-                                    <div class="loader"></div>
-                                    @if ($movie->thuocphim == 1)
-                                        <a href="
-                                            {{ route('movie.watch',['slug'=>$movie->slug, 'tap' => $episode_fistep->episode ?? '']) }}
-                                        " class="bwac-btn">
-                                        <i class="fa fa-play"></i>
-                                        </a>
+                            @if ($movie->resolution !=5)
+                                @if ($episode_current_list_count > 0)
+                                    <div class="bwa-content">
+                                        <div class="loader"></div>
+                                            <a href="{{ route('movie.watch',['slug'=>$movie->slug, 'tap' => $episode_fistep->episode ?? '']) }}
+                                                " class="bwac-btn">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
                                 @endif
-                                </div>
                                 @else <a href="#watch_trailer" style="display: block" class="btn btn-primary watch_trailer">Xem Trailer</a>
                             @endif
                         </div>
@@ -129,11 +127,19 @@ nonce="bEqnJ9df">
                                 <li class="list-info-group-item last-item" style="-overflow: hidden;-display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-flex: 1;-webkit-box-orient: vertical;"><span>Diễn viên</span> : <a href="" rel="nofollow" title="C.C. Smiff">C.C. Smiff</a>, <a href="" rel="nofollow" title="David Harbour">David Harbour</a>, <a href="" rel="nofollow" title="Erin Jameson">Erin Jameson</a>, <a href="" rel="nofollow" title="Ever Anderson">Ever Anderson</a>, <a href="" rel="nofollow" title="Florence Pugh">Florence Pugh</a>, <a href="" rel="nofollow" title="Lewis Young">Lewis Young</a>, <a href="" rel="nofollow" title="Liani Samuel">Liani Samuel</a>, <a href="" rel="nofollow" title="Michelle Lee">Michelle Lee</a>, <a href="" rel="nofollow" title="Nanna Blondell">Nanna Blondell</a>, <a href="" rel="nofollow" title="O-T Fagbenle">O-T Fagbenle</a></li>
                                 <li class="list-info-group-item">
                                     <span>Tập phim mới nhất</span> : 
-                                        @foreach ($episode as $e )
+                                    @if ($movie->thuocphim == 1)
+                                        @if ($episode_current_list_count > 0)
+                                            @foreach ($episode as $e )
                                             <a href="{{ route('movie.watch', ['slug'=>$movie->slug, 'tap' => $e->episode]) }}" rel="tag">
                                                 Tập {{ $e->episode }},
                                             </a>
-                                        @endforeach
+                                            @endforeach
+                                        @endif
+                                    @elseif ($movie->thuocphim == 0)
+                                        <a href="">HD</a>
+                                        <a href="">Full HD</a>
+                                        @else ĐANG CẬP NHẬT
+                                    @endif
                                 </li>
                             </ul>
                             <div class="movie-trailer hidden"></div>
