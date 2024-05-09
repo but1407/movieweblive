@@ -5,7 +5,9 @@
 <meta content="VN" name="geo.region" />
 <meta name="DC.language" scheme="utf-8" content="vi" />
 <meta name="language" content="Việt Nam">
-<link rel="shortcut icon" href="https://www.pngkey.com/png/detail/360-3601772_your-logo-here-your-company-logo-here-png.png" type="image/x-icon" />
+<link rel="shortcut icon"
+    href="https://www.pngkey.com/png/detail/360-3601772_your-logo-here-your-company-logo-here-png.png"
+    type="image/x-icon" />
 <meta name="revisit-after" content="1 days" />
 <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
 @yield('title')
@@ -14,7 +16,8 @@
 <link rel="next" href="" />
 <meta property="og:locale" content="vi_VN" />
 <meta property="og:title" content="Phim hay 2020 - Xem phim hay nhất" />
-<meta property="og:description" content="Phim hay 2020 - Xem phim hay nhất, phim hay trung quốc, hàn quốc, việt nam, mỹ, hong kong , chiếu rạp" />
+<meta property="og:description"
+    content="Phim hay 2020 - Xem phim hay nhất, phim hay trung quốc, hàn quốc, việt nam, mỹ, hong kong , chiếu rạp" />
 <meta property="og:url" content="" />
 <meta property="og:site_name" content="Phim hay 2021- Xem phim hay nhất" />
 <meta property="og:image" content="" />
@@ -28,16 +31,20 @@
 <link rel='stylesheet' id='bootstrap-css' href='{{ asset('layout/css/bootstrap.min.css?ver=5.7.2') }}' media='all' />
 
 <link rel='stylesheet' id='style-css' href='{{ asset('layout/css/style.css?ver=5.7.2') }}' media='all' />
-<link rel='stylesheet' id='wp-block-library-css' href='{{ asset('layout/css/style.css?ver=5.7.2')}}'  media='all' />
+<link rel='stylesheet' id='wp-block-library-css' href='{{ asset('layout/css/style.css?ver=5.7.2') }}' media='all' />
 <script type='text/javascript' src='{{ asset('layout/js/jquery.min.js?ver=5.7.2') }}' id='halim-jquery-js'></script>
 <style type="text/css" id="wp-custom-css">
     .textwidget p a img {
-    width: 100%;
+        width: 100%;
     }
 </style>
 {{-- <link rel="stylesheet" href="{{ asset('layout/home/home.css') }}"> --}}
 <style>
-#header .site-title {background: url(https://www.pngkey.com/png/detail/360-3601772_your-logo-here-your-company-logo-here-png.png) no-repeat top left;background-size: contain;text-indent: -9999px;}
+    #header .site-title {
+        background: url(https://www.pngkey.com/png/detail/360-3601772_your-logo-here-your-company-logo-here-png.png) no-repeat top left;
+        background-size: contain;
+        text-indent: -9999px;
+    }
 </style>
 
 @yield('css')
