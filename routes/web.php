@@ -49,9 +49,9 @@ Route::middleware(['auth'])
 
             //Movie
             Route::resource('movie', MovieController::class);
-            Route::get('/update-season-phim', [MovieController::class, 'season_update'])->name('season_update');
-            Route::get('/update-year-movie', [MovieController::class, 'update_year']);
-            Route::get('/update-topview-phim', [MovieController::class, 'update_topview']);
+            Route::post('/update-season-phim', [MovieController::class, 'season_update'])->name('season_update');
+            Route::post('/update-year-movie', [MovieController::class, 'update_year']);
+            Route::post('/update-topview-phim', [MovieController::class, 'update_topview']);
 
             //Genre
             Route::resource('genre', GenreController::class);

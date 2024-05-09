@@ -6,23 +6,7 @@
 @section('js')
     <script src="{{ asset('layout/category/category.js') }}"></script>
     <script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
-    <script type="text/javascript">
-        $('.select-year').change(()=>{
-            var year = $(this).find(':selected').val();
-            var id_phim =$(this).attr('id');
-            alert(year)
-            alert(id_phim)
-            console.log(year);
-            $.ajax({
-                url:"{{ url('/update-year-movie') }}",
-                method:'get',
-                data:{year:year,id_phim:id_phim},
-                success:()=>{
-                    alert('Changed Year'+ year + 'Successfully')
-                }
-            });
-        })
-
+    <script type="text/javascript" src="{{ asset('layout/movie/movie.js') }}">
     </script>
 @endsection
 @section('css')
@@ -40,7 +24,6 @@
                         <th scope="col">#</th>
                         <th scope="col">Title</th>
                         <th scope="col">Thoi luong</th>
-
                         <th scope="col">Description</th>
                         <th scope="col">Image</th>
                         <th scope="col">Category</th>
@@ -85,7 +68,8 @@
                                 @endforeach</td>
                             <td>{!! $list->status == 0 ? '<span class="btn btn-danger btn-xs">Chưa kích hoạt</span>' : '<span class="btn btn-success btn-xs">Kích hoạt</span>' !!}</td>
                             <td></td>
-                            <td>{!! Form::selectYear('year',1990,2024,isset($list->year) ? $list->year : '',['class'=>'select-year','id'=>$list->id]) !!}</td>
+                            <td>{!! Form::selectRange('year',1990,2024,isset($list->year) ? $list->year : '',
+                            ['class'=>'select-year','id'=>$list->id]) !!}</td>
 
                             <td>
                                 
@@ -124,14 +108,16 @@
 
                             {{-- <td>{{ $list-> }}</td> --}}
                             <td>
-                                <form action="" method="posy">
+                                <form action="" method="post">
                                     @csrf
                                     
-                                    {!! Form::selectRange('season', 0,20, isset($list->season) ? $list->season : '', ['class'=>'select-season','id'=>$list->id]) !!}
+                                    {!! Form::selectRange('season', 0,20, isset($list->season) ? $list->season : '', 
+                                    ['class'=>'select-season','id'=>$list->id]) !!}
                                 </form>
                             </td>
                             <td>{!! Form::select('topview', ['0'=>'Ngày','1'=>'Tuần','2'=>'tháng'],
-                            isset($list->topview) ?  $list->topview : '' ,['class'=>'select-topview','id'=>$list->id]) !!}
+                            isset($list->topview) ?  $list->topview : '' ,
+                            ['class'=>'select-topview','id'=>$list->id]) !!}
 
                             <td>{{ $list->updated_at }}</td>
                             <td>

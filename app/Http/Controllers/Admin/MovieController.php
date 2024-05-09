@@ -170,16 +170,16 @@ class MovieController extends Controller
 
         return redirect()->back()->with('success', 'Delete Successfully');
     }
-    public function update_year($request){
+    public function update_year(Request $request){
         $data = $request->all();
 
-        $movie = Movie::find($data['id_phim'])->update(
+        Movie::find($data['id_phim'])->update(
             [
                 'year' => $data['year'],
-            ]
+            ]   
         );
     }
-    public function update_topview($request){
+    public function update_topview(Request $request){
         $data = $request->all();
 
         $movie = Movie::find($data['id_phim'])->update(
@@ -188,10 +188,9 @@ class MovieController extends Controller
             ]
         );
     }
-    public function update_season($request){
+    public function season_update(Request $request){
         $data = $request->all();
-
-        $movie = Movie::find($data['id_phim'])->update(
+        Movie::find($data['id_phim'])->update(
             [
                 'season' => $data['season'],
             ]
