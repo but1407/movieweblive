@@ -3,10 +3,13 @@
     <title>{{ $title }}</title>
 @endsection
 @section('css')
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
 @endsection
 @section('js')
+    <script src="{{ asset('layout/category/category.js') }}"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
     <script src="{{ asset('layout/episode/episode.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
@@ -15,7 +18,6 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                >
                 <table class="table" id="tablephim">
                     <thead>
                         <tr>
@@ -33,12 +35,9 @@
                             <tr id="{{ $episode->id }}">
                                 <th scope="row">{{ $key }}</th>
                                 <td>{{ $episode->movies->title }}</td>
-                                
                                 <td><img src="{{ asset('uploads/movie/'.  $episode->movies->image ) }}" width="100%" height="100%" alt=""></td>
-
                                 <td>{{ $episode->episode }}</td>
                                 <td>{!! $episode->movie_link !!}</td>
-
                                 <td>
                                     {!! Form::open([
                                         'method'=>'delete',

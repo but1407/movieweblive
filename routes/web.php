@@ -48,17 +48,19 @@ Route::middleware(['auth'])
             Route::post('resorting_category', [CategoryController::class, 'resorting'])->name('resorting_category');
 
             //Movie
-            Route::resource('movie', MovieController::class);
-            Route::post('/update-season-phim', [MovieController::class, 'season_update'])->name('season_update');
-            Route::post('/update-year-movie', [MovieController::class, 'update_year']);
-            Route::post('/update-topview-phim', [MovieController::class, 'update_topview']);
-
+            Route::controller(MovieController::class)->group(function () {
+                Route::resource('movie', MovieController::class);
+                Route::post('/update-season-phim',  'season_update')->name('season_update');
+                Route::post('/update-year-movie',  'update_year');
+                Route::post('/update-topview-phim',  'update_topview');
+            });
             //Genre
             Route::resource('genre', GenreController::class);
 
             //Episode
             Route::resource('episode', EpisodeController::class);
             Route::get('/select-movie', [EpisodeController::class, 'select_movie'])->name('select-movie.episode');
+            Route::get('/add-episode/id-{id}', [EpisodeController::class, 'add_episode'])->name('admin.add_episode');
 
             //Country
             Route::resource('country', CountryController::class);

@@ -2,8 +2,7 @@
 
 function ChangeToSlug()
     {
-
-        var slug;
+        let slug;
         
         //Lấy text từ thẻ input title 
         slug = document.getElementById("slug").value;

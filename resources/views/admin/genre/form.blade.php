@@ -4,8 +4,11 @@
     <title>{{ $title }}</title>
 @endsection
 @section('js')
-
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
     <script src="{{ asset('layout/category/category.js') }}"></script>
+@endsection
+@section('css')
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
 @endsection
 @section('content')
 <div class="container">
@@ -55,7 +58,7 @@
                     {{-- {{ __('You are logged in!') }} --}}
                 </div>
             </div>
-            <table class="table">
+            <table class="table" id="tablephim">
                 <thead>
                     <tr>
                         <th scope="col">#</th>

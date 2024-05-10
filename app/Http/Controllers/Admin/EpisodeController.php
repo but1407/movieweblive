@@ -141,4 +141,14 @@ class EpisodeController extends Controller
 
         return $output;
     }
+    public function add_episode($id){
+        $movie = Movie::find($id);
+        
+        $list_episode = $this->episode->with('movies')->where('movie_id', $id)->orderByDesc('movie_id')->get();
+        return view('admin.episode.add', [
+            'movie' => $movie,
+            'list_episode' => $list_episode,
+            'title' =>'thêm tập phim',
+        ]);
+    }
 }
