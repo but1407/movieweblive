@@ -24,6 +24,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Title</th>
                         <th scope="col">Tập phim</th>
+                        <th scope="col">episode</th>
                         <th scope="col">Thoi luong</th>
                         <th scope="col">Description</th>
                         <th scope="col">Image</th>
@@ -32,17 +33,14 @@
                         <th scope="col">Hot</th>
                         <th scope="col">Phu de</th>
                         <th scope="col">Country</th>
-                        <th scope="col">episode</th>
                         <th scope="col">Genre</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Manager</th>
                         <th scope="col">Year</th>
                         <th scope="col">Resolution</th>
                         <th scope="col">Season</th>
                         <th scope="col">Topview</th>
                         <th scope="col">Updated_at</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
+                        <th scope="col">Manager</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,6 +49,7 @@
                             <th scope="row">{{ $key }}</th>
                             <td>{{ $list->title }}</td>
                             <td><a href="{{ route("admin.add_episode",$list->id) }}" class="btn btn-primary btn-sm">Thêm tập phim</a></td>
+                            <td>{{ $list->episodes_count }}/{{ $list->sotap }}</td>
                             <td>{{ $list->movie_duration }}</td>
                             <td>{{ $list->description }}</td>
                             <td><img src="{{ asset('uploads/movie/'. $list->image) }}" width="110%" alt=""></td>
@@ -62,13 +61,11 @@
                                 '<span class="btn btn-success btn-xs">Thuyet Minh</span>' !!}
                             </td>
                             <td>{{ $list->countries->title }}</td>
-                            <td>{{ $list->sotap }}</td>
                             <td>
                                 @foreach ($list->movieGenres as $genre )
                                     <span class="badge badge-dark">{{ $genre->title }}</span>
                                 @endforeach</td>
                             <td>{!! $list->status == 0 ? '<span class="btn btn-danger btn-xs">Chưa kích hoạt</span>' : '<span class="btn btn-success btn-xs">Kích hoạt</span>' !!}</td>
-                            <td></td>
                             <td>{!! Form::selectRange('year',1990,2024,isset($list->year) ? $list->year : '',
                             ['class'=>'select-year','id'=>$list->id]) !!}</td>
                             <td>

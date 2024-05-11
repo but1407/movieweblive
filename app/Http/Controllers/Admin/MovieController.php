@@ -11,6 +11,8 @@ use App\Services\MovieService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\Movie\MovieCreateRequest;
+use App\Models\Episode;
+
 // use App\Services\MovieService;
 class MovieController extends Controller
 {
@@ -26,10 +28,8 @@ class MovieController extends Controller
     }
     public function index()
     {
-
-        $lists = Movie::orderBy('id','desc')->get();
+        $lists = Movie::with('categories', 'countries', 'genres')->withCount('episodes')->orderBy('id','desc')->get();
         $path = public_path() . '/json\/';
-
         if(!is_dir($path)){
             mkdir($path ,0777, true);
         }
