@@ -99,6 +99,5 @@
             </section>
         </main>
         @include('pages.partials.sidebar')
-
     </div>
 @endsection
