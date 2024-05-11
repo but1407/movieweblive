@@ -23,12 +23,12 @@ class SidebarComposer
             ['hot_movie', 1],
             ['status', 1],
             ['thuocphim', 0],
-        ])->orderBy('updated_at','DESC')->take(10)->get();
+        ])->orderBy('updated_at','DESC')->orderBy('view','DESC')->take(10)->get();
         $phimhotbo_sidebar = Movie::where([
             ['hot_movie', 1],
             ['status', 1],
             ['thuocphim', 1],
-        ])->take(10)->get();
+        ])->orderBy('view','DESC')->take(10)->get();
         
         $view->with([
             'phimlehot' => $phimhotle_sidebar,

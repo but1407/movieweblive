@@ -38,6 +38,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/tag/{tag}', 'tags')->name('tag');
     Route::get('/search', 'search')->name('search');
     Route::get('/episode/watch-movie', 'episode')->name('episodes');
+    Route::get('/increment-view',  'increment_view');
 });
 Route::middleware(['auth'])
     ->group(function () {
@@ -53,6 +54,8 @@ Route::middleware(['auth'])
                 Route::post('/update-season-phim',  'season_update')->name('season_update');
                 Route::post('/update-year-movie',  'update_year');
                 Route::post('/update-topview-phim',  'update_topview');
+                
+
             });
             //Genre
             Route::resource('genre', GenreController::class);

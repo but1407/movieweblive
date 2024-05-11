@@ -2,6 +2,9 @@
 @section('title')
     <title>{{ $title }}</title>
 @endsection
+@section('js')
+    <script type="text/javascript" src="{{ asset('layout/watch/watch.js') }}"></script>
+@endsection
 @section('content')
     <div class="container">
         <div class="row container" id="wrapper">
@@ -40,7 +43,7 @@
                             }
                         </style>
                         <div class="iframe_movie">
-
+                            <div class="get_id_movie hidden">{{ $movie->id }}</div>
                             {!! $episode->movie_link ?? '<img src="http://127.0.0.1:8000/images/links/404error.png" alt="Link hỏng">' !!}
                         </div>
                         {{-- <div class="button-watch">

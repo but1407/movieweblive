@@ -20,7 +20,7 @@
                                 </div>
                                 <p class="title">{{ $movie->title }}</p>
                             </a>
-                            <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
+                            <div class="viewsCount" style="color: #9d9d9d;">{{ number_format($movie->view) }} lượt xem</div>
                             <div class="country" style="color: #9d9d9d;">{{ $movie->genres->title . ' - ' . $movie->countries->title }}</div>
 
                             <div style="float: left;">
@@ -59,7 +59,7 @@
                                 </div>
                                 <p class="title">{{ $movie->title }}</p>
                             </a>
-                            <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
+                            <div class="viewsCount" style="color: #9d9d9d;">{{ number_format($movie->view) }} lượt xem</div>
                             <div class="country" style="color: #9d9d9d;">{{ $movie->genres->title . ' - ' . $movie->countries->title }}</div>
 
                             <div style="float: left;">

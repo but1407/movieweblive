@@ -225,11 +225,12 @@ class IndexController extends Controller
         $movie = $this->movie->with('categories', 'genres', 'episodes', 'movieGenres', 'countries')->where('slug',$slug)
         ->where('status',1)
         ->first();
+        
         $related = $this->movie->with('genres','countries','categories')->where('category_id',$movie->categories->id)
         ->orderBy(DB::raw('RAND()'))
         ->whereNotIn('slug',[$slug])->get();
         $episode = $this->episode->where('movie_id', $movie->id)->where('episode',$tapphim)->first();
-        
+    
         return view('pages.watch',[
             'title' => 'movie',
             'country' => $country,
@@ -240,6 +241,19 @@ class IndexController extends Controller
             'episode'=>$episode,
             'tapphim'=>$tapphim,
             'related'=>$related,
+        ]);
+    }
+    public function increment_view(Request $request){
+        $movie = Movie::find($request->id);
+        if($movie->increment('view')){
+            return response()->json([
+                'success' => 'Increment view successfully',
+                'view'=>$movie->view
+            ]);
+        }
+        return response()->json([
+            'error' => 'Increment view Failed',
+            
         ]);
     }
 }
