@@ -73,12 +73,13 @@
                                             </span>
                                             @if ($movie->resolution != 5)
                                                 <span class="episode">
-                                                    <i class="fa fa-play" aria-hidden="true"></i>
-                                                    @if ($movie->vietsub == 1)
-                                                        Thuyet minh - tập {{ $movie->sotap }}/{{ $movie->sotap }}
+                                                    @if ($movie->thuocphim == 0)
+                                                        <i class="fa fa-play" aria-hidden="true"></i>
+                                                        {{ $movie->vietsub == 1 ? 'Thuyết minh' :'Vietsub' }}
                                                     @else
-                                                        Vietsub - tập {{ $movie->sotap }}/{{ $movie->sotap }}
-                                                    @endif
+                                                    <i class="fa fa-play" aria-hidden="true"></i>
+                                                    {{ $movie->vietsub ==1 ? " Vietsub" : " Thuyết minh" }}
+                                                @endif
                                                 </span>
                                             @endif
                                             <div class="icon_overlay"></div>

@@ -79,11 +79,12 @@
                                             @if ($movie->resolution != 5)
                                                 <span class="episode">
                                                     <i class="fa fa-play" aria-hidden="true"></i>
-                                                    @if ($movie->vietsub == 1)
-                                                        Thuyet minh
+                                                    @if ($movie->thuocphim == 0)
+                                                    {{ $movie->vietsub == 1 ? 'Thuyết minh' :'Vietsub' }}
                                                     @else
-                                                        Vietsub
-                                                    @endif
+                                                    <i class="fa fa-play" aria-hidden="true"></i>
+                                                    {{ $movie->vietsub ==1 ? " Vietsub" : " Thuyết minh" }}
+                                                @endif
                                                 </span>
                                             @endif
                                             <div class="icon_overlay"></div>
