@@ -113,7 +113,7 @@
                                             @endswitch
                                         </span>
                                         <span class="episode">
-                                            {{ $movie->vietsub == 1 ? 'Thuyet minh' : 'Vietsub' }}
+                                            {{ $movie->vietsub == 1 ? ' Thuyet minh' : ' Vietsub' }}
                                         </span>
                                     </li>
                                     <li class="list-info-group-item"><span>Điểm IMDb</span> : <span
@@ -192,7 +192,6 @@
                     <div class="entry-content htmlwrap clearfix">
                         <div class="video-item halim-entry-box">
                             <article id="post-38424" class="item-content">
-
                                 @if (isset($movie->tags))
                                     @php
                                         $tags = [];
@@ -286,8 +285,15 @@
                                         @endswitch
                                         </span>
                                         <span class="episode">
-                                            <i class="fa fa-play" aria-hidden="true"></i>
-                                            {{ $movie->vietsub == 1 ? 'Thuyet minh' : 'Vietsub' }}
+                                            <span class="st-icon-search"></span>
+                                                @if ($relate->thuocphim == 0)
+                                                    <i class="fa fa-play" aria-hidden="true"></i>
+                                                    {{ $movie->vietsub == 1 ? ' Thuyet minh' : ' Vietsub' }}
+                                                    @else
+                                                    <i class="fa fa-play" aria-hidden="true"></i>
+                                                    {{ $movie->vietsub ==1 ? " Vietsub" : " Thuyết minh" }}
+                                                @endif
+                                            
                                         </span>
                                         <div class="icon_overlay"></div>
                                         <div class="halim-post-title-box">

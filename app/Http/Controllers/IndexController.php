@@ -55,7 +55,7 @@ class IndexController extends Controller
     }
     public function index(){
         $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
-        $phimhot = $this->movie->where(function ($query) {
+        $phimhot = $this->movie->with('episodes')->where(function ($query) {
             $query->where('hot_movie', 1)->Where('status', 1);
         })->orderByDesc('updated_at')->get();
         $category_home = $this->category->with('movies')->orderBy('id', 'DESC')->where('status',1)->get();
