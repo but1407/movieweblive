@@ -29,7 +29,7 @@
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
             <section>
                 <div class="section-bar clearfix">
-                    <h1 class="section-title"><span>{{ $genre_slug->name_eng }}</span></h1>
+                    <h1 class="section-title"><span>{{ $genre_slug->title }}</span></h1>
                 </div>
                 <div class="halim_box">
                     @if (isset($movies))

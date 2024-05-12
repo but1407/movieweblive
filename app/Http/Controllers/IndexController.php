@@ -70,15 +70,14 @@ class IndexController extends Controller
         $country = $this->country->orderBy('id', 'DESC')->get();
         $category_slug = $this->category->where('slug', $slug)->first();
         $movies = $category_slug->movies()->paginate(40);
-
+        $genres = $this->genre->orderBy('id', 'DESC')->get();
         return view('pages.category',[
             'title' => $category_slug->title,
             'country' => $country,
             'category_slug'=>$category_slug,
             'movies' => $movies,
             'phimhot_trailer'=>$phimhot_trailer,
-            
-
+            'genres'=>$genres,
         ]);
     }
     public function year($year){
@@ -220,5 +219,8 @@ class IndexController extends Controller
             'error' => 'Increment view Failed',
             
         ]);
+    }
+    public function filter_movie(Request $request){
+
     }
 }

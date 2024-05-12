@@ -2,6 +2,9 @@
 @section('title')
     <title>{{ $title }}</title>
 @endsection
+@section('css')
+<link rel="stylesheet" href="{{ asset('layout/category/category.css') }}">
+@endsection
 @section('content')
     <div class="row container" id="wrapper">
         <div class="halim-panel-filter">
@@ -33,8 +36,79 @@
             </div>
             <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
                 <section>
+                    <div class="list-movie-filter" style="margin-bottom: 10px;" >
+                        <div class="list-movie-filter-main">
+                            <form action="{{ route('movie-filter') }}" method="get">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="list-movie-filter-item">
+                                            <label for="sort" style="color:white">Sắp xếp</label>
+                                            <select class="form-control select-box" name="sort">
+                                                <option selected="" value="">---Sắp xếp---</option>
+                                                <option selected="" value="date">Ngày đăng</option>
+                                                <option selected="" value="year">Năm sản xuất</option>
+                                                <option selected="" value="name">Tên phim</option>
+                                                <option selected="" value="views">Lượt xem</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+
+                                        <div class="list-movie-filter-item">
+                                            <label for="type" style="color:white">Định dạng</label>
+                                            <select class="form-control select-box" name="type">
+                                                <option selected="" value="">Mọi định dạng</option>
+                                                <option selected="" value="0">Phim lẻ</option>
+                                                <option selected="" value="1">Phim bộ</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="list-movie-filter-item">
+                                            <label for="genre" style="color:white">Thể Loại</label>
+                                            <select class="form-control select-box" name="genre">
+                                                <option value="">Tất cả thể loại</option>
+                                                @foreach ($genres as $gen_filter )
+                                                    <option value="{{ $gen_filter->id }}">{{ $gen_filter->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="list-movie-filter-item">
+                                            <label for="country" style="color:white">Quốc gia</label>
+                                            <select class="form-control select-box" name="country">
+                                                <option value="">Tất cả quốc gia</option>
+                                                @foreach ($country as $country_filter )
+                                                    <option value="{{ $country_filter->id }}">{{ $country_filter->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="list-movie-filter-item">
+                                            <label for="year" style="color:white">Năm</label>
+                                            <select class="form-control select-box" name="year">
+                                                <option value="">Tất cả năm</option>
+                                                @for ($i = 1996; $i <= now()->year ;$i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="submit" style="margin-top: 25px" class="btn btn-primary btn-filter-movie">
+                                            <span>Lọc phim</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </form>
+                        </div>
+                    </div>
                     <div class="section-bar clearfix">
-                        <h1 class="section-title"><span>{{ $category_slug->name_eng }}</span></h1>
+                        <h1 class="section-title"><span>{{ $category_slug->title }}</span></h1>
                     </div>
                     <div class="halim_box">
                         @if (isset($movies))
