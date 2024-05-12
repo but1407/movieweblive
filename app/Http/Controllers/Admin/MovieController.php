@@ -70,7 +70,7 @@ class MovieController extends Controller
     public function store(MovieCreateRequest $request)
     {
         $image = $this->movieService->uploadImage($request);
-        if($image != false){
+        if(!$image){
             $create = $this->movieService->create($request,$image);
             if($create){
                 return redirect()->route('movie.index')->with('success', 'Movie created');
@@ -79,18 +79,6 @@ class MovieController extends Controller
             
         }
         return redirect()->back()->with('error', 'Movie created failed');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        
-        
     }
 
     /**
@@ -137,7 +125,7 @@ class MovieController extends Controller
         if(!$file_exist){
             return redirect()->back()->with('error', 'Lỗi không xóa được file');
         }
-        if($image != false){
+        if(!$image){
             $update = $this->movieService->update($request, $movie,$image,$movie );
             if($update){
                 return redirect()->route('movie.index')->with('success', 'Movie Created Successfully');
@@ -182,7 +170,7 @@ class MovieController extends Controller
     public function update_topview(Request $request){
         $data = $request->all();
 
-        $movie = Movie::find($data['id_phim'])->update(
+        Movie::find($data['id_phim'])->update(
             [
                 'topview' => $data['topview'],
             ]
