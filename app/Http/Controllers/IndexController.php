@@ -70,27 +70,7 @@ class IndexController extends Controller
         $category_slug = $this->category->where('slug', $slug)->first();
         $genres = $this->genre->orderBy('id', 'DESC')->get();
         $movies = $category_slug->movies();
-        $array = ['status'=> 1];
-        if($request->type){
-            $array['thuocphim'] = $request->type;
-        }
-        if($request->country){
-            $array['country_id'] = $request->country;
-        }
-        if($request->year){
-            $array['year'] = $request->year;
-        }
-        if($request->genre){
-            $genre_id = $request->genre;
-            $movies = $movies->whereHas('genres',function($q) use ($genre_id){
-                        $q->where('id', $genre_id);
-            });
-        }
-        $movies = $movies->where($array);
-        if($request->sort){
-            $movies = $movies->orderBy($request->sort,'DESC');
-        }
-        $movies = $movies->paginate(40);
+        $movies = $this->category->filter($request, $movies);
         
         return view('pages.category',[
             'title' => $category_slug->title,
