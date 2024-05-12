@@ -20,11 +20,9 @@ class EpisodeService
             'episode' => $request->episode,
         ]);
         if($store){
-
             return true;
         }
         return false;
-    
     }
     public function update($request, $id){
         $store = $this->episode->find($id)->update([

@@ -57,6 +57,10 @@ class EpisodeController extends Controller
      */
     public function store(EpisodeCreateRequest $request)
     {
+        $episode_exist = Movie::find($request->movie_id)->episodes->pluck('episode')->contains($request->episode);
+        if($episode_exist){
+            return redirect()->back()->with('error', 'Episode '.$request->episode.' is exist!');
+        }
         if($this->episodeService->create($request)){
             return redirect()->back()->with('success', 'Episode created successfully'); 
         }
@@ -144,7 +148,7 @@ class EpisodeController extends Controller
     public function add_episode($id){
         $movie = Movie::find($id);
         
-        $list_episode = $this->episode->with('movies')->where('movie_id', $id)->orderByDesc('movie_id')->get();
+        $list_episode = $this->episode->with('movies')->where('movie_id', $id)->orderByDesc('episode')->get();
         return view('admin.episode.add', [
             'movie' => $movie,
             'list_episode' => $list_episode,
