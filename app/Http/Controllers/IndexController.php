@@ -38,7 +38,6 @@ class IndexController extends Controller
             ->orderByDesc('updated_at')->paginate(10);
             
             return view('pages.search',[
-                'title' => 'Home',
                 'country' => $country,
                 'search'=>$search,
                 'title' => 'category',
@@ -83,12 +82,11 @@ class IndexController extends Controller
     public function year($year){
         $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
         $country = $this->country->orderBy('id', 'DESC')->get();
-        $year = $year;
         $movies = $this->movie->where('year', $year)->orderByDesc('created_at')->get();
+        // $year = $year;
     
         return view('pages.year',[
             'year' => $year,
-            'title' => 'Home',
             'country' => $country,
             'movies'=>$movies,
             'title' => 'year',
@@ -108,7 +106,7 @@ class IndexController extends Controller
         }
         // $movies = $genre_slug->movies()->whereIn('id',$many_renre)->paginate(40);
         $movies = $this->movie->whereIn('id',$many_renre)
-        ->orderByDesc('created_at', 'DESC')->paginate(40);
+        ->orderByDesc('created_at')->paginate(40);
         return view('pages.genre',[
             'title' => $this->genre->find($genre_slug->id)->title,
             'country' => $country,
@@ -171,9 +169,9 @@ class IndexController extends Controller
     }
     public function tags($tag){
         $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
-        $tag = $tag;
         $movies = $this->movie->where('tags','LIKE','%'.$tag.'%')->orderBy('updated_at','DESC')->paginate(40);
         $country = $this->country->orderBy('id', 'DESC')->get();
+        // $tag = $tag;
 
         return view('pages.tags',[
             'country' => $country,

@@ -62,9 +62,9 @@ class EpisodeController extends Controller
             return redirect()->back()->with('error', 'Episode '.$request->episode.' is exist!');
         }
         if($this->episodeService->create($request)){
-            return redirect()->back()->with('success', 'Episode created successfully'); 
+            return redirect()->back()->with('success', 'Episode created successfully');
         }
-        return redirect()->back()->with('error', 'Episode created failed'); 
+        return redirect()->back()->with('error', 'Episode created failed');
     }
 
     /**
@@ -109,7 +109,7 @@ class EpisodeController extends Controller
         if($this->episodeService->update($request, $id)){
             return redirect()->route('episode.index')->with('success', 'Episode updated');
         }
-        return redirect()->back()->with('error', 'Episode updated failed'); 
+        return redirect()->back()->with('error', 'Episode updated failed');
 
 
     }
