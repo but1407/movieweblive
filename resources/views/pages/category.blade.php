@@ -38,17 +38,17 @@
                 <section>
                     <div class="list-movie-filter" style="margin-bottom: 10px;" >
                         <div class="list-movie-filter-main">
-                            <form action="{{ route('movie-filter') }}" method="get">
+                            <form method="get" role="search">
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="list-movie-filter-item">
                                             <label for="sort" style="color:white">Sắp xếp</label>
                                             <select class="form-control select-box" name="sort">
-                                                <option selected="" value="">---Sắp xếp---</option>
-                                                <option selected="" value="date">Ngày đăng</option>
-                                                <option selected="" value="year">Năm sản xuất</option>
-                                                <option selected="" value="name">Tên phim</option>
-                                                <option selected="" value="views">Lượt xem</option>
+                                                <option value="">---Sắp xếp---</option>
+                                                <option {{ request()->sort == "updated_at" ? "selected" : "" }} value="updated_at">Ngày đăng</option>
+                                                <option {{ request()->sort == "year"? "selected" : "" }} value="year">Năm sản xuất</option>
+                                                <option {{ request()->sort == "title" ? "selected" : "" }} value="title">Tên phim</option>
+                                                <option {{ request()->sort == "view" ? "selected" : "" }} value="view">Lượt xem</option>
                                                 
                                             </select>
                                         </div>
@@ -59,8 +59,8 @@
                                             <label for="type" style="color:white">Định dạng</label>
                                             <select class="form-control select-box" name="type">
                                                 <option selected="" value="">Mọi định dạng</option>
-                                                <option selected="" value="0">Phim lẻ</option>
-                                                <option selected="" value="1">Phim bộ</option>
+                                                <option {{ request()->type == "0" ? "selected" : "" }} value="0">Phim lẻ</option>
+                                                <option {{ request()->type == "1" ? "selected" : "" }} value="1">Phim bộ</option>
                                             </select>
                                         </div>
                                     </div>
@@ -70,7 +70,7 @@
                                             <select class="form-control select-box" name="genre">
                                                 <option value="">Tất cả thể loại</option>
                                                 @foreach ($genres as $gen_filter )
-                                                    <option value="{{ $gen_filter->id }}">{{ $gen_filter->title }}</option>
+                                                    <option {{ request()->genre == $gen_filter->id ? "selected" : "" }} value="{{ $gen_filter->id }}">{{ $gen_filter->title }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -81,7 +81,7 @@
                                             <select class="form-control select-box" name="country">
                                                 <option value="">Tất cả quốc gia</option>
                                                 @foreach ($country as $country_filter )
-                                                    <option value="{{ $country_filter->id }}">{{ $country_filter->title }}</option>
+                                                    <option {{ request()->country == $country_filter->id ? "selected" : "" }} value="{{ $country_filter->id }}">{{ $country_filter->title }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -92,7 +92,7 @@
                                             <select class="form-control select-box" name="year">
                                                 <option value="">Tất cả năm</option>
                                                 @for ($i = 1996; $i <= now()->year ;$i++)
-                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                    <option {{ request()->year == $i ? "selected" : "" }} value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
                                             </select>
                                         </div>
@@ -152,12 +152,12 @@
                                             </span>
                                             @if ($movie->resolution != 5)
                                                 <span class="episode">
-                                                    <i class="fa fa-play" aria-hidden="true"></i>
                                                     @if ($movie->thuocphim == 0)
+                                                    <i class="fa fa-play" aria-hidden="true"></i>
                                                     {{ $movie->vietsub == 1 ? 'Thuyết minh' :'Vietsub' }}
                                                     @else
                                                     <i class="fa fa-play" aria-hidden="true"></i>
-                                                    {{ $movie->vietsub ==1 ? " Vietsub" : " Thuyết minh" }}
+                                                    Tập {{  $movie->episodes->count().'/'.$movie->sotap }} {{ $movie->vietsub ==1 ? " Vietsub" : " Thuyết minh" }}
                                                 @endif
                                                 </span>
                                             @endif
