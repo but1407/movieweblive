@@ -210,8 +210,5 @@ class IndexController extends Controller
             
         ]);
     }
-    public function filter_movie(Request $request){
-        
-    }
 
 }

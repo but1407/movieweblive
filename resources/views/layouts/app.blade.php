@@ -19,9 +19,9 @@
     @yield('css')
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+    <div id="app" >
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="border-bottom: 1px solid rgba(3.5,3.5,3,3);">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -32,7 +32,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        @include('layouts.navbar')
+                        {{-- @include('layouts.navbar') --}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -74,14 +74,13 @@
                 </div>
             </div>
         </nav>
-        
         <main class="py-4">
             @include('admin.alert')
-            {{-- @if(!Auth::id())
-                <div class="container">
+            @if(Auth::id())
+                <div class="container-fluid" style="margin-bottom:10px">
                     @include('layouts.navbar')
                 </div>
-            @endif --}}
+            @endif
             @yield('content')
         </main>
     </div>

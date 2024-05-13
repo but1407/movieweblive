@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('movies', function (Blueprint $table) {
-            $table->Integer('tag_id');
+        Schema::table('movie_tag', function (Blueprint $table) {
+            $table->integer('movie_id')->nullable();
+            $table->integer('tag_id')->nullable();
         });
     }
 
@@ -25,10 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('movies', function (Blueprint $table) {
-            $table->text('tags');
-            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
-            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
+        Schema::table('movie_tag', function (Blueprint $table) {
+            //
         });
     }
 };

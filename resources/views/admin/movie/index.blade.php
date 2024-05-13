@@ -67,7 +67,7 @@
                                 @endforeach</td>
                             <td>{!! $list->status == 0 ? '<span class="btn btn-danger btn-xs">Chưa kích hoạt</span>' : '<span class="btn btn-success btn-xs">Kích hoạt</span>' !!}</td>
                             <td>{!! Form::selectRange('year',1990,2024,isset($list->year) ? $list->year : '',
-                            ['class'=>'select-year','id'=>$list->id]) !!}</td>
+                            ['class'=>'select-year','id'=>$list->id,'placeholder'=>"Chọn năm"]) !!}</td>
                             <td>
                                 @switch($list->resolution)
                                     @case(0)
@@ -99,14 +99,13 @@
                             <td>
                                 <form action="" method="post">
                                     @csrf
-                                    
                                     {!! Form::selectRange('season', 0,20, isset($list->season) ? $list->season : '', 
-                                    ['class'=>'select-season','id'=>$list->id]) !!}
+                                    ['class'=>'select-season','id'=>$list->id,'placeholder'=>'Chọn mùa']) !!}
                                 </form>
                             </td>
                             <td>{!! Form::select('topview', ['0'=>'Ngày','1'=>'Tuần','2'=>'tháng'],
                             isset($list->topview) ?  $list->topview : '' ,
-                            ['class'=>'select-topview','id'=>$list->id]) !!}
+                            ['class'=>'select-topview','id'=>$list->id, 'placeholder'=>'Chọn top']) !!}
                             <td>{{ $list->updated_at }}</td>
                             <td>
                                 {!! Form::open([

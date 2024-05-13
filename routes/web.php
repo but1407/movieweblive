@@ -39,7 +39,6 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/search', 'search')->name('search');
     Route::get('/episode/watch-movie', 'episode')->name('episodes');
     Route::get('/increment-view',  'increment_view');
-    Route::get('/filter-movie',  'filter_movie')->name('movie-filter');
 });
 Route::middleware(['auth'])
     ->group(function () {
