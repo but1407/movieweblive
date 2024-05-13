@@ -26,7 +26,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('movie_tag', function (Blueprint $table) {
+        Schema::table('movie_tags', function (Blueprint $table) {
             //
         });
     }

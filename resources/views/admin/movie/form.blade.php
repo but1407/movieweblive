@@ -60,7 +60,7 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('tags', 'Tags phim', []) !!}
-                            {!! Form::textarea('tags', isset($movie) ? $movie->tags : '', ['style'=>'resize:none','class'=>'form-control','placeholder' => 'Nhập dữ liệu...']) !!}
+                            {!! Form::textarea('tags[]', isset($movie) ? $movie->tags : '', ['style'=>'resize:none','class'=>'form-control','placeholder' => 'Nhập dữ liệu...']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('Active', 'Active', []) !!}

@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\Country;
+use App\Models\Episode;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Services\MovieService;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\Movie\MovieCreateRequest;
-use App\Models\Episode;
 
 // use App\Services\MovieService;
 class MovieController extends Controller
@@ -69,16 +71,29 @@ class MovieController extends Controller
      */
     public function store(MovieCreateRequest $request)
     {
-        $image = $this->movieService->uploadImage($request);
-        if(!$image){
-            $create = $this->movieService->create($request,$image);
-            if($create){
-                return redirect()->route('movie.index')->with('success', 'Movie created');
-            } 
-            return redirect()->back()->with('error', 'Movie created failed from image');
-            
+        try{
+            DB::beginTransaction();
+            // Image
+            $image = $this->movieService->uploadImage($request);
+            if ($image) {
+                //Movie
+                $create = $this->movieService->create($request, $image);
+                //tags
+                if (!empty($request->tags)) {
+                    $tagIds = $this->movieService->storeTags($request);
+                    $create->tags()->attach($tagIds);
+                }
+                DB::commit();
+            }
+            if(!$image){
+                return redirect()->back()->with('error', 'Movie created failed from image');
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Message: '. $e->getMessage() . '  Line: ' . $e->getLine());
+            return redirect()->back()->with('error', 'Movie created failed');
         }
-        return redirect()->back()->with('error', 'Movie created failed');
+        return redirect()->route('movie.index')->with('success', 'Movie created');
     }
 
     /**

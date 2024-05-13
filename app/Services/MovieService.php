@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Tag;
 use App\Models\Movie;
 
 
@@ -37,35 +38,32 @@ class MovieService
         foreach($request->genre as $genre){
             $genre_id = $genre[0];
         }
-        try {
-            $movie =$this->movie->create([
-                'title' => $request->title,
-                'description' => $request->description,
-                'trailer' => $request->trailer,
-                'sotap' => $request->sotap,
-                'thuocphim' => $request->thuocphim,
-                'status' => $request->status,
-                'slug' => $request->slug,
-                'movie_duration' => $request->movie_duration,
-                'image' => $image['image'],
-                'country_id' => $request->country_id,
-                'name_eng' => $request->name_eng,
-                'resolution' => $request->resolution,
-                'vietsub' => $request->vietsub,
-                'genre_id' =>    $genre_id,
-                'hot_movie' => $request->hot_movie,
-                'category_id' => $request->category_id,
-                'tags' => $request->tags,
+        
+        $movie =$this->movie->create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'trailer' => $request->trailer,
+            'sotap' => $request->sotap,
+            'thuocphim' => $request->thuocphim,
+            'status' => $request->status,
+            'slug' => $request->slug,
+            'movie_duration' => $request->movie_duration,
+            'image' => $image['image'],
+            'country_id' => $request->country_id,
+            'name_eng' => $request->name_eng,
+            'resolution' => $request->resolution,
+            'vietsub' => $request->vietsub,
+            'genre_id' =>    $genre_id,
+            'hot_movie' => $request->hot_movie,
+            'category_id' => $request->category_id,
+            // 'tags' => $request->tags,
 
 
-            ]);
-            //add more genre
-            $movie->movieGenres()->attach($request->genre);
-        } catch (\Exception $e) {
-            return response()->json("Error: ". $e);
-            
-        }
-        return true;
+        ]);
+        //add more genre
+        $movie->movieGenres()->attach($request->genre);
+        
+        return $movie;
     }
     public function update($request,$model,$image,$movie ){
         $genre_id = '';
@@ -113,5 +111,14 @@ class MovieService
         }
         return true;
 
+    }
+    public function storeTags($request){
+        foreach($request->tags as $tagItem){
+            $tagIntance = Tag::firstOrCreate([
+                'name' => $tagItem,
+            ]);
+            $tagIds[] = $tagIntance->id;
+        }
+        return $tagIds;
     }
 }

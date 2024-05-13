@@ -22,9 +22,12 @@ class Movie extends Model
         return $this->belongsToMany(Genre::class,
         'movie_genres',
         'movie_id','genre_id');
-
     }
     public function episodes(){
         return $this->hasMany(Episode::class)->orderBy('id', 'asc');
+    }
+    public function tags(){
+        return $this
+        ->belongsToMany(Tag::class, 'movie_tags','movie_id','tag_id');
     }
 }
