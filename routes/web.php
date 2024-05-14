@@ -54,6 +54,7 @@ Route::middleware(['auth'])
                 Route::post('/update-season-phim',  'season_update')->name('season_update');
                 Route::post('/update-year-movie',  'update_year');
                 Route::post('/update-topview-phim',  'update_topview');
+                Route::get('/update-category-get',  'update_category');
                 
 
             });

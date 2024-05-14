@@ -54,3 +54,18 @@ $('.select-year').change(function()  {
         }
     });
 })
+
+$('.category_get').change(function()  {
+    let category_id = $(this).val();
+    let movie_id = $(this).attr('id');
+    console.log(movie_id,category_id)
+    let _token = $('input[name="_token"]').val();
+    $.ajax({
+        url:"/admin/update-category-get",
+        method:"GET",
+        data: { category_id: category_id, movie_id: movie_id, _token: _token},
+        success: function () {
+            alert('thay doi category theo của movie thanh cong')
+        }
+    })
+});

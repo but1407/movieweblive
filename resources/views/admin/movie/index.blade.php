@@ -53,7 +53,12 @@
                             <td>{{ $list->movie_duration }}</td>
                             <td>{{ $list->description }}</td>
                             <td><img src="{{ asset('uploads/movie/'. $list->image) }}" width="110%" alt=""></td>
-                            <td>{{ $list->categories->title }}</td>
+                            <td>
+                                {{ $list->categories->title }}
+                                {!! Form::select('category', $categories, isset($list) ?  $list->categories->id : '' ,
+                                ['class'=>'form-control category_get', 'id' => $list->id]) !!}
+
+                            </td>
                             <td>{{ $list->thuocphim == 0 ? "Phim lẻ" : "Phim bộ" }}</td>
                             <td>{!! $list->movie_hot == 0 ? '<span class="btn btn-danger btn-xs">Không</span>' : '<span class="btn btn-success btn-xs">Có</span>' !!}</td>
                             <td>{!! $list->vietsub == 0 ? 

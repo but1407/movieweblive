@@ -32,12 +32,14 @@ class MovieController extends Controller
     {
         $lists = Movie::with('categories', 'countries', 'genres')->withCount('episodes')->orderBy('id','desc')->get();
         $path = public_path() . '/json\/';
+        $categories = Category::pluck('title', 'id'); 
         if(!is_dir($path)){
             mkdir($path ,0777, true);
         }
         File::put($path . 'movies.json', json_encode($lists));
         return view('admin.movie.index',[
             'lists'=>$lists,
+            'categories'=>$categories,
             'title'=> 'Quản lý Phim',
             
             ]);
@@ -198,6 +200,13 @@ class MovieController extends Controller
                 'season' => $data['season'],
             ]
         );
+    }
+    public function update_category(Request $request){
+        Movie::find($request->movie_id)->update([
+            'category_id' => $request->category_id
+        ]);
+        // $movie->category_id = $request->category_id;
+        // $movie->save();
     }
     
 }
