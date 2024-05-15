@@ -33,6 +33,7 @@ class MovieController extends Controller
         $lists = Movie::with('categories', 'countries', 'genres')->withCount('episodes')->orderBy('id','desc')->get();
         $path = public_path() . '/json\/';
         $categories = Category::pluck('title', 'id'); 
+        $countries = Country::pluck('title', 'id'); 
         if(!is_dir($path)){
             mkdir($path ,0777, true);
         }
@@ -40,6 +41,7 @@ class MovieController extends Controller
         return view('admin.movie.index',[
             'lists'=>$lists,
             'categories'=>$categories,
+            'countries'=>$countries,
             'title'=> 'Quản lý Phim',
             
             ]);
@@ -205,8 +207,26 @@ class MovieController extends Controller
         Movie::find($request->movie_id)->update([
             'category_id' => $request->category_id
         ]);
-        // $movie->category_id = $request->category_id;
-        // $movie->save();
+        
+    }
+    public function update_country(Request $request){
+        Movie::find($request->movie_id)->update([
+            'country_id' => $request->country_id
+        ]);
+        
     }
     
+    public function update_status(Request $request){
+        Movie::find($request->movie_id)->update([
+            'status' => $request->status_val
+        ]);
+        
+    }
+
+    public function update_thuocphim(Request $request){
+        Movie::find($request->movie_id)->update([
+            'thuocphim' => $request->thuocphim_val
+        ]);
+        
+    }
 }

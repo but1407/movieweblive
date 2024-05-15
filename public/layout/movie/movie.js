@@ -69,3 +69,48 @@ $('.category_get').change(function()  {
         }
     })
 });
+
+$('.country_get').change(function()  {
+    let country_id = $(this).val();
+    let movie_id = $(this).attr('id');
+    console.log(movie_id,country_id)
+    let _token = $('input[name="_token"]').val();
+    $.ajax({
+        url:"/admin/update-country-get",
+        method:"GET",
+        data: { country_id: country_id, movie_id: movie_id, _token: _token},
+        success: function () {
+            alert('thay doi country theo của movie thanh cong')
+        }
+    })
+});
+
+$('.status_get').change(function()  {
+    let status_val = $(this).val();
+    let movie_id = $(this).attr('id');
+    console.log(movie_id,status_val)
+    let _token = $('input[name="_token"]').val();
+    $.ajax({
+        url:"/admin/update-status-get",
+        method:"GET",
+        data: { status_val: status_val, movie_id: movie_id, _token: _token},
+        success: function () {
+            alert('thay doi status theo của movie thanh cong')
+        }
+    })
+});
+
+$('.thuocphim_get').change(function()  {
+    let thuocphim_val = $(this).val();
+    let movie_id = $(this).attr('id');
+    console.log(movie_id,thuocphim_val)
+    let _token = $('input[name="_token"]').val();
+    $.ajax({
+        url:"/admin/update-thuocphim-get",
+        method:"GET",
+        data: { thuocphim_val: thuocphim_val, movie_id: movie_id, _token: _token},
+        success: function () {
+            alert('thay doi thuocphim theo của movie thanh cong')
+        }
+    })
+});

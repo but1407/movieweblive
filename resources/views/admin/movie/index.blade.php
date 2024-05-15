@@ -15,7 +15,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
+        {{-- <div class="col-md-12"> --}}
             <a href="{{ route('movie.create') }}" class="btn btn-primary">Thêm phim</a>
             
             <table class="table table-responsive" id="tablephim">
@@ -53,24 +53,49 @@
                             <td>{{ $list->movie_duration }}</td>
                             <td>{{ $list->description }}</td>
                             <td><img src="{{ asset('uploads/movie/'. $list->image) }}" width="110%" alt=""></td>
-                            <td>
-                                {{ $list->categories->title }}
-                                {!! Form::select('category', $categories, isset($list) ?  $list->categories->id : '' ,
-                                ['class'=>'form-control category_get', 'id' => $list->id]) !!}
+                            <td class="w-100">
+                                
+
+                                        {{-- {{ $list->categories->title }} --}}
+                                        {!! Form::select('category', $categories, isset($list) ?  $list->categories->id : '' ,
+                                    ['class'=>'form-control category_get', 'id' => $list->id]) !!}
 
                             </td>
-                            <td>{{ $list->thuocphim == 0 ? "Phim lẻ" : "Phim bộ" }}</td>
+                            <td>
+                                {{-- {{ $list->thuocphim == 0 ? "Phim lẻ" : "Phim bộ" }} --}}
+                                <select name="" id="{{ $list->id }}" class="thuocphim_get">
+                                    <option {{ $list->thuocphim == 0 ? 'selected' : '' }} value="0">
+                                        Phim lẻ</span></option>
+                                    <option {{ $list->thuocphim == 1 ? 'selected' : '' }} value="1">
+                                        Phim bộ</option>
+                                </select>
+                            </td>
                             <td>{!! $list->movie_hot == 0 ? '<span class="btn btn-danger btn-xs">Không</span>' : '<span class="btn btn-success btn-xs">Có</span>' !!}</td>
                             <td>{!! $list->vietsub == 0 ? 
                                 '<span class="btn btn-primary btn-xs">Vietsub</span>' : 
                                 '<span class="btn btn-success btn-xs">Thuyet Minh</span>' !!}
                             </td>
-                            <td>{{ $list->countries->title }}</td>
+                            <td>
+                                {{-- {{ $list->countries->title }} --}}
+                                {!! Form::select('category', $countries, isset($list) ?  $list->countries->id : '' ,
+                                    ['class'=>'form-control country_get', 'id' => $list->id]) !!}
+                            </td>
                             <td>
                                 @foreach ($list->movieGenres as $genre )
                                     <span class="badge badge-dark">{{ $genre->title }}</span>
                                 @endforeach</td>
-                            <td>{!! $list->status == 0 ? '<span class="btn btn-danger btn-xs">Chưa kích hoạt</span>' : '<span class="btn btn-success btn-xs">Kích hoạt</span>' !!}</td>
+                            <td>
+                                {{-- {!! $list->status == 0 ? 
+                                '<span class="btn btn-danger btn-xs">Chưa kích hoạt</span>' : 
+                                '<span class="btn btn-success btn-xs">Kích hoạt</span>' !!} --}}
+                                <select name="" id="{{ $list->id }}" class="status_get">
+                                    <option {{ $list->status == 1 ? 'selected' : '' }} value="1">
+                                        Kích hoạt</option>
+                                    <option {{ $list->status == 0 ? 'selected' : '' }} value="0">
+                                        Không kích hoạt</option>
+                                </select>
+                            
+                            </td>
                             <td>{!! Form::selectRange('year',1990,2024,isset($list->year) ? $list->year : '',
                             ['class'=>'select-year','id'=>$list->id,'placeholder'=>"Chọn năm"]) !!}</td>
                             <td>
