@@ -6,7 +6,12 @@
 @section('js')
     <script src="{{ asset('layout/category/category.js') }}"></script>
     <script type="text/javascript" src="{{ asset('layout/movie/movie.js') }}"></script>
-    
+    <!-- Bao gồm CSS của Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- Bao gồm jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bao gồm JavaScript của Select2 -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endsection
 @section('content')
 <div class="container">
@@ -60,7 +65,20 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('tags', 'Tags phim', []) !!}
-                            {!! Form::textarea('tags[]', isset($movie) ? $movie->tags : '', ['style'=>'resize:none','class'=>'form-control','placeholder' => 'Nhập dữ liệu...']) !!}
+                            {{-- {!! Form::textarea('tags[]', isset($movie) ? $movie->tags : '', ['style'=>'resize:none','class'=>'form-control','placeholder' => 'Nhập dữ liệu...']) !!} --}}
+                            {{-- <select id="danhsach" name="danhsach[]" multiple="multiple" style="width: 100%;">
+                                
+                            </select> --}}
+                            {{-- <style>
+                                .selected-options {
+                                    margin-top: 10px;
+                                    padding: 10px;
+                                    border: 1px solid #ccc;
+                                    width: 300px;
+                                    height: 100px;
+                                    overflow-y: auto;
+                                }
+                            </style> --}}
                         </div>
                         <div class="form-group">
                             {!! Form::label('Active', 'Active', []) !!}

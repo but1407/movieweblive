@@ -33,7 +33,7 @@ class IndexController extends Controller
         if(isset($request->search)){
             $search = $request->search;
             $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
-            $country = $this->country->orderBy('id', 'DESC')->get();
+            $country = $this->country->orderByDesc('updated_at')->get();
             $movie = $this->movie->where('title','LIKE','%'.$search.'%')
             ->orderByDesc('updated_at')->paginate(10);
             
@@ -53,7 +53,7 @@ class IndexController extends Controller
         $phimhot = $this->movie->with('episodes')->where(function ($query) {
             $query->where('hot_movie', 1)->where('status', 1);
         })->orderByDesc('updated_at')->get();
-        $category_home = $this->category->with('movies')->orderBy('id', 'DESC')->where('status',1)->get();
+        $category_home = $this->category->with('movies')->orderByDesc('updated_at')->where('status',1)->get();
 
         return view('pages.home',[
             'title' => 'Home',
@@ -66,9 +66,9 @@ class IndexController extends Controller
     }
     public function category(Request $request,$slug){
         $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
-        $country = $this->country->orderBy('id', 'DESC')->get();
+        $country = $this->country->orderByDesc('updated_at')->get();
         $category_slug = $this->category->where('slug', $slug)->first();
-        $genres = $this->genre->orderBy('id', 'DESC')->get();
+        $genres = $this->genre->orderByDesc('updated_at')->get();
         $movies = $category_slug->movies();
         $movies = $this->category->filter($request, $movies);
         
@@ -116,7 +116,7 @@ class IndexController extends Controller
     }
     public function country($slug){
         $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
-        $country = $this->country->orderBy('id', 'DESC')->get();
+        $country = $this->country->orderByDesc('updated_at')->get();
         $country_slug = $this->country->where('slug', $slug)->first();
         $movies = $country_slug->movies()->paginate(40);
 

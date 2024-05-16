@@ -58,6 +58,9 @@ Route::middleware(['auth'])
                 Route::get('/update-country-get',  'update_country');
                 Route::get('/update-status-get',  'update_status');
                 Route::get('/update-thuocphim-get',  'update_thuocphim');
+                Route::get('/update-hotmovie-get',  'update_hotmovie');
+                Route::get('/update-vietsub-get',  'update_vietsub');
+                Route::post('/update-image-movie-ajax',  'update_image_movie');
                 
 
             });

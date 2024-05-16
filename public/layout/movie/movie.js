@@ -114,3 +114,57 @@ $('.thuocphim_get').change(function()  {
         }
     })
 });
+
+$('.hotmovie_get').change(function()  {
+    let hotmovie_val = $(this).val();
+    let movie_id = $(this).attr('id');
+    console.log(movie_id,hotmovie_val)
+    let _token = $('input[name="_token"]').val();
+    $.ajax({
+        url:"/admin/update-hotmovie-get",
+        method:"GET",
+        data: { hotmovie_val: hotmovie_val, movie_id: movie_id, _token: _token},
+        success: function () {
+            alert('thay doi hotmovie theo của movie thanh cong')
+        }
+    })
+});
+
+$('.vietsub_get').change(function()  {
+    let vietsub_val = $(this).val();
+    let movie_id = $(this).attr('id');
+    console.log(movie_id,vietsub_val)
+    let _token = $('input[name="_token"]').val();
+    $.ajax({
+        url:"/admin/update-vietsub-get",
+        method:"GET",
+        data: { vietsub_val: vietsub_val, movie_id: movie_id, _token: _token},
+        success: function () {
+            alert(`thay doi phim thành ${vietsub_val == 1 ? 'Thuyết minh' : 'Vietsub'} theo của movie thanh cong`)
+        }
+    })
+});
+
+$(document).on('change','.file-image', function () {
+    let movie_id = $(this).data('movie_id');
+    let image = document.getElementById("file-" + movie_id).files[0];
+    let form_data = new FormData();
+    form_data.append("file", document.getElementById("file-" + movie_id).files[0]);
+    form_data.append("movie_id", movie_id);
+    console.log(movie_id,image,form_data);
+
+    $.ajax({
+        url:"/admin/update-image-movie-ajax",
+        method: "POST",
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data: form_data,
+        contentType:false,
+        cache:false,
+        processData:false,
+        success: function (data) {
+            location.reload();
+            $("#success_image").html('<span class="text-success">Cật nhật hình ảnh thành công</span>')
+        }
+    });
+
+});

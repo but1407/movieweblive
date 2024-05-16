@@ -14,7 +14,12 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Scripts -->
-    
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel='dns-prefetch' href='//s.w.org' />
+
+    <link rel='stylesheet' id='bootstrap-css' href='{{ asset('layout/css/bootstrap.min.css?ver=5.7.2') }}' media='all' />
+
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
     @yield('css')
 </head>

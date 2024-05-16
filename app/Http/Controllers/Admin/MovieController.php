@@ -229,4 +229,40 @@ class MovieController extends Controller
         ]);
         
     }
+
+    public function update_hotmovie(Request $request){
+        Movie::find($request->movie_id)->update([
+            'hot_movie' => $request->hotmovie_val
+        ]);
+        
+    }
+
+    public function update_vietsub(Request $request){
+        Movie::find($request->movie_id)->update([
+            'vietsub' => $request->vietsub_val
+        ]);
+        
+    }
+    
+    public function update_image_movie(Request $request){
+        $get_image = $request->file('file');
+        $movie_id = $request->movie_id;
+
+        if($get_image){
+            //delete old image
+            $movie = Movie::find($movie_id);
+            if(File::exists('uploads/movie/'.$movie->image)){
+                unlink('uploads/movie/'.$movie->image);
+            }
+            //name image
+            $get_image_name = $get_image->getClientOriginalName();
+            $name_image = current(explode('.', $get_image_name));
+            $new_image = $name_image.'-'. rand(0,99) . '.' . $get_image->getClientOriginalExtension();
+            $get_image->move('uploads/movie/' , $new_image);
+            //save the new image
+            $movie->image = $new_image;
+            $movie->save();
+        }
+        
+    }
 }

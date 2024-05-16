@@ -33,12 +33,12 @@
                         <th scope="col">Hot</th>
                         <th scope="col">Phu de</th>
                         <th scope="col">Country</th>
-                        <th scope="col">Genre</th>
                         <th scope="col">Status</th>
                         <th scope="col">Year</th>
-                        <th scope="col">Resolution</th>
                         <th scope="col">Season</th>
                         <th scope="col">Topview</th>
+                        <th scope="col">Resolution</th>
+                        <th scope="col">Genre</th>
                         <th scope="col">Updated_at</th>
                         <th scope="col">Manager</th>
                     </tr>
@@ -52,10 +52,13 @@
                             <td>{{ $list->episodes_count }}/{{ $list->sotap }}</td>
                             <td>{{ $list->movie_duration }}</td>
                             <td>{{ $list->description }}</td>
-                            <td><img src="{{ asset('uploads/movie/'. $list->image) }}" width="110%" alt=""></td>
-                            <td class="w-100">
-                                
-
+                            <td>
+                                <img src="{{ asset('uploads/movie/'. $list->image) }}" width="110%" alt="">
+                                    <input type="file" id="file-{{ $list->id }}" style="margin-top:10px;" data-movie_id="{{ $list->id }}"\
+                                    class="form-control-file file-image" accept="image/*">
+                                    <span id="success_image"></span>
+                            </td>
+                            <td>
                                         {{-- {{ $list->categories->title }} --}}
                                         {!! Form::select('category', $categories, isset($list) ?  $list->categories->id : '' ,
                                     ['class'=>'form-control category_get', 'id' => $list->id]) !!}
@@ -65,25 +68,37 @@
                                 {{-- {{ $list->thuocphim == 0 ? "Phim lẻ" : "Phim bộ" }} --}}
                                 <select name="" id="{{ $list->id }}" class="thuocphim_get">
                                     <option {{ $list->thuocphim == 0 ? 'selected' : '' }} value="0">
-                                        Phim lẻ</span></option>
+                                        Phim lẻ</option>
                                     <option {{ $list->thuocphim == 1 ? 'selected' : '' }} value="1">
                                         Phim bộ</option>
                                 </select>
                             </td>
-                            <td>{!! $list->movie_hot == 0 ? '<span class="btn btn-danger btn-xs">Không</span>' : '<span class="btn btn-success btn-xs">Có</span>' !!}</td>
-                            <td>{!! $list->vietsub == 0 ? 
+                            <td>
+                                {{-- {!! $list->movie_hot == 0 ? '<span class="btn btn-danger btn-xs">Không</span>' : '<span class="btn btn-success btn-xs">Có</span>' !!} --}}
+                                <select name="" id="{{ $list->id }}" class="hotmovie_get">
+                                    <option {{ $list->hot_movie == 1 ? 'selected' : '' }} value="1">
+                                        Phim hot</option>
+                                    <option {{ $list->hot_movie == 0 ? 'selected' : '' }} value="0">
+                                        không</option>
+                                </select>
+                            </td>
+                            <td>
+                                {{-- {!! $list->vietsub == 0 ? 
                                 '<span class="btn btn-primary btn-xs">Vietsub</span>' : 
-                                '<span class="btn btn-success btn-xs">Thuyet Minh</span>' !!}
+                                '<span class="btn btn-success btn-xs">Thuyet Minh</span>' !!} --}}
+                                <select name="" id="{{ $list->id }}" class="vietsub_get">
+                                    <option {{ $list->vietsub == 0 ? 'selected' : '' }} value="0">
+                                        Vietsub</option>
+                                    <option {{ $list->vietsub == 1 ? 'selected' : '' }} value="1">
+                                        Phụ đề</option>
+                                </select>
                             </td>
                             <td>
                                 {{-- {{ $list->countries->title }} --}}
                                 {!! Form::select('category', $countries, isset($list) ?  $list->countries->id : '' ,
                                     ['class'=>'form-control country_get', 'id' => $list->id]) !!}
                             </td>
-                            <td>
-                                @foreach ($list->movieGenres as $genre )
-                                    <span class="badge badge-dark">{{ $genre->title }}</span>
-                                @endforeach</td>
+                            
                             <td>
                                 {{-- {!! $list->status == 0 ? 
                                 '<span class="btn btn-danger btn-xs">Chưa kích hoạt</span>' : 
@@ -98,34 +113,7 @@
                             </td>
                             <td>{!! Form::selectRange('year',1990,2024,isset($list->year) ? $list->year : '',
                             ['class'=>'select-year','id'=>$list->id,'placeholder'=>"Chọn năm"]) !!}</td>
-                            <td>
-                                @switch($list->resolution)
-                                    @case(0)
-                                        <span class="btn btn-danger btn-xs">HD</span> 
-                                        @break
-                                    @case(1)
-                                        <span class="btn btn-success btn-xs">SD</span>
-
-                                        @break
-                                    @case(2)
-                                        <span class="btn btn-warning btn-xs">CAM</span>
-
-                                        @break
-                                    @case(3)
-                                        <span class="btn btn-primary btn-xs">RAW</span>
-
-                                        @break
-                                    @case(4)
-                                        <span class="btn btn-success btn-xs">FullHD</span>
-
-                                        @break
-                                    @case(4)
-                                        <span class="btn btn-success btn-xs">Trailer</span>
-
-                                        @break
-                                    @default
-                                @endswitch ()
-                            </td>
+                            
                             <td>
                                 <form action="" method="post">
                                     @csrf
@@ -135,7 +123,18 @@
                             </td>
                             <td>{!! Form::select('topview', ['0'=>'Ngày','1'=>'Tuần','2'=>'tháng'],
                             isset($list->topview) ?  $list->topview : '' ,
-                            ['class'=>'select-topview','id'=>$list->id, 'placeholder'=>'Chọn top']) !!}
+                            ['class'=>'select-topview','id'=>$list->id, 'placeholder'=>'Chọn top']) !!}</td>
+                            <td>
+                                @php
+                                    $options =array('0'=>'HD','1'=>'SD','2'=>'CAM','3'=>'RAW','4'=>'FullHD','5'=>'Trailer');
+                                    $styles =array('0'=>'btn-success','1'=>'btn-danger','2'=>'btn-success','3'=>'btn-danger','4'=>'btn-danger','5'=>'btn-warning',)
+                                @endphp
+                                <span class="btn {{ $styles[$list->resolution] }} btn-xs">{{ $options[$list->resolution] }}</span> 
+                            </td>
+                            <td>
+                                @foreach ($list->movieGenres as $genre )
+                                    <span class="badge badge-dark">{{ $genre->title }}</span>
+                                @endforeach</td>
                             <td>{{ $list->updated_at }}</td>
                             <td>
                                 {!! Form::open([
