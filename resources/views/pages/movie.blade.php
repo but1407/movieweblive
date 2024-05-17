@@ -83,7 +83,8 @@
                                     {{ $movie->title }}</h1>
                                 <h2 class="movie-title title-2" style="font-size: 12px;">{{ $movie->name_eng }} (2021)</h2>
                                 <ul class="list-info-group">
-                                    <li class="list-info-group-item"><span>Trạng Thái</span> : <span class="quality">
+                                    <li class="list-info-group-item">
+                                        <span style="color:#fff">Trạng Thái</span> : <span class="quality">
                                             @switch($movie->resolution)
                                                 @case(0)
                                                     HD
@@ -116,36 +117,37 @@
                                             {{ $movie->vietsub == 1 ? ' Thuyet minh' : ' Vietsub' }}
                                         </span>
                                     </li>
-                                    <li class="list-info-group-item"><span>Điểm IMDb</span> : <span
+                                    <li class="list-info-group-item"><span style="color:#fff">Điểm IMDb</span> : <span
                                             class="imdb">7.2</span></li>
-                                    <li class="list-info-group-item"><span>Thời lượng</span> : {{ $movie->movie_duration }}
+                                    <li class="list-info-group-item"><span style="color:#fff">Thời lượng</span> : {{ $movie->movie_duration }}
                                     </li>
                                     @if ($movie->thuocphim == 1)
-                                        <li class="list-info-group-item"><span>Số tập phim</span> :
+                                        <li class="list-info-group-item"><span style="color:#fff">Số tập phim</span> :
                                             {{ $episode_current_list_count }}/{{ $movie->sotap }} -
                                             {{ $movie->sotap - $episode_current_list_count == 0 ? 'Hoàn Thành' : 'Chưa Hoàn thành' }}
                                         </li>
                                     @endif
 
-                                    <li class="list-info-group-item"><span>Thể loại</span> :
+                                    <li class="list-info-group-item"><span style="color:#fff">Thể loại</span> :
                                         @foreach ($movie->movieGenres as $gen)
                                             <a href="{{ route('genre', $gen->slug) }}" rel="category tag">
                                                 {{ $gen->title }}
                                             </a>,
                                         @endforeach
                                     </li>
-                                    <li class="list-info-group-item"><span>Quốc gia</span> : <a
+                                    <li class="list-info-group-item">
+                                        <span style="color:#fff">Quốc gia</span> : <a
                                             href="{{ route('country', $movie->countries->slug) }}"
                                             rel="tag">{{ $movie->countries->title }}</a></li>
-                                    <li class="list-info-group-item"><span>Đạo diễn</span> : <a class="director"
+                                    <li class="list-info-group-item"><span style="color:#fff">Đạo diễn</span> : <a class="director"
                                             rel="nofollow" href="https://phimhay.co/dao-dien/cate-shortland"
                                             title="Cate Shortland">Cate Shortland</a></li>
                                     <li class="list-info-group-item last-item"
                                         style="-overflow: hidden;-display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-flex: 1;-webkit-box-orient: vertical;">
-                                        <span>Diễn viên</span> :
+                                        <span style="color:#fff">Diễn viên</span> :
                                         <a href="" rel="nofollow" title="C.C. Smiff">C.C. Smiff</a>,
                                     <li class="list-info-group-item">
-                                        <span>Tập phim mới nhất</span> :
+                                        <span style="color:#fff">Tập phim mới nhất</span> :
                                         @if ($movie->thuocphim == 1)
                                             @if ($episode_current_list_count > 0)
                                                 @foreach ($episode as $e)
@@ -163,12 +165,20 @@
                                         @else
                                             ĐANG CẬP NHẬT
                                         @endif
-                                    </li>>
-                                        <div class="">
-                                            <ul class="list-inline" title="Average Rating">
+                                    </li>
+                                    <li style="padding: 4px">
+                                        
+                                        <style>
+                                            .containe {
+                                                display: flex;
+                                                float:left;
+                                                align-items: center;
+                                            }
+                                        </style>
+                                            <div class="list-inline containe" title="Average Rating">
+                                                <span style="color:#fff">Đánh giá</span> :
                                                 @for ($count= 1; $count<=5;$count++)
                                                     @php
-
                                                         $color = $count <= $rating ? 'color:#ffcc00;' : '#ccc;';
                                                     @endphp
                                                 
@@ -183,8 +193,7 @@
                                                         "
                                                         >&#9733;</div>
                                                 @endfor
-                                            </ul>
-                                        </div>
+                                            </div>
                                     </li>
                                 </ul>
                                 <div class="movie-trailer hidden"></div>

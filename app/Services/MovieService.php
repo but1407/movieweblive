@@ -103,7 +103,9 @@ class MovieService
     public function file_exist($model){
         try{
             if(file_exists('uploads/movie/'.$model->image)){
-                return unlink('uploads/movie/' . $model->image);
+                unlink('uploads/movie/' . $model->image);
+            } else{
+                return false;
             }
 
         } catch (\Exception $e) {
