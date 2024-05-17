@@ -39,6 +39,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/search', 'search')->name('search');
     Route::get('/episode/watch-movie', 'episode')->name('episodes');
     Route::get('/increment-view',  'increment_view');
+    Route::post('/add-rating',  'add_rating');
 });
 Route::middleware(['auth'])
     ->group(function () {
@@ -61,6 +62,7 @@ Route::middleware(['auth'])
                 Route::get('/update-hotmovie-get',  'update_hotmovie');
                 Route::get('/update-vietsub-get',  'update_vietsub');
                 Route::post('/update-image-movie-ajax',  'update_image_movie');
+                
                 
 
             });

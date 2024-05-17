@@ -1,36 +1,44 @@
 $('.select-topview').change(function () {
-    
-    var topview = $(this).find(':selected').val();
-    var id_phim = $(this).attr('id');
+
+    let topview = $(this).find(':selected').val();
+    let id_phim = $(this).attr('id');
     let _token = $('input[name="_token"]').val();
 
     if (topview == 0) {
-        var text = 'Ngày';
+        let text = 'Ngày';
     } else if (topview == 1) {
-        var text = 'Tuần';
+        let text = 'Tuần';
     } else {
-        var text = 'Tháng';
+        let text = 'Tháng';
     }
     $.ajax({
         url: "/admin/update-topview-phim",
         method: "POST",
-        data: { topview: topview, id_phim: id_phim, _token: _token},
+        data: {
+            topview: topview,
+            id_phim: id_phim,
+            _token: _token
+        },
         success: function () {
-            alert('thay doi phim theo topview '+text+' thanh cong')
+            alert('thay doi phim theo topview ' + text + ' thanh cong')
         }
     })
 });
-$('.select-season').change(function()  {
+$('.select-season').change(function () {
     let season = $(this).find(':selected').val();
     let id_phim = $(this).attr('id');
     let _token = $('input[name="_token"]').val();
-    console.log(season,id_phim,_token)
+    console.log(season, id_phim, _token)
     $.ajax({
-        url:"/admin/update-season-phim",
-        method:"post",
-        data: { season: season, id_phim: id_phim,_token: _token},
+        url: "/admin/update-season-phim",
+        method: "post",
+        data: {
+            season: season,
+            id_phim: id_phim,
+            _token: _token
+        },
         success: function () {
-            alert('thay doi phim theo Season '+season+' thanh cong')
+            alert('thay doi phim theo Season ' + season + ' thanh cong')
         }
     })
 });
@@ -38,133 +46,229 @@ $('.select-season').change(function()  {
 $(".watch_trailer").click(function (e) {
     e.preventDefault();
     let aid = $(this).attr("href");
-    $('html,body').animate({ scrollTop: $(aid).offset().top}, 'slow');
+    $('html,body').animate({
+        scrollTop: $(aid).offset().top
+    }, 'slow');
 });
 
-$('.select-year').change(function()  {
+$('.select-year').change(function () {
     let year = $(this).find(':selected').val();
     let id_phim = $(this).attr('id');
     let _token = $('input[name="_token"]').val();
     $.ajax({
-        url:"/admin/update-year-movie",
-        method:'post',
-        data:{year:year,id_phim:id_phim, _token: _token},
-        success:()=>{
-            alert('Changed Year '+ year + ' Successfully')
+        url: "/admin/update-year-movie",
+        method: 'post',
+        data: {
+            year: year,
+            id_phim: id_phim,
+            _token: _token
+        },
+        success: () => {
+            alert('Changed Year ' + year + ' Successfully')
         }
     });
 })
 
-$('.category_get').change(function()  {
+$('.category_get').change(function () {
     let category_id = $(this).val();
     let movie_id = $(this).attr('id');
-    console.log(movie_id,category_id)
+    console.log(movie_id, category_id)
     let _token = $('input[name="_token"]').val();
     $.ajax({
-        url:"/admin/update-category-get",
-        method:"GET",
-        data: { category_id: category_id, movie_id: movie_id, _token: _token},
+        url: "/admin/update-category-get",
+        method: "GET",
+        data: {
+            category_id: category_id,
+            movie_id: movie_id,
+            _token: _token
+        },
         success: function () {
             alert('thay doi category theo của movie thanh cong')
         }
     })
 });
 
-$('.country_get').change(function()  {
+$('.country_get').change(function () {
     let country_id = $(this).val();
     let movie_id = $(this).attr('id');
-    console.log(movie_id,country_id)
+    console.log(movie_id, country_id)
     let _token = $('input[name="_token"]').val();
     $.ajax({
-        url:"/admin/update-country-get",
-        method:"GET",
-        data: { country_id: country_id, movie_id: movie_id, _token: _token},
+        url: "/admin/update-country-get",
+        method: "GET",
+        data: {
+            country_id: country_id,
+            movie_id: movie_id,
+            _token: _token
+        },
         success: function () {
             alert('thay doi country theo của movie thanh cong')
         }
     })
 });
 
-$('.status_get').change(function()  {
+$('.status_get').change(function () {
     let status_val = $(this).val();
     let movie_id = $(this).attr('id');
-    console.log(movie_id,status_val)
+    console.log(movie_id, status_val)
     let _token = $('input[name="_token"]').val();
     $.ajax({
-        url:"/admin/update-status-get",
-        method:"GET",
-        data: { status_val: status_val, movie_id: movie_id, _token: _token},
+        url: "/admin/update-status-get",
+        method: "GET",
+        data: {
+            status_val: status_val,
+            movie_id: movie_id,
+            _token: _token
+        },
         success: function () {
             alert('thay doi status theo của movie thanh cong')
         }
     })
 });
 
-$('.thuocphim_get').change(function()  {
+$('.thuocphim_get').change(function () {
     let thuocphim_val = $(this).val();
     let movie_id = $(this).attr('id');
-    console.log(movie_id,thuocphim_val)
+    console.log(movie_id, thuocphim_val)
     let _token = $('input[name="_token"]').val();
     $.ajax({
-        url:"/admin/update-thuocphim-get",
-        method:"GET",
-        data: { thuocphim_val: thuocphim_val, movie_id: movie_id, _token: _token},
+        url: "/admin/update-thuocphim-get",
+        method: "GET",
+        data: {
+            thuocphim_val: thuocphim_val,
+            movie_id: movie_id,
+            _token: _token
+        },
         success: function () {
             alert('thay doi thuocphim theo của movie thanh cong')
         }
     })
 });
 
-$('.hotmovie_get').change(function()  {
+$('.hotmovie_get').change(function () {
     let hotmovie_val = $(this).val();
     let movie_id = $(this).attr('id');
-    console.log(movie_id,hotmovie_val)
+    console.log(movie_id, hotmovie_val)
     let _token = $('input[name="_token"]').val();
     $.ajax({
-        url:"/admin/update-hotmovie-get",
-        method:"GET",
-        data: { hotmovie_val: hotmovie_val, movie_id: movie_id, _token: _token},
+        url: "/admin/update-hotmovie-get",
+        method: "GET",
+        data: {
+            hotmovie_val: hotmovie_val,
+            movie_id: movie_id,
+            _token: _token
+        },
         success: function () {
             alert('thay doi hotmovie theo của movie thanh cong')
         }
     })
 });
 
-$('.vietsub_get').change(function()  {
+$('.vietsub_get').change(function () {
     let vietsub_val = $(this).val();
     let movie_id = $(this).attr('id');
-    console.log(movie_id,vietsub_val)
+    console.log(movie_id, vietsub_val)
     let _token = $('input[name="_token"]').val();
     $.ajax({
-        url:"/admin/update-vietsub-get",
-        method:"GET",
-        data: { vietsub_val: vietsub_val, movie_id: movie_id, _token: _token},
+        url: "/admin/update-vietsub-get",
+        method: "GET",
+        data: {
+            vietsub_val: vietsub_val,
+            movie_id: movie_id,
+            _token: _token
+        },
         success: function () {
             alert(`thay doi phim thành ${vietsub_val == 1 ? 'Thuyết minh' : 'Vietsub'} theo của movie thanh cong`)
         }
     })
 });
 
-$(document).on('change','.file-image', function () {
+$(document).on('change', '.file-image', function () {
     let movie_id = $(this).data('movie_id');
     let image = document.getElementById("file-" + movie_id).files[0];
     let form_data = new FormData();
     form_data.append("file", document.getElementById("file-" + movie_id).files[0]);
     form_data.append("movie_id", movie_id);
-    console.log(movie_id,image,form_data);
+    console.log(movie_id, image, form_data);
 
     $.ajax({
-        url:"/admin/update-image-movie-ajax",
+        url: "/admin/update-image-movie-ajax",
         method: "POST",
-        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: form_data,
-        contentType:false,
-        cache:false,
-        processData:false,
+        contentType: false,
+        cache: false,
+        processData: false,
         success: function (data) {
             location.reload();
             $("#success_image").html('<span class="text-success">Cật nhật hình ảnh thành công</span>')
         }
     });
+
+});
+
+function remove_background(movie_id) {
+    for (let count = 1; count <= 5; count++) {
+        $('#' + movie_id + '-' + count).css('color', '#ccc');
+    }
+}
+
+//hover chuột đánh giá sao
+$(document).on('mouseenter', '.rating', function () {
+    let index = $(this).data("index");
+    let movie_id = $(this).data('movie_id');
+    // alert(index);
+    // alert(movie_id);
+    remove_background(movie_id);
+    for (let count = 1; count <= index; count++) {
+        $('#' + movie_id + '-' + count).css('color', '#ffcc00');
+    }
+});
+//nhả chuột ko đánh giá
+$(document).on('mouseleave', '.rating', function () {
+    let index = $(this).data("index");
+    let movie_id = $(this).data('movie_id');
+    let rating = $(this).data("rating");
+    remove_background(movie_id);
+    //alert(rating);
+    for (let count = 1; count <= rating; count++) {
+        $('#' + movie_id + '-' + count).css('color', '#ffcc00');
+    }
+});
+
+//click đánh giá sao
+$(document).on('click', '.rating', function () {
+
+    let index = $(this).data("index");
+    let movie_id = $(this).data('movie_id');
+    console.log(index,movie_id);
+    $.ajax({
+        url: "/add-rating",
+        method: "POST",
+        data: {
+            index: index,
+            movie_id: movie_id
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            if (data == 'done') {
+
+                alert("Bạn đã đánh giá " + index + " trên 5");
+                location.reload();
+
+            } else if (data == 'exist') {
+                alert("Bạn đã đánh giá phim này rồi,cảm ơn bạn nhé");
+            } else {
+                alert("Lỗi đánh giá");
+            }
+
+        }
+    });
+
+
 
 });

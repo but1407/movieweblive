@@ -30,4 +30,7 @@ class Movie extends Model
         return $this
         ->belongsToMany(Tag::class, 'movie_tags','movie_id','tag_id');
     }
+    public function ratings(){
+        return $this->hasMany(Rating::class,'movie_id');
+    }
 }

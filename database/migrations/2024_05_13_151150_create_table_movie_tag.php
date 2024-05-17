@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('movie_tag', function (Blueprint $table) {
-            $table->integer('movie_id')->nullable();
-            $table->integer('tag_id')->nullable();
+        Schema::table('movie_tags', function (Blueprint $table) {
+            // $table->integer('movie_id')->nullable();
+            // $table->integer('tag_id')->nullable();
         });
     }
 

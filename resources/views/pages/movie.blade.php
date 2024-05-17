@@ -163,6 +163,28 @@
                                         @else
                                             ĐANG CẬP NHẬT
                                         @endif
+                                    </li>>
+                                        <div class="">
+                                            <ul class="list-inline" title="Average Rating">
+                                                @for ($count= 1; $count<=5;$count++)
+                                                    @php
+
+                                                        $color = $count <= $rating ? 'color:#ffcc00;' : '#ccc;';
+                                                    @endphp
+                                                
+                                                    <div title="start_rating" 
+                                                    id="{{ $movie->id }}-{{ $count }}"
+                                                        data-index="{{ $count }}" 
+                                                        data-movie_id="{{ $movie->id }}"
+                                                        data-rating="{{ $rating }}"
+                                                        class="rating"
+                                                        style="cursor:pointer; {{ $color }}
+                                                            font-size:30px;
+                                                        "
+                                                        >&#9733;</div>
+                                                @endfor
+                                            </ul>
+                                        </div>
                                     </li>
                                 </ul>
                                 <div class="movie-trailer hidden"></div>
