@@ -24,7 +24,7 @@ class MovieCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'title' => 'required|unique',
             'name_eng' => 'required',
             'movie_duration' => 'required',
             'tags' => 'required',
@@ -34,6 +34,7 @@ class MovieCreateRequest extends FormRequest
     public function messages() : array{
         return [
             'title.required' => 'Trường title không được bỏ trống',
+            'title.unique' => 'Movie đã tồn tại',
             'name_eng.required' => 'Trường name_eng không được bỏ trống',
             'movie_duration.required' => 'Trường Thời lượng phim không được bỏ trống',
             'tags.required' => 'Trường tags không được bỏ trống',

@@ -24,12 +24,14 @@ class CountryCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required'
+            'title' => 'required|unique'
         ];
     }
     public function messages() : array{
         return [
-            'title.required' => 'Trường title không được bỏ trống'
+            'title.required' => 'Trường title không được bỏ trống',
+            'title.unique' => 'Country đã tồn tại',
+
         ];
     }
 }

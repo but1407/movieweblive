@@ -180,11 +180,14 @@ class MovieController extends Controller
     public function update_year(Request $request){
         $data = $request->all();
 
-        Movie::find($data['id_phim'])->update(
+        $movie =Movie::find($data['id_phim'])->update(
             [
                 'year' => $data['year'],
             ]   
         );
+        if($movie instanceof Movie){
+            toastr()->success('Data has been saved successfully!');
+        }
     }
     public function update_topview(Request $request){
         $data = $request->all();
