@@ -21,8 +21,18 @@
                                     </div>
                                     <p class="title">{{ $movie->title }}</p>
                                 </a>
+                                <div class="star_rating" style="display:flex;">
+                                    @for($i =  1; $i <= 5; $i++)
+                                    {{-- @php
+                                        $color = $i <= $rating ? 'color:#ffcc00;' : 'color:#ccc;';
+                                    @endphp --}}
+                                        <div title="star_rating" style="font-size:26px; color:#ffcc00; margin-right:10px;">
+                                            &#9733;
+                                        </div>
+                                    @endfor
+                                </div>
                                 <div class="viewsCount" style="color: #9d9d9d;">{{ number_format($movie->view) }} lượt xem</div>
-                                <div class="country" style="color: #9d9d9d;">{{ $movie->genres->title . ' - ' . $movie->countries->title }}</div>
+                                <div class="country" style="color: #9d9d9d;">{{ $movie->genres->title . ' - ' . $movie->countries->title . '-' . $movie->year }}</div>
 
                                 <div style="float: left;">
                                     <span class="user-rate-image post-large-rate stars-large-vang"
@@ -58,6 +68,16 @@
                                         {{-- <span class="is_trailer">Trailer</span> --}}
                                     </div>
                                     <p class="title">{{ $movie->title }}</p>
+                                    <div class="star_rating" style="display:flex;">
+                                        @for($i =  1; $i <= 5; $i++)
+                                        {{-- @php
+                                            $color = $i <= $rating ? 'color:#ffcc00;' : 'color:#ccc;';
+                                        @endphp --}}
+                                            <div title="star_rating" style="font-size:26px; color:#ffcc00; margin-right:10px;">
+                                                &#9733;
+                                            </div>
+                                        @endfor
+                                    </div>
                                 </a>
                                 <div class="viewsCount" style="color: #9d9d9d;">{{ number_format($movie->view) }} lượt xem</div>
                                 <div class="country" style="color: #9d9d9d;">{{ $movie->genres->title . ' - ' . $movie->countries->title }}</div>

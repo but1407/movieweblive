@@ -173,6 +173,7 @@ class IndexController extends Controller
         ]);
     }
     public function tags($tag){
+        
         $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
         $movies = $this->movie->where('tags','LIKE','%'.$tag.'%')->orderBy('updated_at','DESC')->paginate(40);
         // $tag = $tag;

@@ -176,10 +176,10 @@
                                             }
                                         </style>
                                             <div class="list-inline containe" title="Average Rating">
-                                                <span style="color:#fff">Đánh giá</span> :
+                                                <span style="color:#fff">Đánh giá :</span> 
                                                 @for ($count= 1; $count<=5;$count++)
                                                     @php
-                                                        $color = $count <= $rating ? 'color:#ffcc00;' : '#ccc;';
+                                                        $color = $count <= $rating ? 'color:#ffcc00;' : 'color:#ccc;';
                                                     @endphp
                                                 
                                                     <div title="start_rating" 
@@ -189,7 +189,7 @@
                                                         data-rating="{{ $rating }}"
                                                         class="rating"
                                                         style="cursor:pointer; {{ $color }}
-                                                            font-size:30px;
+                                                            font-size:30px; margin-left:10px;
                                                         "
                                                         >&#9733;</div>
                                                 @endfor
