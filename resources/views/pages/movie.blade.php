@@ -84,33 +84,10 @@
                                 <ul class="list-info-group">
                                     <li class="list-info-group-item">
                                         <span style="color:#fff">Trạng Thái</span> : <span class="quality">
-                                            @switch($movie->resolution)
-                                                @case(0)
-                                                    HD
-                                                @break
-
-                                                @case(1)
-                                                    SD
-                                                @break
-
-                                                @case(2)
-                                                    CAM
-                                                @break
-
-                                                @case(3)
-                                                    RAW
-                                                @break
-
-                                                @case(4)
-                                                    FullHD
-                                                @break
-
-                                                @case(5)
-                                                    Trailer
-                                                @break
-
-                                                @default
-                                            @endswitch
+                                            @php
+                                                $options =array('0'=>'HD','1'=>'SD','2'=>'CAM','3'=>'RAW','4'=>'FullHD','5'=>'Trailer');
+                                            @endphp
+                                            {{ $options[$movie->resolution] }}
                                         </span>
                                         <span class="episode">
                                             {{ $movie->vietsub == 1 ? ' Thuyet minh' : ' Vietsub' }}
@@ -246,7 +223,7 @@
                                     $current_url = Request::url();
                                 @endphp
                                 <div class="fb-like" 
-                                data-href="{{ $current_ur }}" data-width="" data-layout="" data-action="" data-size="" data-share="true"></div>
+                                data-href="{{ $current_url }}" data-width="" data-layout="" data-action="" data-size="" data-share="true"></div>
 
                             </article>
                         </div>

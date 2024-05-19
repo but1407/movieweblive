@@ -29,7 +29,7 @@
 <link rel='dns-prefetch' href='//s.w.org' />
 
 <link rel='stylesheet' id='bootstrap-css' href='{{ asset('layout/css/bootstrap.min.css?ver=5.7.2') }}' media='all' />
-
+<link rel="stylesheet" href="{{ asset('layout/footer/footer.css') }}">
 <link rel='stylesheet' id='style-css' href='{{ asset('layout/css/style.css?ver=5.7.2') }}' media='all' />
 <link rel='stylesheet' id='wp-block-library-css' href='{{ asset('layout/css/style.css?ver=5.7.2') }}' media='all' />
 <script type='text/javascript' src='{{ asset('layout/js/jquery.min.js?ver=5.7.2') }}' id='halim-jquery-js'></script>

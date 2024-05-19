@@ -30,28 +30,10 @@
                                 <figure><img class="lazy img-responsive" src="{{ asset('uploads/movie/' . $hot->image) }}"
                                         alt="{{ $hot->title }}" title="{{ $hot->title }}"></figure>
                                 <span class="status">
-                                    @switch($hot->resolution)
-                                        @case(0)
-                                            HD
-                                        @break
-                                        @case(1)
-                                            SD
-                                        @break
-                                        @case(2)
-                                            CAM
-                                        @break
-                                        @case(3)
-                                            RAW
-                                        @break
-                                        @case(4)
-                                            FullHD
-                                        @break
-                                        @case(5)
-                                            Trailer
-                                        @break
-                                        @default
-                                    @endswitch
-
+                                    @php
+                                        $options =array('0'=>'HD','1'=>'SD','2'=>'CAM','3'=>'RAW','4'=>'FullHD','5'=>'Trailer');
+                                    @endphp
+                                    {{ $options[$hot->resolution] }}
                                 </span>
                                 <span class="episode">
                                     @if ($hot->thuocphim == 0)
@@ -112,33 +94,10 @@
                                                     src="{{ asset('uploads/movie/' . $movie->image) }}"
                                                     alt="{{ $movie->title }}" title="{{ $movie->title }}"></figure>
                                             <span class="status">
-                                                @switch($hot->resolution)
-                                                    @case(0)
-                                                        HD
-                                                    @break
-
-                                                    @case(1)
-                                                        SD
-                                                    @break
-
-                                                    @case(2)
-                                                        CAM
-                                                    @break
-
-                                                    @case(3)
-                                                        RAW
-                                                    @break
-
-                                                    @case(4)
-                                                        FullHD
-                                                    @break
-
-                                                    @case(5)
-                                                        Trailer
-                                                    @break
-
-                                                    @default
-                                                @endswitch
+                                                @php
+                                                    $options =array('0'=>'HD','1'=>'SD','2'=>'CAM','3'=>'RAW','4'=>'FullHD','5'=>'Trailer');
+                                                @endphp
+                                                {{ $options[$movie->resolution] }}
                                             </span>
                                             <span class="episode">
                                                 @if ($movie->thuocphim == 0)

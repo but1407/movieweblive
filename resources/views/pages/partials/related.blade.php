@@ -14,27 +14,10 @@
                             <figure><img class="lazy img-responsive"
                                     src="{{ asset('uploads/movie/' . $relate->image) }}"
                                     alt="{{ $relate->title }}" title="{{ $relate->title }}"></figure>
-                            @switch($movie->resolution)
-                                @case(0)
-                                    HD
-                                @break
-                                @case(1)
-                                    SD
-                                @break
-                                @case(2)
-                                    CAM
-                                @break
-                                @case(3)
-                                    RAW
-                                @break
-                                @case(4)
-                                    FullHD
-                                @break
-                                @case(5)
-                                    Trailer
-                                @break
-                                @default
-                            @endswitch
+                                    @php
+                                        $options =array('0'=>'HD','1'=>'SD','2'=>'CAM','3'=>'RAW','4'=>'FullHD','5'=>'Trailer');
+                                    @endphp
+                                    {{ $options[$relate->resolution] }}
                             </span>
                             <span class="episode">
                                 <i class="fa fa-play" aria-hidden="true"></i>
