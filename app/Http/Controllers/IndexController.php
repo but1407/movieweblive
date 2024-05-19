@@ -57,14 +57,11 @@ class IndexController extends Controller
             $query->where('hot_movie', 1)->where('status', 1);
         })->orderByDesc('updated_at')->get();
         $category_home = $this->category->with('movies')->orderByDesc('updated_at')->where('status',1)->get();
-
         return view('pages.home',[
             'title' => 'Home',
             'category_home' => $category_home,
             'phimhot' =>$phimhot,
             'phimhot_trailer'=>$phimhot_trailer,
-            
-
         ]);
     }
     public function category(Request $request,$slug){

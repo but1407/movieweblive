@@ -6,8 +6,7 @@
 @section('js')
     <script type="text/javascript" src="{{ asset('layout/movie/movie.js') }}"></script>
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0"
-        nonce="bEqnJ9df"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0" nonce="VW6PY75q"></script>
 @endsection
 
 @section('content')
@@ -236,6 +235,23 @@
                             </article>
                         </div>
                     </div>
+                    {{-- LIKE & SHARE --}}
+                    <div class="section-bar clearfix">
+                        <h2 class="section-title"><span style="color:#ffed4d">LIKE & SHARE</span></h2>
+                    </div>
+                    <div class="entry-content htmlwrap clearfix">
+                        <div class="video-item halim-entry-box">
+                            <article id="post-38424" class="item-content">
+                                @php
+                                    $current_url = Request::url();
+                                @endphp
+                                <div class="fb-like" 
+                                data-href="{{ $current_ur }}" data-width="" data-layout="" data-action="" data-size="" data-share="true"></div>
+
+                            </article>
+                        </div>
+                    </div>
+
                     {{-- Trailer phim --}}
                     <div class="section-bar clearfix">
                         <h2 class="section-title"><span style="color:#ffed4d">Trailer</span></h2>

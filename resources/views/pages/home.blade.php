@@ -79,15 +79,32 @@
         </div>
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
             @foreach ($category_home as $cate_home)
-                <section id="halim-advanced-widget-2">
-                    <div class="section-heading">
+                <section id="halim-advanced-widget-2" >
+                    <div class="section-heading" >
                         <a href="{{ route('category', $cate_home->slug) }}" title="{{ $cate_home->title }}">
                             <span class="h-text">{{ $cate_home->title }}</span>
                         </a>
+                        <a class="see-all" style="" href="{{ route('category',[$cate_home->slug]) }}">xem thêm</a>
+
                     </div>
+                    <style>
+                        .see-all{
+                            position: absolute;
+                            background: #408BEA;
+                            color: #fff;
+                            font-size: 10px;
+                            font-weight: 300;
+                            text-transform: uppercase;
+                            padding: 3px 8px;
+                            border-radius: 3px;
+                            margin-right: 10px;
+                            margin-top: 4px;
+                            right: 0;
+                        }
+                    </style>
                     <div id="halim-advanced-widget-2-ajax-box" class="halim_box">\
                         @if (isset($cate_home->movies))
-                            @foreach ($cate_home->movies->take(10) as $movie)
+                            @foreach ($cate_home->movies->take(16) as $movie)
                                 <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-37606">
                                     <div class="halim-item">
                                         <a class="halim-thumb" href="{{ route('movie.detail', $movie->slug) }}">
