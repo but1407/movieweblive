@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\Admin\CountryController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\MovieController;
+use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\EpisodeController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,4 +80,8 @@ Route::middleware(['auth'])
         });
 });
 
+//update sitemap
+Route::get('/create_sitemap', function(){
+    return Artisan::call('sitemap:create');
+});
 
