@@ -58,7 +58,6 @@ class MovieService
             'category_id' => $request->category_id,
             // 'tags' => $request->tags,
 
-
         ]);
         //add more genre
         $movie->movieGenres()->attach($request->genre);
@@ -115,7 +114,8 @@ class MovieService
 
     }
     public function storeTags($request){
-        foreach($request->tags as $tagItem){
+        $tags = json_decode($request->tags, true);
+        foreach($tags as $tagItem){
             $tagIntance = Tag::firstOrCreate([
                 'name' => $tagItem,
             ]);

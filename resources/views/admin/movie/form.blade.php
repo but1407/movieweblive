@@ -12,6 +12,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bao gồm JavaScript của Select2 -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('layout/movie/movie.js') }}"></script>
+    @endsection
+@section('css')
+<link rel="stylesheet" href="{{ asset('layout/movie/movie.css') }}">
 @endsection
 @section('content')
 <div class="container">
@@ -65,20 +69,10 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('tags', 'Tags phim', []) !!}
-                            {{-- {!! Form::textarea('tags[]', isset($movie) ? $movie->tags : '', ['style'=>'resize:none','class'=>'form-control','placeholder' => 'Nhập dữ liệu...']) !!} --}}
-                            {{-- <select id="danhsach" name="danhsach[]" multiple="multiple" style="width: 100%;">
-                                
-                            </select> --}}
-                            {{-- <style>
-                                .selected-options {
-                                    margin-top: 10px;
-                                    padding: 10px;
-                                    border: 1px solid #ccc;
-                                    width: 300px;
-                                    height: 100px;
-                                    overflow-y: auto;
-                                }
-                            </style> --}}
+                            
+                            <div class="flex2" >
+                            </div>
+                            <input type="hidden" name="tags" id="labelsInput" />
                         </div>
                         <div class="form-group">
                             {!! Form::label('Active', 'Active', []) !!}
