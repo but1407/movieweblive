@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\InfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,14 @@ Route::middleware(['auth'])
     ->group(function () {
         //Admin
         Route::prefix('admin')->group(function () {
+            //Info website
+            Route::controller(InfoController::class)->group(function () {
+                Route::get('/info/create', 'create')->name('info.create');
+                Route::post('info/store', 'store')->name('info.store');
+                Route::post('info/update', 'update')->name('info.update');
+                Route::post('info/destroy', 'destroy')->name('info.destroy');
+            });
+
             //Category
             Route::resource('category', CategoryController::class);
             Route::post('resorting_category', [CategoryController::class, 'resorting'])->name('resorting_category');

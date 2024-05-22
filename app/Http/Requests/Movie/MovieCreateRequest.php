@@ -42,7 +42,6 @@ class MovieCreateRequest extends FormRequest
             'image.image' => 'Image phải là định dạng image',
             'image.mimes' => 'file phải có đuôi jpeg,png,jpg hoặc gif',
             'image.max' => 'file không được vượt quá 2MB',
-
         ];
     }
 }

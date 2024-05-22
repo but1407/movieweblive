@@ -17,6 +17,7 @@ class MovieService
     {
         $data = [];
         $get_image = $request->file('image');
+        //TODO: Sửa path
         $path = 'uploads/movie/';
         try {
             if ($get_image) {
