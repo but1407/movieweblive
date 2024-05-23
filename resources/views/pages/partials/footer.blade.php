@@ -8,39 +8,21 @@
                 <div class="columenu">
                     <div class="item">
                         <h3>Phim mới</h3>
-                        <ul>
-                            <li><a href="/the-loai/phim-khoa-hoc">Phim Khoa Học</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="/the-loai/phim-kinh-di">Phim Kinh Dị</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="/the-loai/phim-chieu-rap">Phim Chiếu Rạp</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="/the-loai/phim-hinh-su">Phim Hình Sự</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="/the-loai/phim-hanh-dong">Phim Hành Động</a></li>
-                        </ul>
+                        @foreach ($categories as $category )
+                            <ul>
+                                <li><a href="/the-loai/phim-khoa-hoc">{{ $category->title }}</a></li>
+                            </ul>
+                        @endforeach
+                        
                     </div>
                     <div class="item">
                         <h3>Phim hay</h3>
-                        <ul>
-                            <li><a href="/quoc-gia/phim-au-my">Phim Âu Mỹ</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="/quoc-gia/phim-han-quoc">Phim Hàn Quốc</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="/quoc-gia/phim-trung-quoc">Phim Trung Quốc</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="/quoc-gia/phim-nhat-ban">Phim Nhật Bản</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="/quoc-gia/phim-thai-lan">Phim Thái Lan</a></li>
-                        </ul>
+                        @foreach ($countries as $country )
+                            <ul>
+                                <li><a href="/quoc-gia/phim-au-my">Phim {{ $country->title }}</a></li>
+                            </ul>
+                        @endforeach
+                        
                     </div>
                     <div class="item">
                         <h3>Thông tin</h3>
