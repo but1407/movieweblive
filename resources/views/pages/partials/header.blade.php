@@ -1,8 +1,28 @@
+<style>
+    .logo{
+        float: left;
+        padding: 18px 17px 17px;
+        text-align: center;
+        height: 100%;
+        background: rgba(255, 255, 255, .05);
+    }
+    .slogan{
+        height: 100%;
+
+    }
+
+</style>
 <header id="header">
     <div class="container">
         <div class="row" id="headwrap">
             <div class="col-md-3 col-sm-6 slogan">
-                <p class="site-title"><a class="logo" href="" title="phim hay ">Phim Hay</p>
+                {{-- <p class="site-title"><a class="logo" href="" title="phim hay ">
+                    Phim Hay</p> --}}
+                    <div class="logo">
+                        <a href="https://phimmoiiii.net">
+                            <img src="https://phimmoiiii.net/wp-content/uploads/2023/03/phimmoi.png" alt="Phimmoi">
+                        </a>
+                    </div>
                 </a>
             </div>
             <div class="col-md-5 col-sm-6 halim-search-form hidden-xs">
@@ -73,7 +93,8 @@
             <div class="collapse navbar-collapse" id="halim">
                 <div class="menu-menu_1-container">
                     <ul id="menu-menu_1" class="nav navbar-nav navbar-left">
-                        <li class="current-menu-item active"><a title="Trang Chủ" href="{{ route('home') }}">Trang
+                        <li class="current-menu-item active">
+                            <a title="Trang Chủ" href="{{ route('home') }}">Trang
                                 Chủ</a></li>
                         <li class="mega dropdown">
                             <a title="Thể Loại" href="#" data-toggle="dropdown" class="dropdown-toggle"

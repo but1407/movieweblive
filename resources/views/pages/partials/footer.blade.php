@@ -62,8 +62,10 @@
                     </div>
                 </div>
                 <div class="fotlogo">
-                    <div class="logo"><img src="https://phimmoiiii.net/wp-content/uploads/2023/03/phimmoi.png"
-                            alt="Phimmoi"></div>
+                    <div class="logo">
+                        <img src="https://phimmoiiii.net/wp-content/uploads/2023/03/phimmoi.png"
+                            alt="Phimmoi">
+                        </div>
                     <div class="text">
                         <p><a href="https://phimmoiiii.net"><b>Phimmoi</b></a> - Trang xem phim Online với giao diện mới
                             được bố trí và thiết kế thân thiện với người dùng. Nguồn phim được tổng hợp từ các website lớn
