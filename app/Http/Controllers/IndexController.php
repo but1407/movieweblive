@@ -57,6 +57,7 @@ class IndexController extends Controller
             $query->where('hot_movie', 1)->where('status', 1);
         })->orderByDesc('updated_at')->get();
         $category_home = $this->category->with('movies')->orderByDesc('updated_at')->where('status',1)->get();
+        
         return view('pages.home',[
             'title' => 'Home',
             'category_home' => $category_home,
@@ -71,6 +72,8 @@ class IndexController extends Controller
         $genres = $this->genre->orderByDesc('updated_at')->get();
         $movies = $category_slug->movies();
         $movies = $this->category->filter($request, $movies);
+        $meta_title = $category_slug->title;
+        $meta_description = $category_slug->description;
         
         return view('pages.category',[
             'title' => $category_slug->title,
@@ -79,13 +82,15 @@ class IndexController extends Controller
             'movies' => $movies,
             'phimhot_trailer'=>$phimhot_trailer,
             'genres'=>$genres,
+            'meta_title'=>$meta_title,
+            'meta_description'=>$meta_description,
         ]);
     }
     public function year($year){
         $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
         $movies = $this->movie->where('year', $year)->orderByDesc('created_at')->get();
         // $year = $year;
-    
+        
         return view('pages.year',[
             'year' => $year,
             'movies'=>$movies,
@@ -97,6 +102,8 @@ class IndexController extends Controller
     public function genre($slug){
         $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
         $genre_slug = $this->genre->where('slug', $slug)->first();
+        $meta_title = $genre_slug->title;
+        $meta_description = $genre_slug->description;
         //more genre
         $movie_genre = $this->genre->find($genre_slug->id)->genreMovies;
         $many_renre = [];
@@ -111,6 +118,8 @@ class IndexController extends Controller
             'genre_slug'=>$genre_slug,
             'movies' => $movies,
             'phimhot_trailer'=>$phimhot_trailer,
+            'meta_title'=>$meta_title,
+            'meta_description'=>$meta_description,
             
         ]);
     }
@@ -119,6 +128,8 @@ class IndexController extends Controller
         $country = $this->country->orderByDesc('updated_at')->get();
         $country_slug = $this->country->where('slug', $slug)->first();
         $movies = $country_slug->movies()->paginate(40);
+        $meta_title = $country_slug->title;
+        $meta_description = $country_slug->description;
 
         return view('pages.country',[
             'title' => $country_slug->title,
@@ -126,8 +137,9 @@ class IndexController extends Controller
             'country_slug'=>$country_slug,
             'movies' => $movies,
             'phimhot_trailer'=>$phimhot_trailer,
+            'meta_title'=>$meta_title,
+            'meta_description'=>$meta_description,
             
-
         ]);
     }
     public function movie($slug){
@@ -151,6 +163,7 @@ class IndexController extends Controller
         $rating = Rating::where('movie_id', $movie->id)->avg('rating');
         $rating = round($rating);
         $count_total = Rating::where('movie_id', $movie->id)->count();
+        
         return view('pages.movie',[
             'title' => 'movie',
             'movie'=>$movie,

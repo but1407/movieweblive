@@ -14,12 +14,15 @@
 <meta name="description" content="Phim hay 2021 - Xem phim hay nhất, xem phim online miễn phí, phim hot , phim nhanh" />
 <link rel="canonical" href="">
 <link rel="next" href="" />
+
+<meta property="canonical" href="{{ Request::url() }}" />
+
 <meta property="og:locale" content="vi_VN" />
-<meta property="og:title" content="Phim hay 2020 - Xem phim hay nhất" />
+<meta property="og:title" content="{{ $meta_title ?? '' }}" />
 <meta property="og:description"
-    content="Phim hay 2020 - Xem phim hay nhất, phim hay trung quốc, hàn quốc, việt nam, mỹ, hong kong , chiếu rạp" />
-<meta property="og:url" content="" />
-<meta property="og:site_name" content="Phim hay 2021- Xem phim hay nhất" />
+    content="{{ $meta_description ?? ''  }}" />
+<meta property="og:url" content="{{ Request::url() }}" />
+<meta property="og:site_name" content="{{ $meta_title ?? '' }}" />
 <meta property="og:image" content="" />
 <meta property="og:image:width" content="300" />
 <meta property="og:image:height" content="55" />

@@ -1,5 +1,3 @@
-
-
 <div class="clearfix"></div>
 <footer id="footer" class="clearfix main">
     <div class="fbox">
