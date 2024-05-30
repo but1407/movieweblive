@@ -1,95 +1,24 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
-    @yield('title')
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- Scripts -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <link rel='dns-prefetch' href='//s.w.org' />
-
-    <link rel='stylesheet' id='bootstrap-css' href='{{ asset('layout/css/bootstrap.min.css?ver=5.7.2') }}' media='all' />
-
-    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
-    @yield('css')
+    @include('layouts.partials.head')
 </head>
-<body>
-    <div id="app" >
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="border-bottom: 1px solid rgba(3.5,3.5,3,3);">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        {{-- @include('layouts.navbar') --}}
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-                                
-                                {{-- <div class="dropdown-menu" aria-labelledby="navbarDropdown"> --}}
-                                    
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                {{-- </div> --}}
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <main class="py-4">
-            @include('admin.alert')
-            @if(Auth::id())
-                <div class="container-fluid" style="margin-bottom:10px">
-                    @include('layouts.navbar')
-                </div>
-            @endif
-            @yield('content')
-        </main>
+<body class="cbp-spmenu-push">
+    <div class="main-content">
+        @include('layouts.partials.sidebar')
+        @include('layouts.partials.header')
+        @yield('content')
     </div>
+    @include('layouts.partials.footer')
     @include('layouts.partials.foot')
-    
 </body>
+
 </html>
