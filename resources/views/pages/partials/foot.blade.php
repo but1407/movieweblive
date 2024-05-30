@@ -5,7 +5,7 @@
 </script>
 
 <script src="{{ asset('layout/home/home.css') }}"></script>
-
+<script type='text/javascript' src="{{ asset('layout/head/head.js') }}"></script>
 <script type='text/javascript'>
     $(document).ready(() => {
         $('#search').keyup(() => {

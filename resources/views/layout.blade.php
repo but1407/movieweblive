@@ -11,7 +11,7 @@
         @yield('content')
     </div>
     <div class="clearfix"></div>
-
+    @include('pages.partials.popup_banner')
     @include('pages.partials.footer')
     @include('pages.partials.foot')
 </body>
