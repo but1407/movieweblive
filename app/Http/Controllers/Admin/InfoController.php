@@ -43,4 +43,7 @@ class InfoController extends Controller
     public function update(){
         
     }
+    public  function dashboard(){
+        return view('layouts.partials.dashboard');
+    }
 }

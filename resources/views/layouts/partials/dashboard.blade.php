@@ -6,8 +6,7 @@
 
         
         <!-- main content start-->
-        <div id="page-wrapper">
-            <div class="main-page">
+        
                 <div class="col_3">
                     <div class="col-md-3 widget widget1">
                         <div class="r3_counter_box">
@@ -456,7 +455,6 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-            </div>
-        </div>
+            
     
 @endsection

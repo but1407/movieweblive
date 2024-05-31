@@ -25,7 +25,7 @@ use App\Http\Controllers\Admin\InfoController;
 
 Auth::routes();
 Route::get('/', function (){
-    return redirect('/login');
+    return view('layouts.partials.dashboard');
 });
 
 //Index controller routes
@@ -53,6 +53,8 @@ Route::middleware(['auth'])
                 Route::post('info/store', 'store')->name('info.store');
                 Route::post('info/update', 'update')->name('info.update');
                 Route::post('info/destroy', 'destroy')->name('info.destroy');
+                Route::get('dashboard/index', 'dashboard')->name('dasboard.index');
+
             });
 
             //Category
@@ -72,8 +74,6 @@ Route::middleware(['auth'])
                 Route::get('/update-hotmovie-get',  'update_hotmovie');
                 Route::get('/update-vietsub-get',  'update_vietsub');
                 Route::post('/update-image-movie-ajax',  'update_image_movie');
-                
-                
 
             });
             //Genre

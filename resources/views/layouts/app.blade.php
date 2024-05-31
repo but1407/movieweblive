@@ -15,7 +15,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="main-content">
         @include('layouts.partials.sidebar')
         @include('layouts.partials.header')
-        @yield('content')
+        <div id="page-wrapper">
+            <div class="main-page">
+                @yield('content')
+            </div>
+        </div>
     </div>
     @include('layouts.partials.footer')
     @include('layouts.partials.foot')
