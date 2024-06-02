@@ -179,5 +179,10 @@
 <script src="{{ asset('backends/admin/js/bootstrap.js') }}"></script>
 <!-- //Bootstrap Core JavaScript -->
 
-
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
+<script>
+    $(document).ready(function()  {
+        $('#tablephim').DataTable()
+    });
+</script>
 @yield('js')

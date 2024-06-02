@@ -54,6 +54,3 @@ $( function() {
         }
     });
     });
-$(document).ready(function()  {
-    $('#tablephim').DataTable()
-});

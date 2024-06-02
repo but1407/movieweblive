@@ -5,11 +5,9 @@
 @section('css')
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
 @endsection
 @section('js')
     <script src="{{ asset('layout/category/category.js') }}"></script>
-    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
     <script src="{{ asset('layout/episode/episode.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>

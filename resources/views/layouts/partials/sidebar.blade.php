@@ -23,7 +23,10 @@
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="treeview active">
+                    @php
+                        $segment = Request::segment(1);
+                    @endphp
+                    <li class="treeview {{ $segment == 'category' ? 'active' : '' }}">
                         <a href="#">
                             <i class="fa fa-laptop"></i>
                             <span>Category</span>
@@ -40,7 +43,7 @@
                     </li>
                     
                     <li class="treeview"></li>
-                    <li class="treeview">
+                    <li class="treeview {{ $segment == 'genre' ? 'active' : '' }}">
                         <a href="#">
                             <i class="fa fa-laptop"></i>
                             <span>Genre</span>
@@ -54,13 +57,13 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="{{ $segment == 'country' ? 'active' : '' }}">
                         <a href="{{ route('country.create') }}">
                             <i class="fa fa-th"></i> <span>Country</span>
                             <small class="label pull-right label-info">08</small>
                         </a>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview {{ $segment == 'movie' ? 'active' : '' }}">
                         <a href="#">
                             <i class="fa fa-edit"></i> <span>Movie</span>
                             <i class="fa fa-angle-left pull-right"></i>
@@ -74,7 +77,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview {{ $segment == 'episodes' ? 'active' : '' }}">
                         <a href="#">
                             <i class="fa fa-table"></i> <span>Episodes</span>
                             <i class="fa fa-angle-left pull-right"></i>

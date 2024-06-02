@@ -99,4 +99,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     });
 </script>
 <!-- //requried-jsfiles-for owl -->
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
 @yield('css')
+
