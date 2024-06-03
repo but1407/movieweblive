@@ -8,8 +8,8 @@
             <!--notifications of menu start -->
             <ul class="nofitications-dropdown">
                 <li class="dropdown head-dpdn">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                        aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge">4</span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+                            class="fa fa-envelope"></i><span class="badge">4</span></a>
                     <ul class="dropdown-menu">
                         <li>
                             <div class="notification_header">
@@ -72,8 +72,8 @@
                     </ul>
                 </li>
                 <li class="dropdown head-dpdn">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                        aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue">4</span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+                            class="fa fa-bell"></i><span class="badge blue">4</span></a>
                     <ul class="dropdown-menu">
                         <li>
                             <div class="notification_header">
@@ -136,9 +136,8 @@
                     </ul>
                 </li>
                 <li class="dropdown head-dpdn">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                        aria-expanded="false"><i class="fa fa-tasks"></i><span
-                            class="badge blue1">8</span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+                            class="fa fa-tasks"></i><span class="badge blue1">8</span></a>
                     <ul class="dropdown-menu">
                         <li>
                             <div class="notification_header">
@@ -148,8 +147,7 @@
                         <li>
                             <a href="#">
                                 <div class="task-info">
-                                    <span class="task-desc">Database update</span><span
-                                        class="percentage">40%</span>
+                                    <span class="task-desc">Database update</span><span class="percentage">40%</span>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="progress progress-striped active">
@@ -160,8 +158,7 @@
                         <li>
                             <a href="#">
                                 <div class="task-info">
-                                    <span class="task-desc">Dashboard done</span><span
-                                        class="percentage">90%</span>
+                                    <span class="task-desc">Dashboard done</span><span class="percentage">90%</span>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="progress progress-striped active">
@@ -172,8 +169,7 @@
                         <li>
                             <a href="#">
                                 <div class="task-info">
-                                    <span class="task-desc">Mobile App</span><span
-                                        class="percentage">33%</span>
+                                    <span class="task-desc">Mobile App</span><span class="percentage">33%</span>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="progress progress-striped active">
@@ -184,8 +180,7 @@
                         <li>
                             <a href="#">
                                 <div class="task-info">
-                                    <span class="task-desc">Issues fixed</span><span
-                                        class="percentage">80%</span>
+                                    <span class="task-desc">Issues fixed</span><span class="percentage">80%</span>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="progress progress-striped active">
@@ -248,7 +243,12 @@
                             <a href="#"><i class="fa fa-suitcase"></i> Profile</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-sign-out"></i> Logout</a>
+                            {{-- @if (Auth::check())
+                            <form action="{{ route('logout') }}">
+                                @csrf
+                                    <input type="submit"><i class="fa fa-sign-out"></i> Logout</input>
+                                </form>
+                            @endif --}}
                         </li>
                     </ul>
                 </li>
@@ -259,3 +259,55 @@
     <div class="clearfix"></div>
 </div>
 <!-- //header-ends -->
+
+<div id="page-wrapper">
+    <div class="main-page">
+        <div class="col_3">
+            <div class="col-md-3 widget widget1">
+                <div class="r3_counter_box">
+                    <i class="pull-left fa fa-dollar icon-rounded"></i>
+                    <div class="stats">
+                        <h5><strong>{{ $total_category }}</strong></h5>
+                        <span>Categories</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 widget widget1">
+                <div class="r3_counter_box">
+                    <i class="pull-left fa fa-laptop user1 icon-rounded"></i>
+                    <div class="stats">
+                        <h5><strong>{{ $total_genre }}</strong></h5>
+                        <span>Genres</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 widget widget1">
+                <div class="r3_counter_box">
+                    <i class="pull-left fa fa-american-sign-language-interpreting user2 icon-rounded"></i>
+                    <div class="stats">
+                        <h5><strong>{{ $total_country }}</strong></h5>
+                        <span>Countries</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 widget widget1">
+                <div class="r3_counter_box">
+                    <i class="pull-left fa fa-film dollar1 icon-rounded"></i>
+                    <div class="stats">
+                        <h5><strong>{{ $total_movie }}</strong></h5>
+                        <span>Movies</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 widget">
+                <div class="r3_counter_box">
+                    <i class="pull-left fa fa-users dollar2 icon-rounded"></i>
+                    <div class="stats">
+                        <h5><strong>1450</strong></h5>
+                        <span>Total Users</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

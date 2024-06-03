@@ -28,7 +28,7 @@
                     @endphp
                     <li class="treeview {{ $segment == 'category' ? 'active' : '' }}">
                         <a href="#">
-                            <i class="fa fa-laptop"></i>
+                            <i class="fa fa-list"></i>
                             <span>Category</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
@@ -59,13 +59,13 @@
                     </li>
                     <li class="{{ $segment == 'country' ? 'active' : '' }}">
                         <a href="{{ route('country.create') }}">
-                            <i class="fa fa-th"></i> <span>Country</span>
+                            <i class="fa fa-american-sign-language-interpreting"></i> <span>Country</span>
                             <small class="label pull-right label-info">08</small>
                         </a>
                     </li>
                     <li class="treeview {{ $segment == 'movie' ? 'active' : '' }}">
                         <a href="#">
-                            <i class="fa fa-edit"></i> <span>Movie</span>
+                            <i class="fa fa-film"></i> <span>Movie</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">

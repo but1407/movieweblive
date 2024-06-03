@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Http\View\Composers\FooterComposer;
 use App\Http\View\Composers\HeaderComposer;
 use App\Http\View\Composers\SidebarComposer;
+use App\Http\View\Composers\AdminHeaderComposer;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         Facades\View::composer('pages.partials.header',HeaderComposer::class);
+        Facades\View::composer('layouts.partials.header',AdminHeaderComposer::class);
         Facades\View::composer('pages.partials.sidebar',SidebarComposer::class);
         Facades\View::composer('pages.partials.footer',FooterComposer::class);
 
