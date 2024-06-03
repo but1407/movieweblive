@@ -270,6 +270,7 @@ $(document).on('click', '.rating', function () {
     });
 });
 
+//Tag
 let labels = []
 const containBox = document.querySelector('.flex2')
 const labelsInput = document.getElementById('labelsInput');
@@ -307,9 +308,10 @@ const renderContainer = () => {
 }
 document.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
-        const inputEle = document.querySelector('.input')
-        const valueInput = inputEle.value.trim()
-        const isInputFocus = document.activeElement === inputEle
+        const inputEle = document.getElementsByClassName('.input')
+        console.log(inputEle.value)
+        const valueInput = inputEle.value.trim();
+        const isInputFocus = document.activeElement === inputEle;
         if (valueInput && isInputFocus) {
             labels.push({
                 value: valueInput,

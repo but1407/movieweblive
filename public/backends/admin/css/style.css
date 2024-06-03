@@ -4,6 +4,9 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 */
+.page-minheight{
+  min-height: 180px !important;
+}
 h4, h5, h6,
 h1, h2, h3 {margin: 0;}
 ul, ol {margin: 0;}
@@ -11,8 +14,8 @@ p {margin: 0;}
 
 html, body{
 	font-family: 'PT Sans', sans-serif;
-    font-size: 100%;
-  	overflow-x: hidden;
+  font-size: 100%;
+  overflow-x: hidden;
 	background: #fff;
 }
 body a{

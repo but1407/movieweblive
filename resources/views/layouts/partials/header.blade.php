@@ -260,7 +260,7 @@
 </div>
 <!-- //header-ends -->
 
-<div id="page-wrapper">
+<div id="page-wrapper" class="page-minheight">
     <div class="main-page">
         <div class="col_3">
             <div class="col-md-3 widget widget1">
