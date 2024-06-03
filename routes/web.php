@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\InfoController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,8 @@ use App\Http\Controllers\Admin\InfoController;
 
 Auth::routes();
 Route::get('/', function (){
-    return view('layouts.partials.dashboard');
+    return redirect('/login');
+    // return view('auth.partials.dashboard');
 });
 
 //Index controller routes
