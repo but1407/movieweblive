@@ -76,6 +76,7 @@ Route::middleware(['auth'])
                 Route::get('/update-hotmovie-get',  'update_hotmovie');
                 Route::get('/update-vietsub-get',  'update_vietsub');
                 Route::post('/update-image-movie-ajax',  'update_image_movie');
+                Route::post('/watch-video/ajax',  'watch_video');
 
             });
             //Genre

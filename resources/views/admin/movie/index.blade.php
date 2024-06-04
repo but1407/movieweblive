@@ -13,6 +13,34 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
 @endsection
 @section('content')
+<div class="modal" id="videoModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <div class="">
+
+                        <h5 class="modal-title">
+                            <span id="video_title"></span>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <br>
+
+                    <div style="padding: 0" class="modal-body">
+                        <p style="margin-right:10px; " id="video_desc"></p><br>
+                        <p id="video_link"></p>
+                    </div>
+                    <div class="modal_footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
     <div class="row">
         {{-- <div class="col-md-12"> --}}
@@ -51,7 +79,16 @@
                             <td>
                                 <a href="{{ route("admin.add_episode",$list->id) }}" class="btn btn-primary btn-sm">Thêm tập phim</a>
                                 @foreach ($list->episodes as $e)
-                                    <span class="badge badge-info"><a href="" style="color: #fff">{{ $e->episode }}</a></span>
+                                    
+                                    <span href="" style="cursor: pointer"
+                                        style="color: #fff" 
+                                        class="show_video" 
+                                        data-movie_video_id="{{ $e->movie_id }}" 
+                                        data-video_episode="{{ $e->episode }}">
+                                            <span class="badge badge-info">
+                                            {{ $e->episode }}
+                                            </span>
+                                    </span>
                                 @endforeach
                             </td>
                             <td>{{ $list->episodes_count }}/{{ $list->sotap }}</td>

@@ -9,6 +9,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
                     function hideURLbar() { window.scrollTo(0, 1); }
   </script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <!-- Bootstrap Core CSS -->
 <link href="{{ asset('backends/admin/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
 <!-- Custom CSS -->
