@@ -18,7 +18,7 @@
         {{-- <div class="col-md-12"> --}}
             <a href="{{ route('movie.create') }}" class="btn btn-primary">Thêm phim</a>
             
-            <table class="table table-responsive" id="tablephim">
+            <table class="table" id="tablephim">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -48,7 +48,12 @@
                         <tr>
                             <th scope="row">{{ $key }}</th>
                             <td>{{ $list->title }}</td>
-                            <td><a href="{{ route("admin.add_episode",$list->id) }}" class="btn btn-primary btn-sm">Thêm tập phim</a></td>
+                            <td>
+                                <a href="{{ route("admin.add_episode",$list->id) }}" class="btn btn-primary btn-sm">Thêm tập phim</a>
+                                @foreach ($list->episodes as $e)
+                                    <span class="badge badge-info"><a href="" style="color: #fff">{{ $e->episode }}</a></span>
+                                @endforeach
+                            </td>
                             <td>{{ $list->episodes_count }}/{{ $list->sotap }}</td>
                             <td>{{ $list->movie_duration }}</td>
                             <td>{{ $list->description }}</td>
