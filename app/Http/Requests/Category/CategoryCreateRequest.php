@@ -24,13 +24,13 @@ class CategoryCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|unique'
+            'title' => 'required'
         ];
     }
     public function messages() : array{
         return [
             'title.required' => 'Trường title không được bỏ trống',
-            'title.unique' => 'Category đã tồn tại',
+            
         ];
     }
 }

@@ -77,6 +77,7 @@
                             </li>
                         </ul>
                     </li>
+
                     <li class="treeview {{ $segment == 'episodes' ? 'active' : '' }}">
                         <a href="#">
                             <i class="fa fa-table"></i> <span>Episodes</span>
@@ -94,7 +95,13 @@
                             {{-- <li>
                                 <a href="{{ route('episode.edit',[$]) }}"><i class="fa fa-angle-right"></i> Episode Edit</a>
                             </li> --}}
+                            
                         </ul>
+                    </li>
+                    <li class="{{ $segment == 'link' ? 'active' : '' }}">
+                        <a href="{{ route('movielink.link') }}">
+                            <i class="fa fa-american-sign-language-interpreting"></i> <span>Link Movie</span>
+                        </a>
                     </li>
                     @if (Auth::check())
                         <li>

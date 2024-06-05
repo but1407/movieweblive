@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Genre;
+namespace App\Http\Requests\LinkMovie;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GenreCreateRequest extends FormRequest
+class LinkMovieRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +29,7 @@ class GenreCreateRequest extends FormRequest
     }
     public function messages() : array{
         return [
-            'title.required' => 'Trường title không được bỏ trống',
+            'title.required' => 'Trường title không được bỏ trống', 
         ];
     }
 }

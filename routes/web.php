@@ -5,13 +5,14 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Admin\LinkMovieController;
+use App\Http\Controllers\Admin\InfoController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\InfoController;
-use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +78,7 @@ Route::middleware(['auth'])
                 Route::get('/update-vietsub-get',  'update_vietsub');
                 Route::post('/update-image-movie-ajax',  'update_image_movie');
                 Route::post('/watch-video/ajax',  'watch_video');
+                
 
             });
             //Genre
@@ -90,6 +92,10 @@ Route::middleware(['auth'])
             //Country
             Route::resource('country', CountryController::class);
         });
+        Route::get('movielink/link', [LinkMovieController::class,'MovieLink'])->name('movielink.link');
+        Route::post('movielink/link/store', [LinkMovieController::class,'store'])->name('linkmovie.store');
+        Route::get('movielink/link/update', [LinkMovieController::class,'update'])->name('linkmovie.update');
+        Route::get('movielink/link/destroy', [LinkMovieController::class,'destroy'])->name('linkmovie.destroy');
 });
 
 //update sitemap
