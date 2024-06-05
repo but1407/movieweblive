@@ -92,10 +92,14 @@ Route::middleware(['auth'])
             //Country
             Route::resource('country', CountryController::class);
         });
-        Route::get('movielink/link', [LinkMovieController::class,'MovieLink'])->name('movielink.link');
-        Route::post('movielink/link/store', [LinkMovieController::class,'store'])->name('linkmovie.store');
-        Route::get('movielink/link/update', [LinkMovieController::class,'update'])->name('linkmovie.update');
-        Route::get('movielink/link/destroy', [LinkMovieController::class,'destroy'])->name('linkmovie.destroy');
+        Route::controller(LinkMovieController::class)->group(function () {
+            Route::get('movielink/link/index', 'index')->name('linkmovie.index');
+            Route::get('movielink/link/create', 'create')->name('linkmovie.create');
+            Route::post('movielink/link/store', 'store')->name('linkmovie.store');
+            Route::get('movielink/link/edit/{id}', 'edit')->name('linkmovie.edit');
+            Route::put('movielink/link/update/{id}', 'update')->name('linkmovie.update');
+            Route::delete('movielink/link/destroy/{id}', 'destroy')->name('linkmovie.destroy');
+        });
 });
 
 //update sitemap

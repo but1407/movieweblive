@@ -98,10 +98,24 @@
                             
                         </ul>
                     </li>
-                    <li class="{{ $segment == 'link' ? 'active' : '' }}">
-                        <a href="{{ route('movielink.link') }}">
-                            <i class="fa fa-american-sign-language-interpreting"></i> <span>Link Movie</span>
+                    
+                    <li class="treeview {{ $segment == 'movielink' ? 'active' : '' }}">
+                        <a href="#">
+                            <i class="fa fa-list"></i>
+                            <span>Link Movie</span>
+                            <i class="fa fa-angle-left pull-right"></i>
                         </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a href="{{ route('linkmovie.create') }}"><i class="fa fa-angle-right"></i>Create</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('linkmovie.index') }}"><i class="fa fa-angle-right"></i>List</a>
+                            </li>
+                            {{-- <li>
+                                <a href="media.html"><i class="fa fa-angle-right"></i> Media Css</a>
+                            </li> --}}
+                        </ul>
                     </li>
                     @if (Auth::check())
                         <li>
