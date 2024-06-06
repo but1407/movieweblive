@@ -70,7 +70,7 @@
                         <div class="form-group">
                             {!! Form::label('tags', 'Tags phim', []) !!}
                             
-                            <div class="flex2" >
+                            <div style="padding:0" class="flex2" >
                             </div>
                             <input type="hidden" name="tags" id="labelsInput" />
                         </div>

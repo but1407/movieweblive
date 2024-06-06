@@ -288,13 +288,13 @@ const renderContainer = () => {
                         <div class="top-bot"></div>
                         <div class="bot-top"></div>
                     </div>
-                    <div class="label">${label.value}</div>
+                    <div style="color: rgb(3, 40, 26)" class="label">${label.value}</div>
                 </div>
             `
         }).join('')}
     `
-    containBox.innerHTML += `<input type="text" class="input12345">`
-    document.querySelector('.input12345').focus()
+    containBox.innerHTML += `<input style="width:100%" type="text" class="input_tag">`
+    document.querySelector('.input_tag').focus()
     const xIconEles = document.querySelectorAll('.x-icon')
     xIconEles.forEach(xIcon => {
         xIcon.onclick = function() {
@@ -308,7 +308,7 @@ const renderContainer = () => {
 }
 document.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
-        const inputEle = document.querySelector('.input12345')
+        const inputEle = document.querySelector('.input_tag')
         console.log(inputEle)
         console.log(inputEle.value)
         const valueInput = inputEle.value.trim();
