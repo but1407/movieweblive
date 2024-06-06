@@ -65,6 +65,12 @@
                                 {!! Form::label('episode', 'Tập phim', []) !!}
                                 {!! Form::text('episode_new', isset($episode) ? $episode->episode : '' , ['class'=>'form-control','placeholder' => 'Nhập đường link...','disabled']) !!}
                             </div>
+
+                            <div class="form-group">
+                                {!! Form::label('linkmovie', 'Link Movie', []) !!}
+                                {!! Form::select('linkmovie',$link_movie, '', ['class'=>'form-control','placeholder' => 'Nhập đường link...',]) !!}
+                            </div>
+                            
                             @if (!isset($episode))
                                 {!! Form::submit('Thêm tập phim', ['class'=> 'btn btn-success']) !!}
                                 
@@ -78,7 +84,7 @@
                 </div>
                 
             </div>
-            <div class="col-md-8">
+            {{-- <div class="col-md-8">
                 <table class="table table-responsive" id="tablephim">
                     <thead>
                         <tr>
@@ -118,7 +124,7 @@
                     
                     </tbody>
                 </table>
-            </div>
+            </div> --}}
         </div>
     </div>
    

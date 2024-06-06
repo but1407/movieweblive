@@ -53,6 +53,7 @@
                             {!! Form::label('episode', 'Tập phim', []) !!}
                             {!! Form::text('episode_new', isset($episode) ? $episode->episode : '' , ['class'=>'form-control','placeholder' => 'Nhập đường link...','disabled']) !!}
                         </div>
+                        
                         @if (!isset($episode))
                             {!! Form::submit('Thêm tập phim', ['class'=> 'btn btn-success']) !!}
                             

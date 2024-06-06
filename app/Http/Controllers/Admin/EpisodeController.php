@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Episode\EpisodeCreateRequest;
 use App\Models\Episode;
+use App\Models\LinkMovie;
 use App\Services\EpisodeService;
 
 class EpisodeController extends Controller
@@ -135,12 +136,14 @@ class EpisodeController extends Controller
         return $output;
     }
     public function add_episode($id){
+        $link_movie = LinkMovie::orderBy('updated_at', 'desc')->pluck('title','id');
         $movie = Movie::find($id);
         
         $list_episode = $this->episode->with('movies')->where('movie_id', $id)->orderByDesc('episode')->get();
         return view('admin.episode.add', [
             'movie' => $movie,
             'list_episode' => $list_episode,
+            'link_movie' => $link_movie,
             'title' =>'thêm tập phim',
         ]);
     }
