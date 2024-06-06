@@ -54,6 +54,11 @@
                             {!! Form::text('episode_new', isset($episode) ? $episode->episode : '' , ['class'=>'form-control','placeholder' => 'Nhập đường link...','disabled']) !!}
                         </div>
                         
+                        <div class="form-group">
+                            {!! Form::label('linkserver', 'Link Movie', []) !!}
+                            {!! Form::select('linkserver',$link_movie, '', ['class'=>'form-control','placeholder' => 'Nhập đường link...',]) !!}
+                        </div>
+                        
                         @if (!isset($episode))
                             {!! Form::submit('Thêm tập phim', ['class'=> 'btn btn-success']) !!}
                             

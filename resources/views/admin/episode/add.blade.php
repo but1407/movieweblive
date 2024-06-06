@@ -67,8 +67,8 @@
                             </div>
 
                             <div class="form-group">
-                                {!! Form::label('linkmovie', 'Link Movie', []) !!}
-                                {!! Form::select('linkmovie',$link_movie, '', ['class'=>'form-control','placeholder' => 'Nhập đường link...',]) !!}
+                                {!! Form::label('linkserver', 'Link Movie', []) !!}
+                                {!! Form::select('linkserver',$link_movie, '', ['class'=>'form-control','placeholder' => 'Nhập đường link...',]) !!}
                             </div>
                             
                             @if (!isset($episode))
@@ -84,7 +84,7 @@
                 </div>
                 
             </div>
-            {{-- <div class="col-md-8">
+            <div class="col-md-8">
                 <table class="table table-responsive" id="tablephim">
                     <thead>
                         <tr>
@@ -93,6 +93,7 @@
                             <th scope="col">Image</th>
                             <th scope="col">Tập phim</th>
                             <th scope="col">Link phim</th>
+                            <th scope="col">Link Server</th>
                             <th scope="col">Manager</th>
                         </tr>
                     </thead>
@@ -107,6 +108,13 @@
 
                                 <td>{{ $episode->episode }}</td>
                                 <td>{!! $episode->movie_link !!}</td>
+                                <td>
+                                    @foreach ($list_server as $server)
+                                        @if ($episode->server == $server->id)
+                                            {{ $server->title }}
+                                        @endif
+                                    @endforeach
+                                </td>
 
                                 <td>
                                     {!! Form::open([
@@ -124,8 +132,8 @@
                     
                     </tbody>
                 </table>
-            </div> --}}
+            </div>
         </div>
     </div>
-   
+
 @endsection

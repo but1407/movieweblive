@@ -18,6 +18,7 @@ class EpisodeService
         $store = $this->movie->find($request->movie_id)->episodes()->create([
             'movie_link'=>$request->movie_link,
             'episode' => $request->episode,
+            'server' => $request->linkserver,
         ]);
         if($store){
             return true;
@@ -27,6 +28,8 @@ class EpisodeService
     public function update($request, $id){
         $store = $this->episode->find($id)->update([
             'movie_link'=>$request->movie_link,
+            'server' => $request->linkserver,
+
         ]);
         if($store){
 

@@ -77,11 +77,13 @@ class EpisodeController extends Controller
     public function edit($id)
     {
         $list_movie = Movie::orderBy('id', 'desc')->pluck('title','id');
+        $link_movie = LinkMovie::orderBy('updated_at', 'desc')->pluck('title','id');
 
         $episode = Episode::find($id);
         return view('admin.episode.form',[
             'list_movie'=>$list_movie,
             'episode'=>$episode,
+            'link_movie'=>$link_movie,
 
             'title'=>'Thêm tập phim',
         ]);
@@ -138,12 +140,13 @@ class EpisodeController extends Controller
     public function add_episode($id){
         $link_movie = LinkMovie::orderBy('updated_at', 'desc')->pluck('title','id');
         $movie = Movie::find($id);
-        
+        $list_server = LinkMovie::orderBy('updated_at', 'desc')->get();
         $list_episode = $this->episode->with('movies')->where('movie_id', $id)->orderByDesc('episode')->get();
         return view('admin.episode.add', [
             'movie' => $movie,
             'list_episode' => $list_episode,
             'link_movie' => $link_movie,
+            'list_server' => $list_server,
             'title' =>'thêm tập phim',
         ]);
     }
