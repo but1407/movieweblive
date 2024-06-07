@@ -9,6 +9,7 @@ use App\Models\Country;
 use App\Models\Episode;
 use App\Modelsmovie_id;
 use App\Models\Category;
+use App\Models\LinkMovie;
 use App\Models\movie_id;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -205,7 +206,7 @@ class IndexController extends Controller
         ->orderBy(DB::raw('RAND()'))
         ->whereNotIn('slug',[$slug])->get();
         $episode = $this->episode->where('movie_id', $movie->id)->where('episode',$tapphim)->first();
-        
+        $server = LinkMovie::where('status',1)->orderBy('updated_at', 'DESC')->get();
         return view('pages.watch',[
             'title' => 'movie',
             'movie'=>$movie,
@@ -213,6 +214,7 @@ class IndexController extends Controller
             'episode'=>$episode,
             'tapphim'=>$tapphim,
             'related'=>$related,
+            'server'=>$server,
         ]);
     }
     public function increment_view(Request $request){

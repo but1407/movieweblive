@@ -84,7 +84,6 @@ class EpisodeController extends Controller
             'list_movie'=>$list_movie,
             'episode'=>$episode,
             'link_movie'=>$link_movie,
-
             'title'=>'Thêm tập phim',
         ]);
     }

@@ -101,6 +101,24 @@
                                     <div class="halim-server">
                                         <ul class="halim-list-eps">
 
+                                            @foreach ($server as $key => $ser)
+                                                <li class="halim-server">
+                                                    <a
+                                                        {{-- href="{{ route('movie.watch', ['slug' => $movie->slug, 'tap' => $server->server]) }}" --}}
+                                                        >
+                                                        
+                                                        <span
+                                                            class="halim-btn halim-btn-2 halim-info-1-1 box-shadow">
+                                                            {{ $ser->title }}
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            @endforeach
+
+                                        </ul>
+
+                                        <ul class="halim-list-eps">
+
                                             @foreach ($movie->episodes as $key => $episode)
                                                 <li class="halim-episode">
                                                     <a

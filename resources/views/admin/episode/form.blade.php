@@ -56,7 +56,7 @@
                         
                         <div class="form-group">
                             {!! Form::label('linkserver', 'Link Movie', []) !!}
-                            {!! Form::select('linkserver',$link_movie, '', ['class'=>'form-control','placeholder' => 'Nhập đường link...',]) !!}
+                            {!! Form::select('linkserver',$link_movie, $episode->server, ['class'=>'form-control','placeholder' => 'Nhập đường link...',]) !!}
                         </div>
                         
                         @if (!isset($episode))
