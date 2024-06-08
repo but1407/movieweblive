@@ -57,7 +57,6 @@ Route::middleware(['auth'])
                 Route::post('info/update', 'update')->name('info.update');
                 Route::post('info/destroy', 'destroy')->name('info.destroy');
                 Route::get('dashboard/index', 'dashboard')->name('dasboard.index');
-
             });
 
             //Category
@@ -67,17 +66,19 @@ Route::middleware(['auth'])
             //Movie
             Route::controller(MovieController::class)->group(function () {
                 Route::resource('movie', MovieController::class);
-                Route::post('/update-season-phim',  'season_update')->name('season_update');
-                Route::post('/update-year-movie',  'update_year');
-                Route::post('/update-topview-phim',  'update_topview');
-                Route::get('/update-category-get',  'update_category');
-                Route::get('/update-country-get',  'update_country');
-                Route::get('/update-status-get',  'update_status');
-                Route::get('/update-thuocphim-get',  'update_thuocphim');
-                Route::get('/update-hotmovie-get',  'update_hotmovie');
-                Route::get('/update-vietsub-get',  'update_vietsub');
-                Route::post('/update-image-movie-ajax',  'update_image_movie');
-                Route::post('/watch-video/ajax',  'watch_video');
+                Route::post('/update-season-phim', 'season_update')->name('season_update');
+                Route::post('/update-year-movie', 'update_year');
+                Route::post('/update-topview-phim', 'update_topview');
+                Route::get('/update-category-get', 'update_category');
+                Route::get('/update-country-get', 'update_country');
+                Route::get('/update-status-get', 'update_status');
+                Route::get('/update-thuocphim-get', 'update_thuocphim');
+                Route::get('/update-hotmovie-get', 'update_hotmovie');
+                Route::get('/update-vietsub-get', 'update_vietsub');
+                Route::post('/update-image-movie-ajax', 'update_image_movie');
+                Route::post('/watch-video/ajax', 'watch_video');
+                Route::get('/movie-sort','movie_sort')->name('movie_sort');
+                Route::post('/navbar/resorting','resorting_navbar');
                 
 
             });

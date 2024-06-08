@@ -277,4 +277,22 @@ class MovieController extends Controller
         $output['video_link'] = $video->movie_link;
         echo json_encode($output);
     }
+    public function movie_sort(){
+        $categories = Category::where('status',1)->orderBy('updated_at','DESC')->get();
+        return view('admin.movie.sort_movie',[
+            'title' => 'Movie Sort',
+            'categories'=> $categories,
+        ]);
+    }
+    public function show()
+    {
+    }
+    public function resorting_navbar(Request $request){
+        foreach($request->array_id as $key => $val){
+            Category::find($val)->update([
+                'position' => $key,
+            ]);
+        }   
+    }
+
 }

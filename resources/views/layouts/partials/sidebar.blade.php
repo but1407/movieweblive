@@ -50,7 +50,6 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-
                             <li>
                                 <a href="{{ route('genre.create') }}">
                                     <i class="fa fa-angle-right"></i> Create</a>
@@ -74,6 +73,9 @@
                             </li>
                             <li>
                                 <a href="{{ route('movie.index') }}"><i class="fa fa-angle-right"></i> Movie List</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('movie_sort') }}"><i class="fa fa-angle-right"></i> Movie Sort</a>
                             </li>
                         </ul>
                     </li>
