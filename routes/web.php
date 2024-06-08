@@ -38,7 +38,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/the-loai/{slug}', 'genre')->name('genre');
     Route::get('/quoc-gia/{slug}', 'country')->name('country');
     Route::get('/xem-phim/{slug}', 'movie')->name('movie.detail');
-    Route::get('/phim/{slug}/episode-{tap}', 'watch')->name('movie.watch');
+    Route::get('/phim/{slug}/episode-{tap}/server-{server_active}', 'watch')->name('movie.watch');
     Route::get('/year/{year}', 'year')->name('year');
     Route::get('/tag/{tag}', 'tags')->name('tag');
     Route::get('/search', 'search')->name('search');

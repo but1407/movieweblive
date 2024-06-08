@@ -100,42 +100,47 @@
                                 <div role="tabpanel" class="tab-pane active server-1" id="server-0">
                                     <div class="halim-server">
                                         <ul class="halim-list-eps">
-
                                             @foreach ($server as $key => $ser)
-                                                <li class="halim-server">
-                                                    <a
-                                                        {{-- href="{{ route('movie.watch', ['slug' => $movie->slug, 'tap' => $server->server]) }}" --}}
-                                                        >
-                                                        
-                                                        <span
-                                                            class="halim-btn halim-btn-2 halim-info-1-1 box-shadow">
-                                                            {{ $ser->title }}
-                                                        </span>
-                                                    </a>
-                                                </li>
+                                                @foreach ($episode_movie as $key => $ser_mov)
+                                                    @if ($ser_mov->server == $ser->id)
+                                                        {{-- Server Phim --}}
+                                                        <li style="display: flex" class="halim-server">
+                                                            <a
+                                                                {{-- href="{{ route('movie.watch', ['slug' => $movie->slug, 'tap' => $server->server]) }}" --}}
+                                                                >
+                                                                
+                                                                <span
+                                                                    class="halim-btn halim-btn-2 halim-info-1-1 box-shadow">
+                                                                    {{ $ser->title }}
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <ul class="halim-list-eps">
+                                                            @foreach ($episode_list as $key => $epi)
+                                                                @if ($epi->server == $ser->id)
+                                                                    <li class="halim-episode">
+                                                                        <a
+                                                                            href="{{ route('movie.watch', ['slug' => $movie->slug, 'tap' => $epi->episode, 'server_active' => $epi->server]) }}">
+                                                                            <span
+                                                                                class="halim-btn halim-btn-2 {{ $tapphim == $epi->episode && $server_active == $ser->id ? 'active' : '' }} halim-info-1-1 box-shadow"
+                                                                                data-post-id="37976" data-server="1" data-episode="1"
+                                                                                data-position="first" data-embed="0"
+                                                                                data-title="Xem phim {{ $movie->title }} - Tập {{ $ser->episode }} - Be Together - vietsub + Thuyết Minh"
+                                                                                data-h1="{{ $movie->title }} - tập {{ $ser }}">
+                                                                                {{ $epi->episode }}
+                                                                            </span>
+                                                                        </a>
+                                                                    </li>
+                                                                @endif
+                                                            @endforeach
+                                                        </ul>
+                                                    @endif
+                                                @endforeach
                                             @endforeach
 
                                         </ul>
 
-                                        <ul class="halim-list-eps">
-
-                                            @foreach ($movie->episodes as $key => $episode)
-                                                <li class="halim-episode">
-                                                    <a
-                                                        href="{{ route('movie.watch', ['slug' => $movie->slug, 'tap' => $episode->episode]) }}">
-                                                        <span
-                                                            class="halim-btn halim-btn-2 {{ $tapphim == $episode->episode ? 'active' : '' }} halim-info-1-1 box-shadow"
-                                                            data-post-id="37976" data-server="1" data-episode="1"
-                                                            data-position="first" data-embed="0"
-                                                            data-title="Xem phim {{ $movie->title }} - Tập {{ $episode->episode }} - Be Together - vietsub + Thuyết Minh"
-                                                            data-h1="{{ $movie->title }} - tập {{ $episode }}">
-                                                            {{ $episode->episode }}
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            @endforeach
-
-                                        </ul>
+                                        
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>

@@ -64,7 +64,7 @@
                                     @if ($episode_current_list_count > 0)
                                         <div class="bwa-content">
                                             <div class="loader"></div>
-                                            <a href="{{ route('movie.watch', ['slug' => $movie->slug, 'tap' => $episode_fistep->episode ?? '']) }}
+                                            <a href="{{ route('movie.watch', ['slug' => $movie->slug, 'tap' => $episode_fistep->episode ?? '', 'server_active'=>$episode_fistep->server]) }}
                                                 "
                                                 class="bwac-btn">
                                                 <i class="fa fa-play"></i>
@@ -136,7 +136,7 @@
                                         @elseif ($movie->thuocphim == 0)
                                             @foreach ($episode as $e)
                                                 <a
-                                                    href="{{ route('movie.watch', ['slug' => $movie->slug, 'tap' => $e->episode ?? '']) }}">{{ $e->episode }}</a>
+                                                    href="{{ route('movie.watch', ['slug' => $movie->slug, 'tap' => $e->episode ?? '','server_active'=>$e->server]) }}">{{ $e->episode }}</a>
                                             @endforeach
                                         @else
                                             ĐANG CẬP NHẬT

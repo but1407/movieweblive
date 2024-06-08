@@ -195,7 +195,7 @@ class IndexController extends Controller
             'phimhot_trailer'=>$phimhot_trailer,
         ]);
     }
-    public function watch($slug,$tap){
+    public function watch($slug, $tap, $server_active){
         $tapphim = isset($tap) ? $tap : 1;
         $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
         $movie = $this->movie->with('categories', 'genres', 'episodes', 'movieGenres', 'countries')->where('slug',$slug)
@@ -206,7 +206,13 @@ class IndexController extends Controller
         ->orderBy(DB::raw('RAND()'))
         ->whereNotIn('slug',[$slug])->get();
         $episode = $this->episode->where('movie_id', $movie->id)->where('episode',$tapphim)->first();
+        
+        //Server
         $server = LinkMovie::where('status',1)->orderBy('updated_at', 'DESC')->get();
+        $episode_movie = Episode::where('movie_id', $movie->id)->get()->unique('server');
+        $episode_list = Episode::where('movie_id', $movie->id)->get();
+
+        
         return view('pages.watch',[
             'title' => 'movie',
             'movie'=>$movie,
@@ -215,6 +221,10 @@ class IndexController extends Controller
             'tapphim'=>$tapphim,
             'related'=>$related,
             'server'=>$server,
+            'episode_movie'=>$episode_movie,
+            'episode_list'=>$episode_list,
+            'server_active'=>$server_active,
+            
         ]);
     }
     public function increment_view(Request $request){

@@ -43,9 +43,12 @@ class EpisodeController extends Controller
      */
     public function create()
     {
+        $link_movie = LinkMovie::orderBy('updated_at', 'desc')->pluck('title','id');
+
         $list_movie = Movie::orderBy('id', 'desc')->pluck('title','id');
         return view('admin.episode.form',[
             'list_movie'=>$list_movie,
+            'link_movie'=>$link_movie,
             'title'=>'Thêm tập phim',
         ]);
     }
