@@ -86,7 +86,7 @@
                     </style>
                     <div id="halim-advanced-widget-2-ajax-box" class="halim_box">\
                         @if (isset($cate_home->movies))
-                            @foreach ($cate_home->movies->take(16) as $movie)
+                            @foreach ($cate_home->movies->sortBy('position')->take(16) as $movie)
                                 <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-37606">
                                     <div class="halim-item">
                                         <a class="halim-thumb" href="{{ route('movie.detail', $movie->slug) }}">

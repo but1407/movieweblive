@@ -1,0 +1,9 @@
+.box_phim{
+    height: 200px;
+    border: 1px solid #d1d1d1;
+    margin: 3px;
+    font-size: 12px;
+    padding: 5px;
+    text-align: center;
+    background-color: blanchedalmond;
+}

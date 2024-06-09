@@ -297,5 +297,12 @@ class MovieController extends Controller
             ]);
         }   
     }
+    public function resorting_movie(Request $request){
+        foreach($request->movie_arr as $key => $val){
+            Movie::find($val)->update([
+                'position' => $key,
+            ]);
+        }   
+    }
 
 }

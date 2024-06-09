@@ -3,6 +3,7 @@
     <title>{{ $title }}</title>
 @endsection
 @section('css')
+<link rel="stylesheet" href="{{ asset('backends/admin/css/sort_movie.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
@@ -14,8 +15,14 @@
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
     <script>
         $( function() {
-        $( "#sortable_navbar" ).sortable();
-        } );
+            $( "#sortable_movie" ).sortable();
+        });
+        $( function() {
+            $( "#sortable_navbar" ).sortable();
+        });
+        $( function() {
+            $( "#sortable_navbar" ).disableSelection();
+        });
     </script>
 @endsection
 
@@ -52,8 +59,8 @@
                         @foreach ($category_home as $cate_home)
                         
                         <h5 style="text-transform:uppercase; color:blue;">Dạnh mục: {{ $cate_home->title }}</h5>
-                        <div class="row">
-                            @foreach ($cate_home->movies->take(16) as $movie)
+                        <div id="sortable_movie" class="row movie_position sortable_movie">
+                            @foreach ($cate_home->movies->sortBy('position') as $movie)
                                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 box_phim" style="height: 250px; border:1px solid #d1d1d1;">
                                     <figure><img class="img-responsive"
                                         width="100%"

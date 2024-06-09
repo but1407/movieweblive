@@ -79,6 +79,7 @@ Route::middleware(['auth'])
                 Route::post('/watch-video/ajax', 'watch_video');
                 Route::get('/movie-sort','movie_sort')->name('movie_sort');
                 Route::post('/navbar/resorting','resorting_navbar');
+                Route::post('/movie/resorting','resorting_movie');
                 
 
             });
