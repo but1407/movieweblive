@@ -279,9 +279,12 @@ class MovieController extends Controller
     }
     public function movie_sort(){
         $categories = Category::where('status',1)->orderBy('updated_at','DESC')->get();
+        $category_home = Category::with('movies')->orderByDesc('updated_at')->where('status',1)->get();
+
         return view('admin.movie.sort_movie',[
             'title' => 'Movie Sort',
             'categories'=> $categories,
+            'category_home'=> $category_home,
         ]);
     }
     public function show()

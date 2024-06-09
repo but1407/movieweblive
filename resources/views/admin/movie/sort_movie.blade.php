@@ -49,6 +49,22 @@
                                 </ul>
                             </div>
                         </nav>
+                        @foreach ($category_home as $cate_home)
+                        
+                        <h5 style="text-transform:uppercase; color:blue;">Dạnh mục: {{ $cate_home->title }}</h5>
+                        <div class="row">
+                            @foreach ($cate_home->movies->take(16) as $movie)
+                                <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 box_phim" style="height: 250px; border:1px solid #d1d1d1;">
+                                    <figure><img class="img-responsive"
+                                        width="100%"
+                                        src="{{ asset('uploads/movie/' . $movie->image) }}"
+                                        alt="{{ $movie->title }}" title="{{ $movie->title }}"></figure>
+                                    <p class="entry-title">{{ $movie->title }}</p>
+                                    <p class="original_title">{{ $movie->description }}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
