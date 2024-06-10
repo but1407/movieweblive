@@ -40,4 +40,8 @@ class SocialLoginController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
     }
+    public function logout(){
+        Auth::logout();
+        return redirect()->back();
+    }
 }

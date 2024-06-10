@@ -32,9 +32,14 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'google' => [
-        'client_id' =>'',
-        'client_secret' => '',
+        'client_id' =>'', //Add Client_id
+        'client_secret' => '', //Add Client_secret
         'redrirect' => $BASE_URL .'/auth/google/callback'
-    ]
+    ],
+    'facebook' => [
+        'client_id' =>'', //Add Client_id
+        'client_secret' => '', //Add Client_secret
+        'redrirect' => $BASE_URL .'/auth/facebook/callback'
+    ],
 
 ];
