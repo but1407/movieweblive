@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Auth\SocialLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,3 +110,6 @@ Route::get('/create_sitemap', function(){
     return Artisan::call('sitemap:create');
 });
 
+//Login Social
+Route::get('auth/{provider}',[SocialLoginController::class,'redirectToSocial'])->name('login-social');
+Route::get('auth/{provider}/callback',[SocialLoginController::class,'callback']);

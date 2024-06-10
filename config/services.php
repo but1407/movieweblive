@@ -1,5 +1,7 @@
 <?php
 
+$BASE_URL = 'http://localhost:8000';
+
 return [
 
     /*
@@ -29,5 +31,10 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'google' => [
+        'client_id' =>'',
+        'client_secret' => '',
+        'redrirect' => $BASE_URL .'/auth/google/callback'
+    ]
 
 ];
