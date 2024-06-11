@@ -211,7 +211,6 @@ class IndexController extends Controller
         $server = LinkMovie::where('status',1)->orderBy('updated_at', 'DESC')->get();
         $episode_movie = Episode::where('movie_id', $movie->id)->get()->unique('server');
         $episode_list = Episode::where('movie_id', $movie->id)->get();
-
         
         return view('pages.watch',[
             'title' => 'movie',

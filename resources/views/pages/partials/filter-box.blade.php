@@ -11,7 +11,6 @@
                             <option {{ request()->sort == "year"? "selected" : "" }} value="year">Năm sản xuất</option>
                             <option {{ request()->sort == "title" ? "selected" : "" }} value="title">Tên phim</option>
                             <option {{ request()->sort == "view" ? "selected" : "" }} value="view">Lượt xem</option>
-                            
                         </select>
                     </div>
                 </div>
