@@ -111,6 +111,13 @@
                                             </a>,
                                         @endforeach
                                     </li>
+                                    <li class="list-info-group-item"><span style="color:#fff">Danh mục</span> :
+                                        @foreach ($movie->movieCategories as $category)
+                                            <a href="{{ route('category', $category->slug) }}" rel="category tag">
+                                                {{ $category->title }}
+                                            </a>,
+                                        @endforeach
+                                    </li>
                                     <li class="list-info-group-item">
                                         <span style="color:#fff">Quốc gia</span> : <a
                                             href="{{ route('country', $movie->countries->slug) }}"

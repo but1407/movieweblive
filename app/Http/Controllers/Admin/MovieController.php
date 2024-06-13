@@ -57,13 +57,15 @@ class MovieController extends Controller
         $category = Category::pluck('title','id');
         $country = Country::pluck('title','id');
         $genre = Genre::pluck('title','id');
-        $list_genre = Genre::orderBy('id', 'DESC')->get();
+        $list_genre = Genre::orderBy('updated_at', 'DESC')->get();
+        $list_category = Category::orderBy('updated_at', 'DESC')->get();
         return view('admin.movie.form',[
             'title'=> 'Quản lý Phim',
             'category'=>$category,
             'country'=>$country,
             'genre'=>$genre,
             'list_genre'=>$list_genre,
+            'list_category'=>$list_category,
             ]);
     }
 
@@ -116,6 +118,7 @@ class MovieController extends Controller
         $lists = Movie::orderBy('id','desc')->get();
 
         $movie = Movie::find($id);
+        $list_category = Category::orderBy('updated_at', 'DESC')->get();
         
         return view('admin.movie.form',[
             'lists'=>$lists,
@@ -125,6 +128,7 @@ class MovieController extends Controller
             'genre'=>$genre,
             'movie'=>$movie,
             'list_genre'=>$list_genre,
+            'list_category'=>$list_category,
             
             ]);
     }
@@ -152,7 +156,8 @@ class MovieController extends Controller
             }
             return redirect()->back()->with('error', 'Lỗi không upload được ảnh');
         }
-        return redirect()->back()->with('error', 'Lỗi không cật nhật được');
+
+        return redirect()->back()->with('error', 'Lỗi không cật nhật được'); #FIXME edit
     }
 
     /**

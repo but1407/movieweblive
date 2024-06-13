@@ -39,7 +39,10 @@ class MovieService
         foreach($request->genre as $genre){
             $genre_id = $genre[0];
         }
-        
+        $category_id = '';
+        foreach($request->category as $category){
+            $category_id = $category[0];
+        }
         $movie =$this->movie->create([
             'title' => $request->title,
             'description' => $request->description,
@@ -54,14 +57,17 @@ class MovieService
             'name_eng' => $request->name_eng,
             'resolution' => $request->resolution,
             'vietsub' => $request->vietsub,
-            'genre_id' =>    $genre_id,
+            'genre_id' => $genre_id,
             'hot_movie' => $request->hot_movie,
-            'category_id' => $request->category_id,
+            'category_id' => $category_id,
             // 'tags' => $request->tags,
 
         ]);
         //add more genre
         $movie->movieGenres()->attach($request->genre);
+
+        //add more category
+        $movie->movieCategories()->attach($request->category);
         
         return $movie;
     }
@@ -69,6 +75,10 @@ class MovieService
         $genre_id = '';
         foreach($request->genre as $genre){
             $genre_id = $genre[0];
+        }
+        $category_id = '';
+        foreach($request->category as $category){
+            $category_id = $category[0];
         }
         try{
 
@@ -83,7 +93,7 @@ class MovieService
                 'genre_id' => $genre_id,
                 'resolution'=>$request->resolution,
                 'vietsub'=>$request->vietsub,
-                'category_id' => $request->category_id,
+                'category_id' => $category_id,
                 'hot_movie' => $request->hot_movie,
                 'movie_duration' => $request->movie_duration,
                 'tags' => $request->tags,
@@ -92,7 +102,11 @@ class MovieService
                 'thuocphim' => $request->thuocphim,
 
             ]);
+            //Sync Genres
             $movie->movieGenres()->sync($request->genre);
+            
+            //Sync Categories
+            $movie->movieCategories()->sync($request->category);
 
         } catch(\Exception $e){
             return false;

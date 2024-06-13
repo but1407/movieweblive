@@ -198,7 +198,7 @@ class IndexController extends Controller
     public function watch($slug, $tap, $server_active){
         $tapphim = isset($tap) ? $tap : 1;
         $phimhot_trailer = $this->movie->where('resolution',5)->where('status',1)->orderBy('updated_at','DESC')->take(10)->get();
-        $movie = $this->movie->with('categories', 'genres', 'episodes', 'movieGenres', 'countries')->where('slug',$slug)
+        $movie = $this->movie->with('categories', 'genres', 'episodes', 'movieGenres', 'movieCategories', 'countries')->where('slug',$slug)
         ->where('status',1)
         ->first();
         

@@ -86,10 +86,7 @@
                             {!! Form::label('Phụ đề', 'Phụ đề', []) !!}
                             {!! Form::select('vietsub', ['0'=>'Vietsub','1'=>'Thuyet Minh'], isset($movie) ?  $movie->vietsub : '' ,['class'=>'form-control']) !!}
                         </div>
-                        <div class="form-group">
-                            {!! Form::label('Category', 'Category', []) !!}
-                            {!! Form::select('category_id',$category, isset($movie) ?  $movie->category : '' ,['class'=>'form-control']) !!}
-                        </div>
+                        
                         <div class="form-group">
                             {!! Form::label('thuocphim', 'Thuộc thể loại phim', []) !!}
                             {!! Form::select('thuocphim',['0'=>'Phim lẻ','1'=>'Phim bộ'] , isset($movie) ?  $movie->thuocphim : '' ,['class'=>'form-control']) !!}
@@ -99,13 +96,29 @@
                             {!! Form::select('country_id', $country, isset($movie) ?  $movie->country : '' ,['class'=>'form-control']) !!}
                         </div>
                         <div class="form-group">
+                            {!! Form::label('Category', 'Category', []) !!}</br>
+                            {{-- {!! Form::select('genre_id', $genre , isset($movie) ?  $movie->genre : '' ,['class'=>'form-control']) !!} --}}
+                            @foreach ($list_category as $key=>$category )
+                            @if (isset($movie))
+                                
+                                {!! Form::checkbox('category[]', $category->id, 
+                                isset($movie->movieCategories) && $movie->movieCategories->contains($category->id) ? true : false  ) !!}
+                                @else
+                                    {!! Form::checkbox('category[]', $category->id,'') !!}
+                            @endif
+                                {!! Form::label('category', $category->title  ) !!}<br>
+                            @endforeach
+                        </div>
+                        <div class="form-group">
                             
                             {!! Form::label('Genre', 'Genre', []) !!}</br>
                             {{-- {!! Form::select('genre_id', $genre , isset($movie) ?  $movie->genre : '' ,['class'=>'form-control']) !!} --}}
                             @foreach ($list_genre as $key=>$genre )
                             @if (isset($movie))
                                 
-                                {!! Form::checkbox('genre[]', $genre->id,isset($movie->movieGenres) && $movie->movieGenres->contains($genre->id) ? true :false  ) !!}
+                                {!! Form::checkbox('genre[]', $genre->id, 
+                                isset($movie->movieGenres) && 
+                                $movie->movieGenres->contains($genre->id) ? true : false  ) !!}
                                 @else
                                     {!! Form::checkbox('genre[]', $genre->id,'') !!}
                             @endif
