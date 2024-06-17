@@ -77,6 +77,9 @@
                             <li>
                                 <a href="{{ route('movie_sort') }}"><i class="fa fa-angle-right"></i> Movie Sort</a>
                             </li>
+                            <li>
+                                <a href="{{ route('leech_movie') }}"><i class="fa fa-angle-right"></i>Leech movie</a>
+                            </li>
                         </ul>
                     </li>
 

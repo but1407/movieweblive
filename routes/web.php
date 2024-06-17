@@ -5,14 +5,15 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\Admin\LinkMovieController;
 use App\Http\Controllers\Admin\InfoController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\LeechMovieController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\LinkMovieController;
 use App\Http\Controllers\Auth\SocialLoginController;
 
 /*
@@ -113,3 +114,6 @@ Route::get('/create_sitemap', function(){
 //Login Social
 Route::get('auth/{provider}',[SocialLoginController::class,'redirectToSocial'])->name('login-social');
 Route::get('auth/{provider}/callback',[SocialLoginController::class,'callback']);
+
+//Route leech movies
+Route::get('leech-movie', [LeechMovieController::class,'leech_movie'])->name('leech_movie');

@@ -10,6 +10,7 @@ use App\Models\Episode;
 use App\Modelsmovie_id;
 use App\Models\Category;
 use App\Models\LinkMovie;
+use App\Models\Movie_categories;
 use App\Models\movie_id;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -75,6 +76,7 @@ class IndexController extends Controller
         $movies = $this->category->filter($request, $movies);
         $meta_title = $category_slug->title;
         $meta_description = $category_slug->description;
+        // $movie_categories = Movie_categories::where('category_id', $category_slug->id)->get();
         
         return view('pages.category',[
             'title' => $category_slug->title,

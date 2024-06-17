@@ -95,7 +95,7 @@
                                     </li>
                                     <li class="list-info-group-item"><span style="color:#fff">Điểm IMDb</span> : <span
                                             class="imdb">7.2</span></li>
-                                    <li class="list-info-group-item"><span style="color:#fff">Thời lượng</span> : {{ $movie->movie_duration }}
+                                    <li class="list-info-group-item"><span style="color:#fff">Thời lượng</span>  <span style="color:#fff"s> : {{ $movie->movie_duration }}</span>
                                     </li>
                                     @if ($movie->thuocphim == 1)
                                         <li class="list-info-group-item"><span style="color:#fff">Số tập phim</span> :
