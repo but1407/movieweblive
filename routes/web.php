@@ -96,6 +96,8 @@ Route::middleware(['auth'])
             //Country
             Route::resource('country', CountryController::class);
         });
+
+        //Link servers
         Route::controller(LinkMovieController::class)->group(function () {
             Route::get('movielink/link/index', 'index')->name('linkmovie.index');
             Route::get('movielink/link/create', 'create')->name('linkmovie.create');
@@ -103,6 +105,12 @@ Route::middleware(['auth'])
             Route::get('movielink/link/edit/{id}', 'edit')->name('linkmovie.edit');
             Route::put('movielink/link/update/{id}', 'update')->name('linkmovie.update');
             Route::delete('movielink/link/destroy/{id}', 'destroy')->name('linkmovie.destroy');
+        });
+
+        //leech movies
+        Route::controller(LeechMovieController::class)->group(function () {
+            Route::get('leech-movie',  'leech_movie')->name('leech_movie');
+            Route::get('leech-detail/{slug}',  'leech_detail')->name('leech_detail');
         });
 });
 
@@ -115,5 +123,4 @@ Route::get('/create_sitemap', function(){
 Route::get('auth/{provider}',[SocialLoginController::class,'redirectToSocial'])->name('login-social');
 Route::get('auth/{provider}/callback',[SocialLoginController::class,'callback']);
 
-//Route leech movies
-Route::get('leech-movie', [LeechMovieController::class,'leech_movie'])->name('leech_movie');
+
