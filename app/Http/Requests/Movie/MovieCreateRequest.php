@@ -28,17 +28,15 @@ class MovieCreateRequest extends FormRequest
             'name_eng' => 'required',
             'movie_duration' => 'required',
             'tags' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
     public function messages() : array{
         return [
             'title.required' => 'Trường title không được bỏ trống',
-            // 'title.unique' => 'Movie đã tồn tại',
             'name_eng.required' => 'Trường name_eng không được bỏ trống',
             'movie_duration.required' => 'Trường Thời lượng phim không được bỏ trống',
             'tags.required' => 'Trường tags không được bỏ trống',
-            'image.required' => 'Ảnh không được bỏ trống',
             'image.image' => 'Image phải là định dạng image',
             'image.mimes' => 'file phải có đuôi jpeg,png,jpg hoặc gif',
             'image.max' => 'file không được vượt quá 2MB',

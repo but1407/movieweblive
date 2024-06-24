@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Tag;
 use App\Models\Movie;
-
+use PhpOption\None;
 
 class MovieService
 {
@@ -71,7 +71,7 @@ class MovieService
         
         return $movie;
     }
-    public function update($request,$model,$image,$movie ){
+    public function update($request, $model, $image=null, $movie){
         $genre_id = '';
         foreach($request->genre as $genre){
             $genre_id = $genre[0];
@@ -80,28 +80,31 @@ class MovieService
         foreach($request->category as $category){
             $category_id = $category[0];
         }
+        $info_movie = [
+            'title' => $request->title,
+            'description' => $request->description,
+            'status' => $request->status,
+            'slug' => $request->slug,
+            'name_eng' => $request->name_eng,
+            'country_id' => $request->country_id,
+            'genre_id' => $genre_id,
+            'resolution' => $request->resolution,
+            'vietsub' => $request->vietsub,
+            'category_id' => $category_id,
+            'hot_movie' => $request->hot_movie,
+            'movie_duration' => $request->movie_duration,
+            'tags' => $request->tags,
+            'trailer' => $request->trailer,
+            'sotap' => $request->sotap,
+            'thuocphim' => $request->thuocphim,
+
+        ];
+        if($image != null){
+            $info_movie['image'] = $image['image'];
+        }
         try{
 
-            $model->update([
-                'title'=>$request->title,
-                'description'=>$request->description,
-                'status' => $request->status,
-                'slug' => $request->slug,
-                'name_eng' => $request->name_eng,
-                'image'=> $image['image'] ?? null,
-                'country_id' => $request->country_id,
-                'genre_id' => $genre_id,
-                'resolution'=>$request->resolution,
-                'vietsub'=>$request->vietsub,
-                'category_id' => $category_id,
-                'hot_movie' => $request->hot_movie,
-                'movie_duration' => $request->movie_duration,
-                'tags' => $request->tags,
-                'trailer' => $request->trailer,
-                'sotap' => $request->sotap,
-                'thuocphim' => $request->thuocphim,
-
-            ]);
+            $model->update($info_movie);
             //Sync Genres
             $movie->movieGenres()->sync($request->genre);
             

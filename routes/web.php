@@ -30,7 +30,6 @@ use App\Http\Controllers\Auth\SocialLoginController;
 Auth::routes();
 Route::get('/', function (){
     return redirect('/login');
-    // return view('auth.partials.dashboard');
 });
 
 //Index controller routes
@@ -109,8 +108,9 @@ Route::middleware(['auth'])
 
         //leech movies
         Route::controller(LeechMovieController::class)->group(function () {
-            Route::get('leech-movie',  'leech_movie')->name('leech_movie');
-            Route::get('leech-detail/{slug}',  'leech_detail')->name('leech_detail');
+            Route::get('leech-movie', 'leech_movie')->name('leech_movie');
+            Route::get('leech-detail/{slug}', 'leech_detail')->name('leech_detail');
+            Route::post('leech-store/{slug}', 'leech_store')->name('leech_store');
         });
 });
 

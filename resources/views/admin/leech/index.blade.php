@@ -49,8 +49,13 @@
                                     style="{{ $url['tmdb']['vote_average'] >= 5 ? 'color:green=' : 'color:red' }}">{{ $url['tmdb']['vote_average'] }}</span>
                             </td>
                             <td>
-                                <a href="{{ route('leech_detail', $url['slug']) }}">Detail</a>
+                                <a href="{{ route('leech_detail', $url['slug']) }}" class="btn btn-info">Detail</a>
+                                <form action="{{ route('leech_store', $url['slug']) }}" method="post">
+                                    @csrf
+                                    <input type="submit" class="btn btn-success" value="Add Movie">
+                                </form>
                             </td>
+                            
                         </tr>
                     @endforeach
 
