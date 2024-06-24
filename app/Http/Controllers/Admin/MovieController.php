@@ -142,22 +142,18 @@ class MovieController extends Controller
      */
     public function update(MovieCreateRequest $request, $id)
     {
-        $image = $this->movieService->uploadImage($request);
+        if($request->file('image')){
+            $image = $this->movieService->uploadImage($request);
+        }
         $movie = Movie::find($id);
-        $file_exist = $this->movieService->file_exist($movie);
-        if(!$file_exist){
-            return redirect()->back()->with('error', 'Lỗi không xóa được file');
+        if ($request->file('image')) {
+            $this->movieService->file_exist($movie);
         }
-        if(!$image){
-            $update = $this->movieService->update($request, $movie,$image,$movie );
-            if($update){
-                return redirect()->route('movie.index')->with('success', 'Movie Created Successfully');
-
-            }
-            return redirect()->back()->with('error', 'Lỗi không upload được ảnh');
+        $update = $this->movieService->update($request, $movie, $image ?? null, $movie);
+        if($update){
+            return redirect()->route('movie.index')->with('success', 'Movie Created Successfully');
         }
-
-        return redirect()->back()->with('error', 'Lỗi không cật nhật được'); #FIXME edit
+        return redirect()->back()->with('error', 'Lỗi không cật nhật được'); 
     }
 
     /**
