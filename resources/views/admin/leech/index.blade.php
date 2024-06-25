@@ -50,10 +50,23 @@
                             </td>
                             <td>
                                 <a href="{{ route('leech_detail', $url['slug']) }}" class="btn btn-info">Detail</a>
-                                <form action="{{ route('leech_store', $url['slug']) }}" method="post">
-                                    @csrf
-                                    <input type="submit" class="btn btn-success" value="Add Movie">
-                                </form>
+
+                                @php
+                                    $movie = \App\Models\Movie::where('slug',$url['slug'])->first()
+                                @endphp
+                                @if (!$movie)
+                                    
+                                    <form action="{{ route('leech_store', $url['slug']) }}" method="post">
+                                        @csrf
+                                        <input type="submit" class="btn btn-success" value="Add Movie">
+                                    </form>
+                                    @else
+                                        <form action="{{ route('leech_destroy', $movie->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="submit" class="btn btn-danger" value="Delete Movie">
+                                        </form>
+                                @endif
                             </td>
                             
                         </tr>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -26,33 +27,34 @@ class LeechMovieController extends Controller
     public function leech_store($slug){
         $url = Http::get("https://ophim1.com/phim/".$slug)->json();
         $info_movie = $url['movie'];
-        dd($info_movie);
+        $country = Country::where('slug',$info_movie['country'][0]['slug'])->first();
+        $category = Country::where('slug',$info_movie['category'][0]['slug'])->first();
+        
         $movie =Movie::create([
             'title' => $info_movie['name'],
             'description' => $info_movie['content'],
             'trailer' => $info_movie['trailer_url'],
             'sotap' => $info_movie['episode_total'],
-            'thuocphim' => $info_movie['thuocphim'],
-            'status' => 1,
+            'thuocphim' => $info_movie['chieurap'] == false ? '1' :'0',
+            'status' => 0,
             'slug' => $info_movie['slug'],
 
-
-            'movie_duration' => $info_movie['movie_duration'],
-            'image' => $info_movie['image'],
-            'country_id' => $info_movie['country_id'],
+            'resolution' => 0,
+            'movie_duration' => $info_movie['time'],
+            'image' => $info_movie['thumb_url'],
+            'country_id' => $country->id ?? 0,
             'name_eng' => $info_movie['origin_name'],
-            'resolution' => $info_movie['resolution'],
-            'vietsub' => $info_movie['vietsub'],
-            'genre_id' => $info_movie['genre_id'],
-            'hot_movie' => $info_movie['hot_movie'],
-            'category_id' => $info_movie['category_id'],
+            'vietsub' => $info_movie['lang'] == 'vietsub' ? 1 : 0,
+            'genre_id' => 0,
+            'hot_movie' => 0,
+            'category_id' => $category->id ?? 0,
         ]);
 
         // //add more genre
         // $movie->movieGenres()->attach($request->genre);
 
         //add more category
-        $movie->movieCategories()->attach($info_movie['category']);
-        return $url;
+        // $movie->movieCategories()->attach($info_movie['category']);
+        return redirect()->back()->with('success','Add movie Successfully');
     }
 }
