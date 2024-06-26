@@ -111,6 +111,7 @@ Route::middleware(['auth'])
             Route::get('leech-movie', 'leech_movie')->name('leech_movie');
             Route::get('leech-detail/{slug}', 'leech_detail')->name('leech_detail');
             Route::post('leech-store/{slug}', 'leech_store')->name('leech_store');
+            Route::get('leech-episode/{slug}', 'leech_episode')->name('leech_episode');
             Route::delete('leech-destroy/{id}', 'leech_destroy')->name('leech_destroy');
         });
 });

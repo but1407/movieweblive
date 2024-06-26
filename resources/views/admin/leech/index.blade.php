@@ -50,6 +50,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('leech_detail', $url['slug']) }}" class="btn btn-info">Detail</a>
+                                <a href="{{ route('leech_episode', $url['slug']) }}" class="btn btn-dark">Episode</a>
 
                                 @php
                                     $movie = \App\Models\Movie::where('slug',$url['slug'])->first()

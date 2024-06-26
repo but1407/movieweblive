@@ -57,4 +57,11 @@ class LeechMovieController extends Controller
         // $movie->movieCategories()->attach($info_movie['category']);
         return redirect()->back()->with('success','Add movie Successfully');
     }
+    public function leech_episode($slug){
+        $url = Http::get("https://ophim1.com/phim/".$slug)->json();
+        return view('admin.leech.episode',[
+            'url' => $url,
+            'title' => 'Leech Episode'
+        ]); 
+    }
 }
