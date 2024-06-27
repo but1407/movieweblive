@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\Episode;
+use App\Models\LinkMovie;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -59,6 +61,35 @@ class LeechMovieController extends Controller
     }
     public function leech_episode($slug){
         $url = Http::get("https://ophim1.com/phim/".$slug)->json();
+        return view('admin.leech.episode',[
+            'url' => $url,
+            'title' => 'Leech Episode'
+        ]); 
+    }
+    public function leech_episode_store(Request $request, $slug){
+        $movie = Movie::where('slug', $slug)->first();
+        if(!$movie){
+            return redirect()->back()->with('error','Movie does not exist in your database');
+        }
+        $url = Http::get("https://ophim1.com/phim/".$slug)->json();
+        foreach($url['episodes'] as $res){
+            foreach($res['server_data'] as $key => $res_data){
+                $ep = new Episode();
+                $ep->movie_id = $movie->id;
+                $ep->episode = $res_data['name'];
+                $ep->movie_link = '<p><iframe width="560" height="315" src="'. $res_data['link_embed'] .'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>';
+                if($key == 0){
+                    $link_movie = LinkMovie::orderBy('id', 'desc')->first();
+                    $ep->server = $link_movie->id;
+                } else{
+                    $link_movie = LinkMovie::orderBy('id', 'asc')->first();
+                    $ep->server = $link_movie->id;
+                }
+                $ep->save();
+            }
+            return redirect()->back()->with('success','Add episode successfully');
+        }
+
         return view('admin.leech.episode',[
             'url' => $url,
             'title' => 'Leech Episode'

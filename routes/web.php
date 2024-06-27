@@ -81,7 +81,6 @@ Route::middleware(['auth'])
                 Route::get('/movie-sort','movie_sort')->name('movie_sort');
                 Route::post('/navbar/resorting','resorting_navbar');
                 Route::post('/movie/resorting','resorting_movie');
-                
 
             });
             //Genre
@@ -104,6 +103,7 @@ Route::middleware(['auth'])
             Route::get('movielink/link/edit/{id}', 'edit')->name('linkmovie.edit');
             Route::put('movielink/link/update/{id}', 'update')->name('linkmovie.update');
             Route::delete('movielink/link/destroy/{id}', 'destroy')->name('linkmovie.destroy');
+        
         });
 
         //leech movies
@@ -113,6 +113,8 @@ Route::middleware(['auth'])
             Route::post('leech-store/{slug}', 'leech_store')->name('leech_store');
             Route::get('leech-episode/{slug}', 'leech_episode')->name('leech_episode');
             Route::delete('leech-destroy/{id}', 'leech_destroy')->name('leech_destroy');
+            Route::get('leech-episode-store/{slug}', 'leech_episode_store')->name('leech_episode_store');
+
         });
 });
 

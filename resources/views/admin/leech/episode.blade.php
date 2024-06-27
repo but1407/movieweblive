@@ -18,44 +18,43 @@
     <div class="">
         <div class="row justify-content-center">
             <table class="table-primary" id="tablephim">
+                <tr>
+                <tr>
+
+                    <th>_Id</th>
+                    <th scope="row">{{ $url['movie']['_id'] }}</th>
+                </tr>
+
+                <tr>
+
+                    <th>Name</th>
+                    <td>{{ $url['movie']['name'] }} => <a href="{{ route('leech_episode_store', $url['movie']['slug']) }}">Add Episode</a></td>
+                </tr>
+
+                <tr>
+
+                    <th>Origin name</th>
+                    <td>{{ $url['movie']['origin_name'] }}</td>
+                </tr>
+                @foreach ($url['episodes'] as $episode)
                     <tr>
-                        <tr>
-                            
-                            <th>_Id</th>
-                            <th scope="row">{{ $url['movie']['_id'] }}</th>
-                        </tr>
+                        <th>Server {{ $episode['server_name'] }}:</th>
 
-                        <tr>
-                            
-                            <th>Name</th>
-                            <td>{{ $url['movie']['name'] }}</td>
-                        </tr>
-
-                        <tr>
-                            
-                            <th>Origin name</th>
-                            <td>{{ $url['movie']['origin_name'] }}</td>
-                        </tr>
-                        @foreach ($url['episodes'] as $episode)
-                            
-                            <tr>
-                                <th>Server {{ $episode['server_name'] }}:</th>
-                                
-                                <td>
-                                    @foreach ($episode['server_data'] as $server)
-                                        <li style="list-style: none; margin:10px">
-                                            <span>
-                                                Tập {{ $server['name'] }}
-                                            </span> => 
-                                            <span class="btn btn-primary">
-                                                <a href="{{ $server['link_embed'] }}" style="color: #fff">{{ $server['filename'] }}</a>
-                                            </span>
-                                        </li>
-                                    @endforeach
-                                </td>
-                            </tr>
-                        @endforeach
-
+                        <td>
+                            @foreach ($episode['server_data'] as $server)
+                                <li style="list-style: none; margin:10px">
+                                    <span>
+                                        Tập {{ $server['name'] }}
+                                    </span> =>
+                                    <span class="btn btn-primary">
+                                        <a href="{{ $server['link_embed'] }}"
+                                            style="color: #fff">{{ $server['filename'] }}</a>
+                                    </span>
+                                </li>
+                            @endforeach
+                        </td>
+                    </tr>
+                @endforeach
             </table>
         </div>
     </div>
@@ -64,15 +63,19 @@
             width: 100%;
             border-collapse: collapse;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid black;
             border-bottom: 1px solid black;
             padding: 8px;
             text-align: left;
         }
+
         th {
             background-color: #f2f2f2;
         }
+
         img {
             max-width: 100px;
         }
