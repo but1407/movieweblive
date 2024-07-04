@@ -9,12 +9,33 @@
 @endsection
 @section('js')
     <script src="{{ asset('layout/category/category.js') }}"></script>
+    <script src="{{ asset('layout/leech/leech.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
 @endsection
 
 @section('content')
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"><span id="content-title"></span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span id="content-detail"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <table class="table" id="tablephim">
@@ -53,23 +74,27 @@
                                 <a href="{{ route('leech_episode', $url['slug']) }}" class="btn btn-dark">Episode</a>
 
                                 @php
-                                    $movie = \App\Models\Movie::where('slug',$url['slug'])->first()
+                                    $movie = \App\Models\Movie::where('slug', $url['slug'])->first();
                                 @endphp
                                 @if (!$movie)
-                                    
                                     <form action="{{ route('leech_store', $url['slug']) }}" method="post">
                                         @csrf
                                         <input type="submit" class="btn btn-success" value="Add Movie">
                                     </form>
-                                    @else
-                                        <form action="{{ route('leech_destroy', $movie->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="submit" class="btn btn-danger" value="Delete Movie">
-                                        </form>
+                                @else
+                                    <form action="{{ route('leech_destroy', $movie->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit" class="btn btn-danger" value="Delete Movie">
+                                    </form>
                                 @endif
+                                <!-- Button trigger modal -->
+                                <button type="button" data-movie_slug="{{ $url['slug'] }}"
+                                    class="btn btn-primary leech_detail" data-toggle="modal" data-target="#staticBackdrop">
+                                    Detail Modal
+                                </button>
                             </td>
-                            
+
                         </tr>
                     @endforeach
 

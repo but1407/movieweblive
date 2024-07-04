@@ -19,12 +19,10 @@
         <div class="row justify-content-center">
             <table class="table-primary" id="tablephim">
                 <tr>
-                <tr>
-
-                    <th>_Id</th>
-                    <th scope="row">{{ $url['movie']['_id'] }}</th>
-                </tr>
-
+                    <tr>
+                        <th>_Id</th>
+                        <th scope="row">{{ $url['movie']['_id'] }}</th>
+                    </tr>
                 <tr>
 
                     <th>Name</th>
