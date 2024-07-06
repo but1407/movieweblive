@@ -100,11 +100,10 @@ class LeechMovieController extends Controller
             'title' => 'Leech Episode'
         ]);
     }
-    public function watch_leech_edetail(Request $request, $slug)
+    public function watch_leech_detail(Request $request, $slug)
     {
         $slug = $request->slug;
         $resp = Http::get('https://ophim1.com/phim/' . $slug)->json();
-        $resp_array[] = $resp['movie'];
 
         $output['content_title'] = '<h3 style="text-align: center;text-transform: uppercase;">' . $resp['movie']['name'] . '</h3>';
 
@@ -145,6 +144,41 @@ class LeechMovieController extends Controller
             </div>
         ';
 
+        return $output;
+    }
+
+    public function watch_leech_detail_episode(Request $request, $slug)
+    {
+        $slug = $request->slug;
+        $resp = Http::get('https://ophim1.com/phim/' . $slug)->json();
+
+        $output['content_title_episode'] = '<h3 style="text-align: center;text-transform: uppercase;">' . $resp['movie']['name'] . '</h3>';
+
+        $output['content_detail_episode'] = '
+            <div class="row">
+                <div class="col-md-6">Link embeded</div>';
+
+        foreach ($resp['episodes'] as $res) {
+            foreach ($res['server_data'] as $server) {
+                $output['content_detail_episode'] .= '<p>Episode '. $server['name'] .'</p>'
+                    . '<p><input type="text" class="form-control" value="' . $server['link_embed'] . '"></p>
+                    <button type="button" data-movie_slug=""
+                        class="btn btn-primary leech_detail_episode" data-toggle="modal" data-target="#staticBackdrop">
+                        Add episode
+                    </button>';
+            }
+            $output['content_detail_episode'] .= '</div>';
+
+            $output['content_detail_episode'] .='         
+                <div class="col-md-6">Link m3u8</div>
+                ';
+            foreach ($res['server_data'] as $server) {
+                $output['content_detail_episode'] .= '<p>Episode '. $server['name'] .'</p>'
+                    . '<p><input type="text" class="form-control" value="' . $server['link_embed'] . '"></p>';
+            }
+        }
+        $output['content_detail_episode'] .= '</div>';
+        
         return $output;
     }
 }

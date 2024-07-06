@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-    <!-- Modal -->
+    <!-- Modal Detail-->
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -29,6 +29,28 @@
                 </div>
                 <div class="modal-body">
                     <span id="content-detail"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Episode-->
+    <div class="modal fade" id="staticBackdropEpisode" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"><span id="content-title-episode"></span></h5>
+                    <div id="content-title-episode"></div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span id="content-detail-episode"></span>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -92,6 +114,10 @@
                                 <button type="button" data-movie_slug="{{ $url['slug'] }}"
                                     class="btn btn-primary leech_detail" data-toggle="modal" data-target="#staticBackdrop">
                                     Detail Modal
+                                </button>
+                                <button type="button" data-movie_slug="{{ $url['slug'] }}"
+                                    class="btn btn-primary leech_detail_episode" data-toggle="modal" data-target="#staticBackdropEpisode">
+                                    Detail Episode
                                 </button>
                             </td>
 
