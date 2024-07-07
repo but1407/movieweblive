@@ -89,11 +89,11 @@ class MovieController extends Controller
                     $tagIds = $this->movieService->storeTags($request);
                     $create->tags()->attach($tagIds);
                 }
-                DB::commit();
             }
             if(!$image){
                 return redirect()->back()->with('error', 'Movie created failed from image');
             }
+            DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Message: '. $e->getMessage() . '  Line: ' . $e->getLine());

@@ -102,8 +102,8 @@
                                 <span id="success_image"></span>
                             </td>
                             <td>
-                                {{-- {{ $list->categories->title }} --}}
-                                {!! Form::select('category', $categories, isset($list) ? $list->categories->id : '', [
+                                {{-- {{ dd($list->movieCategories) }} --}}
+                                {!! Form::select('category', $categories, isset($list) ? $list->movieCategories : '', [
                                     'class' => 'form-control category_get',
                                     'id' => $list->id,
                                 ]) !!}
